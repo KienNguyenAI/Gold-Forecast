@@ -1,0 +1,19 @@
+# --- Cấu hình & Môi trường ---
+PyYAML
+python-dotenv
+
+# --- Dữ liệu & Tính toán ---
+numpy
+pandas
+scikit-learn
+joblib
+
+# --- Tải dữ liệu ---
+yfinance
+fredapi
+
+# --- AI & Deep Learning ---
+tensorflow
+
+# --- Trực quan hóa ---
+matplotlib
