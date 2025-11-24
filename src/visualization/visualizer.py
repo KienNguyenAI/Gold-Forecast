@@ -1,60 +1,113 @@
-import matplotlib.pyplot as plt
-import pandas as pd
-import tensorflow as tf
 import os
 import logging
+import joblib
+import pandas as pd
+import numpy as np
+import tensorflow as tf
 from typing import Dict
-from src.training.data_provider import DataProvider
+from datetime import datetime, timedelta  # 👈 Quan trọng: Thư viện xử lý ngày tháng
 
 
-class Visualizer:
+class GoldPredictor:
     def __init__(self, settings: Dict):
         self.logger = logging.getLogger(__name__)
         self.settings = settings
-        self.provider = DataProvider(settings)
 
-        model_name = settings['model']['name']
-        self.model_path = os.path.join(settings['paths']['model_save'], f"{model_name}_best.keras")
-        self.figures_dir = settings['paths']['figures_save']
+        self.model_path = os.path.join(settings['paths']['model_save'], f"{settings['model']['name']}_best.keras")
+        self.scaler_path = settings['paths']['model_save']
+        self.data_path = os.path.join(settings['paths']['processed_data'], "gold_processed_features.csv")
 
-    def plot_forecast(self, days_to_plot=200):
-        self.logger.info("🎨 Đang vẽ biểu đồ dự báo...")
+        self._load_artifacts()
 
-        # 1. Load Data
-        _, _, X_test, y_test = self.provider.load_and_split()
-
-        # 2. Load Model
+    def _load_artifacts(self):
+        self.logger.info("📥 Đang tải Model và Scalers...")
         if not os.path.exists(self.model_path):
-            self.logger.error("❌ Chưa có model.")
-            return
-        model = tf.keras.models.load_model(self.model_path)
+            raise FileNotFoundError(f"❌ Chưa tìm thấy Model tại {self.model_path}")
 
-        # 3. Predict
-        preds = model.predict([X_test['input_price'], X_test['input_macro']], verbose=0)
+        self.model = tf.keras.models.load_model(self.model_path)
+        try:
+            self.scaler_tech = joblib.load(os.path.join(self.scaler_path, "scaler_tech.pkl"))
+            self.scaler_macro = joblib.load(os.path.join(self.scaler_path, "scaler_macro.pkl"))
+        except FileNotFoundError:
+            raise FileNotFoundError("❌ Thiếu file Scaler.")
 
-        # Lấy dữ liệu đoạn cuối để vẽ
-        pred_min_pct = preds[0].flatten()[-days_to_plot:]
-        pred_max_pct = preds[1].flatten()[-days_to_plot:]
+    def prepare_last_window(self):
+        df = pd.read_csv(self.data_path, index_col=0, parse_dates=True)
+        window_size = self.settings['processing'].get('window_size', 30)  # Lấy từ config, mặc định 30
 
-        # Lấy giá thực tế
-        df = pd.read_csv(self.provider.data_path, index_col=0, parse_dates=True)
-        real_prices = df['Gold_Close'].iloc[-days_to_plot:].values
-        dates = df.index[-days_to_plot:]
+        # Định nghĩa cột (Phải khớp với lúc train)
+        tech_cols = ['Gold_Close', 'Log_Return', 'RSI', 'Volatility_20d', 'Trend_Signal']
+        macro_cols = ['DXY', 'US10Y', 'CPI', 'Real_Rate']  # Đảm bảo tên cột khớp với file processed
 
-        # Tính vùng dự báo
-        # Lưu ý: Đây là minh họa vùng dự báo nếu ta biết trước tương lai
-        # Thực tế nên vẽ dự báo one-step-ahead (t+1)
-        forecast_lower = real_prices * (1 + pred_min_pct)
-        forecast_upper = real_prices * (1 + pred_max_pct)
+        last_window_df = df.tail(window_size)
 
-        plt.figure(figsize=(15, 7))
-        plt.plot(dates, real_prices, label='Real Price', color='black')
-        plt.fill_between(dates, forecast_lower, forecast_upper, color='green', alpha=0.2, label='AI Forecast Range')
+        # Cho phép chạy dự báo ngay cả khi thiếu vài dòng (fallback)
+        if len(last_window_df) < window_size:
+            self.logger.warning(f"⚠️ Dữ liệu hơi ít ({len(last_window_df)} dòng), kết quả có thể kém chính xác.")
 
-        plt.title(f'AI Vision (Last {days_to_plot} days)')
-        plt.legend()
-        plt.grid(True, alpha=0.3)
+        current_price = last_window_df['Gold_Close'].iloc[-1]
+        last_date = last_window_df.index[-1]
 
-        save_path = os.path.join(self.figures_dir, "forecast_vision.png")
-        plt.savefig(save_path)
-        self.logger.info(f"📉 Đã lưu biểu đồ Vision tại: {save_path}")
+        tech_scaled = self.scaler_tech.transform(last_window_df[tech_cols])
+        macro_last_row = last_window_df[macro_cols].iloc[[-1]]
+        macro_scaled = self.scaler_macro.transform(macro_last_row)
+
+        input_price = np.expand_dims(tech_scaled, axis=0)
+        input_macro = macro_scaled
+
+        return input_price, input_macro, current_price, last_date
+
+    def predict(self):
+        self.logger.info("🔮 Đang thực hiện dự đoán...")
+
+        X_price, X_macro, current_price, last_date = self.prepare_last_window()
+
+        predictions = self.model.predict([X_price, X_macro], verbose=0)
+
+        pred_min_change = predictions[0][0][0]
+        pred_max_change = predictions[1][0][0]
+
+        price_min = current_price * (1 + pred_min_change)
+        price_max = current_price * (1 + pred_max_change)
+        price_close_forecast = (price_min + price_max) / 2
+
+        # --- TÍNH TOÁN NGÀY KẾT THÚC (FIX LỖI) ---
+        # Lấy số ngày dự báo từ config (ví dụ 30 ngày)
+        prediction_days = self.settings['processing'].get('window_size', 30)
+
+        # Cộng thêm ngày vào last_date
+        end_date = last_date + timedelta(days=prediction_days)
+
+        result = {
+            "last_date": last_date.strftime('%Y-%m-%d'),
+            "end_date": end_date.strftime('%Y-%m-%d'),  # 👈 Đây là cái Visualizer đang thiếu
+            "days": prediction_days,
+            "current_price": current_price,
+            "forecast_min": price_min,
+            "forecast_max": price_max,
+            "forecast_close": price_close_forecast,
+            "change_pct_min": pred_min_change * 100,
+            "change_pct_max": pred_max_change * 100
+        }
+
+        self._print_result(result)
+        return result
+
+    def _print_result(self, res):
+        print("\n" + "=" * 50)
+        print(f"🌟 KẾT QUẢ DỰ BÁO GIÁ VÀNG ({res['days']} NGÀY TỚI)")
+        print("=" * 50)
+        print(f"📅 Dữ liệu đến ngày:      {res['last_date']}")
+        print(f"🏁 Dự báo đến ngày:      {res['end_date']}")
+        print(f"💰 Giá hiện tại:          ${res['current_price']:.2f}")
+        print("-" * 50)
+        print(f"📉 Đáy dự kiến:           ${res['forecast_min']:.2f} ({res['change_pct_min']:.2f}%)")
+        print(f"📈 Đỉnh dự kiến:          ${res['forecast_max']:.2f} ({res['change_pct_max']:.2f}%)")
+        print("-" * 50)
+
+        avg = (res['forecast_min'] + res['forecast_max']) / 2
+        trend = "TĂNG 🟢" if avg > res['current_price'] else "GIẢM 🔴"
+        print(f"🎯 Xu hướng tổng thể:      {trend}")
+        print("=" * 50 + "\n")
+
+

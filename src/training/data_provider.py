@@ -33,7 +33,7 @@ class DataProvider:
         self.scaler_tech = MinMaxScaler()
         self.scaler_macro = MinMaxScaler()
 
-    def load_and_split(self) -> Tuple[Dict, Dict, Dict, Dict]:
+    def load_and_split(self, for_training=True) -> Tuple[Dict, Dict, Dict, Dict]:
         self.logger.info(f"📂 Đang đọc dữ liệu từ: {self.data_path}")
 
         if not os.path.exists(self.data_path):
@@ -44,6 +44,10 @@ class DataProvider:
         # Kiểm tra cột thiếu
         missing_tech = [c for c in self.tech_cols if c not in df.columns]
         missing_macro = [c for c in self.macro_cols if c not in df.columns]
+
+        if for_training:
+            original_len = len(df)
+            df = df.dropna(subset=self.target_cols)
 
         if missing_tech or missing_macro:
             self.logger.warning(f"⚠️ Thiếu cột dữ liệu! Tech: {missing_tech}, Macro: {missing_macro}")

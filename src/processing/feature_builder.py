@@ -55,4 +55,4 @@ class FeatureBuilder:
         # Thêm nhãn xu hướng (Classification): 1 nếu tăng > 2%, 0 nếu không
         # df['Target_Direction'] = (df['Target_Max_Change'] > 0.02).astype(int)
 
-        return df.dropna()
+        return df
