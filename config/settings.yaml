@@ -1,0 +1,70 @@
+# ==========================================
+# CẤU HÌNH DỰ ÁN GOLD-FORECAST
+# ==========================================
+project_name: "Gold-Forecast-Pro"
+version: "1.0.0"
+seed: 42  # Đặt random seed để kết quả có thể tái lập (Reproducibility)
+
+# ------------------------------------------
+# 1. ĐƯỜNG DẪN HỆ THỐNG (PATHS)
+# ------------------------------------------
+paths:
+  raw_data: "data/raw/"                 # Nơi lưu file CSV tải về
+  processed_data: "data/processed/"     # Nơi lưu file sau khi làm sạch
+  model_save: "artifacts/models/"       # Nơi lưu file .pth, .pkl
+  figures_save: "artifacts/figures/"    # Nơi lưu biểu đồ
+  logs: "logs/"                         # Nơi lưu file log
+
+# ------------------------------------------
+# 2. CẤU HÌNH DỮ LIỆU (DATA SOURCES)
+# ------------------------------------------
+data:
+  # API Key cho FRED (Lưu ý: Thực tế nên dùng biến môi trường .env để bảo mật)
+  fred_api_key: "YOUR_FRED_API_KEY_HERE"
+
+  start_date: "2000-01-01"
+  target_col: "Close"  # Cột mục tiêu để dự đoán
+
+  # Các mã chứng khoán/hàng hóa trên Yahoo Finance
+  market_tickers:
+    Gold: "GC=F"
+    DXY: "DX-Y.NYB"      # Sức mạnh đồng Đô la
+    SP500: "^GSPC"       # Chứng khoán Mỹ
+    Oil: "CL=F"          # Giá dầu
+    Silver: "SI=F"       # Giá bạc (Tương quan cao với vàng)
+
+  # Các chỉ số vĩ mô từ FRED
+  macro_indicators:
+    CPI: "CPIAUCSL"      # Lạm phát
+    Fed_Rate: "FEDFUNDS" # Lãi suất FED
+    US10Y: "DGS10"       # Lợi suất trái phiếu 10 năm
+    M2: "M2SL"           # Cung tiền
+    Real_Rate: "REAINTRATREARAT10Y"
+# ------------------------------------------
+# 3. TIỀN XỬ LÝ (PROCESSING)
+# ------------------------------------------
+processing:
+  window_size: 60
+  test_size: 0.2
+  scaler_type: "minmax"
+
+# ------------------------------------------
+# 4. MÔ HÌNH (MODEL HYPERPARAMETERS)
+# ------------------------------------------
+model:
+  name: "Hybrid_Gold_Forecast_V1"
+  input_dim: "auto"
+  hidden_dim: 64
+  num_layers: 2
+  output_dim: 1
+  dropout: 0.2
+
+# ------------------------------------------
+# 5. HUẤN LUYỆN (TRAINING)
+# ------------------------------------------
+training:
+  batch_size: 32
+  epochs: 100
+  learning_rate: 0.001
+  patience: 10          # Early Stopping: Dừng nếu không cải thiện sau 10 epoch
+  device: "auto"        # 'cuda', 'mps' (mac), hoặc 'cpu' (Code sẽ tự nhận)

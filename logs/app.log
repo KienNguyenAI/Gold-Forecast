@@ -1,0 +1,1338 @@
+2025-11-24 23:44:57 - root - INFO - config_utils.py:32 - Logging đã được thiết lập từ file yaml.
+2025-11-24 23:44:57 - MainController - INFO - main.py:154 - 🤖 Hệ thống khởi động. Mode: PIPELINE
+2025-11-24 23:44:57 - MainController - INFO - main.py:103 - 
+==================================================
+2025-11-24 23:44:57 - MainController - INFO - main.py:104 - 🚀 BẮT ĐẦU CHẠY TOÀN BỘ HỆ THỐNG (FULL PIPELINE)
+2025-11-24 23:44:57 - MainController - INFO - main.py:105 - ==================================================
+
+2025-11-24 23:44:57 - MainController - INFO - main.py:25 - 📡 [1/6] BẮT ĐẦU TẢI DỮ LIỆU...
+2025-11-24 23:44:57 - src.data_loader.market_loader - INFO - market_loader.py:26 - 🚀 Đang tải dữ liệu thị trường từ 2000-01-01...
+2025-11-24 23:44:57 - yfinance - DEBUG - utils.py:89 - Entering download()
+2025-11-24 23:44:57 - yfinance - DEBUG - multi.py:114 - Disabling multithreading because DEBUG logging enabled
+2025-11-24 23:44:57 - yfinance - DEBUG - utils.py:89 -  Entering history()
+2025-11-24 23:44:57 - peewee - DEBUG - peewee.py:3319 - ('CREATE TABLE IF NOT EXISTS "_tz_kv" ("key" VARCHAR(255) NOT NULL PRIMARY KEY, "value" VARCHAR(255)) WITHOUT ROWID', [])
+2025-11-24 23:44:57 - peewee - DEBUG - peewee.py:3319 - ('SELECT "t1"."key", "t1"."value" FROM "_tz_kv" AS "t1" WHERE ("t1"."key" = ?) LIMIT ? OFFSET ?', ['^GSPC', 1, 0])
+2025-11-24 23:44:58 - yfinance - DEBUG - utils.py:89 -   Entering history()
+2025-11-24 23:44:58 - yfinance - DEBUG - history.py:196 - ^GSPC: Yahoo GET parameters: {'period1': '2000-01-01 00:00:00-05:00', 'period2': '2025-11-24 11:44:58-05:00', 'interval': '1d', 'includePrePost': False, 'events': 'div,splits,capitalGains'}
+2025-11-24 23:44:58 - yfinance - DEBUG - utils.py:89 -    Entering get()
+2025-11-24 23:44:58 - yfinance - DEBUG - utils.py:89 -     Entering _make_request()
+2025-11-24 23:44:58 - yfinance - DEBUG - data.py:394 - url=https://query2.finance.yahoo.com/v8/finance/chart/^GSPC
+2025-11-24 23:44:58 - yfinance - DEBUG - data.py:395 - params={'period1': 946702800, 'period2': 1764002698, 'interval': '1d', 'includePrePost': False, 'events': 'div,splits,capitalGains'}
+2025-11-24 23:44:58 - yfinance - DEBUG - utils.py:89 -      Entering _get_cookie_and_crumb()
+2025-11-24 23:44:58 - yfinance - DEBUG - data.py:350 - cookie_mode = 'basic'
+2025-11-24 23:44:58 - yfinance - DEBUG - utils.py:89 -       Entering _get_cookie_and_crumb_basic()
+2025-11-24 23:44:58 - yfinance - DEBUG - utils.py:89 -        Entering _get_cookie_basic()
+2025-11-24 23:44:58 - yfinance - DEBUG - utils.py:89 -         Entering _load_cookie_curlCffi()
+2025-11-24 23:44:58 - peewee - DEBUG - peewee.py:3319 - ('CREATE TABLE IF NOT EXISTS "_cookieschema" ("strategy" VARCHAR(255) NOT NULL PRIMARY KEY, "fetch_date" DATETIME NOT NULL, "cookie_bytes" BLOB NOT NULL) WITHOUT ROWID', [])
+2025-11-24 23:44:58 - peewee - DEBUG - peewee.py:3319 - ('SELECT "t1"."strategy", "t1"."fetch_date", "t1"."cookie_bytes" FROM "_cookieschema" AS "t1" WHERE ("t1"."strategy" = ?) LIMIT ? OFFSET ?', ['curlCffi', 1, 0])
+2025-11-24 23:44:58 - yfinance - DEBUG - utils.py:94 -         Exiting _load_cookie_curlCffi()
+2025-11-24 23:44:58 - yfinance - DEBUG - data.py:191 - reusing persistent cookie
+2025-11-24 23:44:58 - yfinance - DEBUG - utils.py:94 -        Exiting _get_cookie_basic()
+2025-11-24 23:44:58 - yfinance - DEBUG - utils.py:89 -        Entering _get_crumb_basic()
+2025-11-24 23:44:58 - yfinance - DEBUG - utils.py:89 -         Entering _get_cookie_basic()
+2025-11-24 23:44:58 - yfinance - DEBUG - data.py:188 - reusing cookie
+2025-11-24 23:44:58 - yfinance - DEBUG - utils.py:94 -         Exiting _get_cookie_basic()
+2025-11-24 23:44:58 - yfinance - DEBUG - data.py:235 - crumb = 'Ns186LAbZnv'
+2025-11-24 23:44:58 - yfinance - DEBUG - utils.py:94 -        Exiting _get_crumb_basic()
+2025-11-24 23:44:58 - yfinance - DEBUG - utils.py:94 -       Exiting _get_cookie_and_crumb_basic()
+2025-11-24 23:44:58 - yfinance - DEBUG - utils.py:94 -      Exiting _get_cookie_and_crumb()
+2025-11-24 23:44:59 - yfinance - DEBUG - data.py:418 - response code=200
+2025-11-24 23:44:59 - yfinance - DEBUG - utils.py:94 -     Exiting _make_request()
+2025-11-24 23:44:59 - yfinance - DEBUG - utils.py:94 -    Exiting get()
+2025-11-24 23:44:59 - yfinance - DEBUG - history.py:312 - ^GSPC: yfinance received OHLC data: 2000-01-03 14:30:00 -> 2025-11-21 14:30:00
+2025-11-24 23:44:59 - yfinance - DEBUG - history.py:349 - ^GSPC: OHLC after cleaning: 2000-01-03 09:30:00-05:00 -> 2025-11-21 09:30:00-05:00
+2025-11-24 23:44:59 - yfinance - DEBUG - history.py:437 - ^GSPC: OHLC after combining events: 2000-01-03 00:00:00-05:00 -> 2025-11-21 00:00:00-05:00
+2025-11-24 23:44:59 - yfinance - DEBUG - history.py:517 - ^GSPC: yfinance returning OHLC: 2000-01-03 00:00:00-05:00 -> 2025-11-21 00:00:00-05:00
+2025-11-24 23:44:59 - yfinance - DEBUG - utils.py:94 -   Exiting history()
+2025-11-24 23:44:59 - yfinance - DEBUG - utils.py:94 -  Exiting history()
+2025-11-24 23:44:59 - yfinance - DEBUG - utils.py:89 -  Entering history()
+2025-11-24 23:44:59 - peewee - DEBUG - peewee.py:3319 - ('SELECT "t1"."key", "t1"."value" FROM "_tz_kv" AS "t1" WHERE ("t1"."key" = ?) LIMIT ? OFFSET ?', ['CL=F', 1, 0])
+2025-11-24 23:44:59 - yfinance - DEBUG - utils.py:89 -   Entering history()
+2025-11-24 23:44:59 - yfinance - DEBUG - history.py:196 - CL=F: Yahoo GET parameters: {'period1': '2000-01-01 00:00:00-05:00', 'period2': '2025-11-24 11:44:59-05:00', 'interval': '1d', 'includePrePost': False, 'events': 'div,splits,capitalGains'}
+2025-11-24 23:44:59 - yfinance - DEBUG - utils.py:89 -    Entering get()
+2025-11-24 23:44:59 - yfinance - DEBUG - utils.py:89 -     Entering _make_request()
+2025-11-24 23:44:59 - yfinance - DEBUG - data.py:394 - url=https://query2.finance.yahoo.com/v8/finance/chart/CL=F
+2025-11-24 23:44:59 - yfinance - DEBUG - data.py:395 - params={'period1': 946702800, 'period2': 1764002699, 'interval': '1d', 'includePrePost': False, 'events': 'div,splits,capitalGains'}
+2025-11-24 23:44:59 - yfinance - DEBUG - utils.py:89 -      Entering _get_cookie_and_crumb()
+2025-11-24 23:44:59 - yfinance - DEBUG - data.py:350 - cookie_mode = 'basic'
+2025-11-24 23:44:59 - yfinance - DEBUG - utils.py:89 -       Entering _get_cookie_and_crumb_basic()
+2025-11-24 23:44:59 - yfinance - DEBUG - utils.py:89 -        Entering _get_cookie_basic()
+2025-11-24 23:44:59 - yfinance - DEBUG - data.py:188 - reusing cookie
+2025-11-24 23:44:59 - yfinance - DEBUG - utils.py:94 -        Exiting _get_cookie_basic()
+2025-11-24 23:44:59 - yfinance - DEBUG - utils.py:89 -        Entering _get_crumb_basic()
+2025-11-24 23:44:59 - yfinance - DEBUG - data.py:210 - reusing crumb
+2025-11-24 23:44:59 - yfinance - DEBUG - utils.py:94 -        Exiting _get_crumb_basic()
+2025-11-24 23:44:59 - yfinance - DEBUG - utils.py:94 -       Exiting _get_cookie_and_crumb_basic()
+2025-11-24 23:44:59 - yfinance - DEBUG - utils.py:94 -      Exiting _get_cookie_and_crumb()
+2025-11-24 23:44:59 - yfinance - DEBUG - data.py:418 - response code=200
+2025-11-24 23:44:59 - yfinance - DEBUG - utils.py:94 -     Exiting _make_request()
+2025-11-24 23:44:59 - yfinance - DEBUG - utils.py:94 -    Exiting get()
+2025-11-24 23:44:59 - yfinance - DEBUG - history.py:312 - CL=F: yfinance received OHLC data: 2000-08-23 04:00:00 -> 2025-11-24 16:35:01
+2025-11-24 23:44:59 - yfinance - DEBUG - history.py:349 - CL=F: OHLC after cleaning: 2000-08-23 00:00:00-04:00 -> 2025-11-24 11:35:01-05:00
+2025-11-24 23:44:59 - yfinance - DEBUG - history.py:437 - CL=F: OHLC after combining events: 2000-08-23 00:00:00-04:00 -> 2025-11-24 00:00:00-05:00
+2025-11-24 23:44:59 - yfinance - DEBUG - history.py:517 - CL=F: yfinance returning OHLC: 2000-08-23 00:00:00-04:00 -> 2025-11-24 00:00:00-05:00
+2025-11-24 23:44:59 - yfinance - DEBUG - utils.py:94 -   Exiting history()
+2025-11-24 23:44:59 - yfinance - DEBUG - utils.py:94 -  Exiting history()
+2025-11-24 23:44:59 - yfinance - DEBUG - utils.py:89 -  Entering history()
+2025-11-24 23:44:59 - peewee - DEBUG - peewee.py:3319 - ('SELECT "t1"."key", "t1"."value" FROM "_tz_kv" AS "t1" WHERE ("t1"."key" = ?) LIMIT ? OFFSET ?', ['SI=F', 1, 0])
+2025-11-24 23:44:59 - yfinance - DEBUG - utils.py:89 -   Entering history()
+2025-11-24 23:44:59 - yfinance - DEBUG - history.py:196 - SI=F: Yahoo GET parameters: {'period1': '2000-01-01 00:00:00-05:00', 'period2': '2025-11-24 11:44:59-05:00', 'interval': '1d', 'includePrePost': False, 'events': 'div,splits,capitalGains'}
+2025-11-24 23:44:59 - yfinance - DEBUG - utils.py:89 -    Entering get()
+2025-11-24 23:44:59 - yfinance - DEBUG - utils.py:89 -     Entering _make_request()
+2025-11-24 23:44:59 - yfinance - DEBUG - data.py:394 - url=https://query2.finance.yahoo.com/v8/finance/chart/SI=F
+2025-11-24 23:44:59 - yfinance - DEBUG - data.py:395 - params={'period1': 946702800, 'period2': 1764002699, 'interval': '1d', 'includePrePost': False, 'events': 'div,splits,capitalGains'}
+2025-11-24 23:44:59 - yfinance - DEBUG - utils.py:89 -      Entering _get_cookie_and_crumb()
+2025-11-24 23:44:59 - yfinance - DEBUG - data.py:350 - cookie_mode = 'basic'
+2025-11-24 23:44:59 - yfinance - DEBUG - utils.py:89 -       Entering _get_cookie_and_crumb_basic()
+2025-11-24 23:44:59 - yfinance - DEBUG - utils.py:89 -        Entering _get_cookie_basic()
+2025-11-24 23:44:59 - yfinance - DEBUG - data.py:188 - reusing cookie
+2025-11-24 23:44:59 - yfinance - DEBUG - utils.py:94 -        Exiting _get_cookie_basic()
+2025-11-24 23:44:59 - yfinance - DEBUG - utils.py:89 -        Entering _get_crumb_basic()
+2025-11-24 23:44:59 - yfinance - DEBUG - data.py:210 - reusing crumb
+2025-11-24 23:44:59 - yfinance - DEBUG - utils.py:94 -        Exiting _get_crumb_basic()
+2025-11-24 23:44:59 - yfinance - DEBUG - utils.py:94 -       Exiting _get_cookie_and_crumb_basic()
+2025-11-24 23:44:59 - yfinance - DEBUG - utils.py:94 -      Exiting _get_cookie_and_crumb()
+2025-11-24 23:44:59 - yfinance - DEBUG - data.py:418 - response code=200
+2025-11-24 23:44:59 - yfinance - DEBUG - utils.py:94 -     Exiting _make_request()
+2025-11-24 23:44:59 - yfinance - DEBUG - utils.py:94 -    Exiting get()
+2025-11-24 23:44:59 - yfinance - DEBUG - history.py:312 - SI=F: yfinance received OHLC data: 2000-08-30 04:00:00 -> 2025-11-24 16:35:01
+2025-11-24 23:44:59 - yfinance - DEBUG - history.py:349 - SI=F: OHLC after cleaning: 2000-08-30 00:00:00-04:00 -> 2025-11-24 11:35:01-05:00
+2025-11-24 23:44:59 - yfinance - DEBUG - history.py:437 - SI=F: OHLC after combining events: 2000-08-30 00:00:00-04:00 -> 2025-11-24 00:00:00-05:00
+2025-11-24 23:44:59 - yfinance - DEBUG - history.py:517 - SI=F: yfinance returning OHLC: 2000-08-30 00:00:00-04:00 -> 2025-11-24 00:00:00-05:00
+2025-11-24 23:44:59 - yfinance - DEBUG - utils.py:94 -   Exiting history()
+2025-11-24 23:44:59 - yfinance - DEBUG - utils.py:94 -  Exiting history()
+2025-11-24 23:44:59 - yfinance - DEBUG - utils.py:89 -  Entering history()
+2025-11-24 23:44:59 - peewee - DEBUG - peewee.py:3319 - ('SELECT "t1"."key", "t1"."value" FROM "_tz_kv" AS "t1" WHERE ("t1"."key" = ?) LIMIT ? OFFSET ?', ['GC=F', 1, 0])
+2025-11-24 23:44:59 - yfinance - DEBUG - utils.py:89 -   Entering history()
+2025-11-24 23:44:59 - yfinance - DEBUG - history.py:196 - GC=F: Yahoo GET parameters: {'period1': '2000-01-01 00:00:00-05:00', 'period2': '2025-11-24 11:44:59-05:00', 'interval': '1d', 'includePrePost': False, 'events': 'div,splits,capitalGains'}
+2025-11-24 23:44:59 - yfinance - DEBUG - utils.py:89 -    Entering get()
+2025-11-24 23:44:59 - yfinance - DEBUG - utils.py:89 -     Entering _make_request()
+2025-11-24 23:44:59 - yfinance - DEBUG - data.py:394 - url=https://query2.finance.yahoo.com/v8/finance/chart/GC=F
+2025-11-24 23:44:59 - yfinance - DEBUG - data.py:395 - params={'period1': 946702800, 'period2': 1764002699, 'interval': '1d', 'includePrePost': False, 'events': 'div,splits,capitalGains'}
+2025-11-24 23:44:59 - yfinance - DEBUG - utils.py:89 -      Entering _get_cookie_and_crumb()
+2025-11-24 23:44:59 - yfinance - DEBUG - data.py:350 - cookie_mode = 'basic'
+2025-11-24 23:44:59 - yfinance - DEBUG - utils.py:89 -       Entering _get_cookie_and_crumb_basic()
+2025-11-24 23:44:59 - yfinance - DEBUG - utils.py:89 -        Entering _get_cookie_basic()
+2025-11-24 23:44:59 - yfinance - DEBUG - data.py:188 - reusing cookie
+2025-11-24 23:44:59 - yfinance - DEBUG - utils.py:94 -        Exiting _get_cookie_basic()
+2025-11-24 23:44:59 - yfinance - DEBUG - utils.py:89 -        Entering _get_crumb_basic()
+2025-11-24 23:44:59 - yfinance - DEBUG - data.py:210 - reusing crumb
+2025-11-24 23:44:59 - yfinance - DEBUG - utils.py:94 -        Exiting _get_crumb_basic()
+2025-11-24 23:44:59 - yfinance - DEBUG - utils.py:94 -       Exiting _get_cookie_and_crumb_basic()
+2025-11-24 23:44:59 - yfinance - DEBUG - utils.py:94 -      Exiting _get_cookie_and_crumb()
+2025-11-24 23:44:59 - yfinance - DEBUG - data.py:418 - response code=200
+2025-11-24 23:44:59 - yfinance - DEBUG - utils.py:94 -     Exiting _make_request()
+2025-11-24 23:44:59 - yfinance - DEBUG - utils.py:94 -    Exiting get()
+2025-11-24 23:45:00 - yfinance - DEBUG - history.py:312 - GC=F: yfinance received OHLC data: 2000-08-30 04:00:00 -> 2025-11-24 16:35:01
+2025-11-24 23:45:00 - yfinance - DEBUG - history.py:349 - GC=F: OHLC after cleaning: 2000-08-30 00:00:00-04:00 -> 2025-11-24 11:35:01-05:00
+2025-11-24 23:45:00 - yfinance - DEBUG - history.py:437 - GC=F: OHLC after combining events: 2000-08-30 00:00:00-04:00 -> 2025-11-24 00:00:00-05:00
+2025-11-24 23:45:00 - yfinance - DEBUG - history.py:517 - GC=F: yfinance returning OHLC: 2000-08-30 00:00:00-04:00 -> 2025-11-24 00:00:00-05:00
+2025-11-24 23:45:00 - yfinance - DEBUG - utils.py:94 -   Exiting history()
+2025-11-24 23:45:00 - yfinance - DEBUG - utils.py:94 -  Exiting history()
+2025-11-24 23:45:00 - yfinance - DEBUG - utils.py:89 -  Entering history()
+2025-11-24 23:45:00 - peewee - DEBUG - peewee.py:3319 - ('SELECT "t1"."key", "t1"."value" FROM "_tz_kv" AS "t1" WHERE ("t1"."key" = ?) LIMIT ? OFFSET ?', ['DX-Y.NYB', 1, 0])
+2025-11-24 23:45:00 - yfinance - DEBUG - utils.py:89 -   Entering history()
+2025-11-24 23:45:00 - yfinance - DEBUG - history.py:196 - DX-Y.NYB: Yahoo GET parameters: {'period1': '2000-01-01 00:00:00-05:00', 'period2': '2025-11-24 11:45:00-05:00', 'interval': '1d', 'includePrePost': False, 'events': 'div,splits,capitalGains'}
+2025-11-24 23:45:00 - yfinance - DEBUG - utils.py:89 -    Entering get()
+2025-11-24 23:45:00 - yfinance - DEBUG - utils.py:89 -     Entering _make_request()
+2025-11-24 23:45:00 - yfinance - DEBUG - data.py:394 - url=https://query2.finance.yahoo.com/v8/finance/chart/DX-Y.NYB
+2025-11-24 23:45:00 - yfinance - DEBUG - data.py:395 - params={'period1': 946702800, 'period2': 1764002700, 'interval': '1d', 'includePrePost': False, 'events': 'div,splits,capitalGains'}
+2025-11-24 23:45:00 - yfinance - DEBUG - utils.py:89 -      Entering _get_cookie_and_crumb()
+2025-11-24 23:45:00 - yfinance - DEBUG - data.py:350 - cookie_mode = 'basic'
+2025-11-24 23:45:00 - yfinance - DEBUG - utils.py:89 -       Entering _get_cookie_and_crumb_basic()
+2025-11-24 23:45:00 - yfinance - DEBUG - utils.py:89 -        Entering _get_cookie_basic()
+2025-11-24 23:45:00 - yfinance - DEBUG - data.py:188 - reusing cookie
+2025-11-24 23:45:00 - yfinance - DEBUG - utils.py:94 -        Exiting _get_cookie_basic()
+2025-11-24 23:45:00 - yfinance - DEBUG - utils.py:89 -        Entering _get_crumb_basic()
+2025-11-24 23:45:00 - yfinance - DEBUG - data.py:210 - reusing crumb
+2025-11-24 23:45:00 - yfinance - DEBUG - utils.py:94 -        Exiting _get_crumb_basic()
+2025-11-24 23:45:00 - yfinance - DEBUG - utils.py:94 -       Exiting _get_cookie_and_crumb_basic()
+2025-11-24 23:45:00 - yfinance - DEBUG - utils.py:94 -      Exiting _get_cookie_and_crumb()
+2025-11-24 23:45:00 - yfinance - DEBUG - data.py:418 - response code=200
+2025-11-24 23:45:00 - yfinance - DEBUG - utils.py:94 -     Exiting _make_request()
+2025-11-24 23:45:00 - yfinance - DEBUG - utils.py:94 -    Exiting get()
+2025-11-24 23:45:00 - yfinance - DEBUG - history.py:312 - DX-Y.NYB: yfinance received OHLC data: 2000-01-03 05:00:00 -> 2025-11-24 16:35:02
+2025-11-24 23:45:00 - yfinance - DEBUG - history.py:349 - DX-Y.NYB: OHLC after cleaning: 2000-01-03 00:00:00-05:00 -> 2025-11-24 11:35:02-05:00
+2025-11-24 23:45:00 - yfinance - DEBUG - history.py:437 - DX-Y.NYB: OHLC after combining events: 2000-01-03 00:00:00-05:00 -> 2025-11-24 00:00:00-05:00
+2025-11-24 23:45:00 - yfinance - DEBUG - history.py:517 - DX-Y.NYB: yfinance returning OHLC: 2000-01-03 00:00:00-05:00 -> 2025-11-24 00:00:00-05:00
+2025-11-24 23:45:00 - yfinance - DEBUG - utils.py:94 -   Exiting history()
+2025-11-24 23:45:00 - yfinance - DEBUG - utils.py:94 -  Exiting history()
+2025-11-24 23:45:00 - yfinance - DEBUG - utils.py:94 - Exiting download()
+2025-11-24 23:45:00 - src.data_loader.market_loader - INFO - market_loader.py:53 - ✅ [Market] Đã lưu: Gold -> data/raw/Gold_daily.csv
+2025-11-24 23:45:00 - src.data_loader.market_loader - INFO - market_loader.py:53 - ✅ [Market] Đã lưu: DXY -> data/raw/DXY_daily.csv
+2025-11-24 23:45:00 - src.data_loader.market_loader - INFO - market_loader.py:53 - ✅ [Market] Đã lưu: SP500 -> data/raw/SP500_daily.csv
+2025-11-24 23:45:00 - src.data_loader.market_loader - INFO - market_loader.py:53 - ✅ [Market] Đã lưu: Oil -> data/raw/Oil_daily.csv
+2025-11-24 23:45:00 - src.data_loader.market_loader - INFO - market_loader.py:53 - ✅ [Market] Đã lưu: Silver -> data/raw/Silver_daily.csv
+2025-11-24 23:45:00 - src.data_loader.macro_loader - INFO - macro_loader.py:47 - 🔄 Đang tải dữ liệu Vĩ mô từ FRED...
+2025-11-24 23:45:01 - src.data_loader.macro_loader - INFO - macro_loader.py:67 - ✅ [Macro] Đã lưu: CPI
+2025-11-24 23:45:01 - src.data_loader.macro_loader - INFO - macro_loader.py:67 - ✅ [Macro] Đã lưu: Fed_Rate
+2025-11-24 23:45:02 - src.data_loader.macro_loader - INFO - macro_loader.py:67 - ✅ [Macro] Đã lưu: US10Y
+2025-11-24 23:45:03 - src.data_loader.macro_loader - INFO - macro_loader.py:67 - ✅ [Macro] Đã lưu: M2
+2025-11-24 23:45:03 - MainController - INFO - main.py:33 - ✅ Tải dữ liệu hoàn tất.
+2025-11-24 23:45:03 - MainController - INFO - main.py:41 - ⚙️ [2/6] BẮT ĐẦU XỬ LÝ DỮ LIỆU...
+2025-11-24 23:45:03 - src.processing.processor - INFO - processor.py:21 - --- BẮT ĐẦU QUY TRÌNH XỬ LÝ DỮ LIỆU ---
+2025-11-24 23:45:03 - src.processing.data_merger - INFO - data_merger.py:20 - [Step 1] Đang ghép dữ liệu Market & Macro...
+2025-11-24 23:45:03 - src.processing.data_merger - INFO - data_merger.py:65 - Đã ghép xong. Dữ liệu: 6331 dòng (Đã loại bỏ 2 dòng NaN).
+2025-11-24 23:45:03 - src.processing.feature_builder - INFO - feature_builder.py:12 - [Step 2] Đang tính toán chỉ báo kỹ thuật...
+2025-11-24 23:45:03 - src.processing.feature_builder - INFO - feature_builder.py:42 - [Step 3] Đang tạo nhãn dự báo (30 ngày tới)...
+2025-11-24 23:45:03 - src.processing.processor - INFO - processor.py:39 - Đã lưu dữ liệu sạch tại: data/processed/gold_processed_features.csv
+2025-11-24 23:45:03 - src.processing.processor - INFO - processor.py:40 - Kích thước cuối cùng: (6253, 13)
+2025-11-24 23:45:03 - MainController - INFO - main.py:45 - ✅ Xử lý hoàn tất. File: data/processed/gold_processed_features.csv
+2025-11-24 23:45:03 - MainController - INFO - main.py:53 - 🏋️ [3/6] BẮT ĐẦU HUẤN LUYỆN...
+2025-11-24 23:45:03 - src.training.trainer - INFO - trainer.py:33 - 🚀 BẮT ĐẦU QUÁ TRÌNH HUẤN LUYỆN...
+2025-11-24 23:45:03 - src.training.data_provider - INFO - data_provider.py:37 - 📂 Đang đọc dữ liệu từ: data/processed/gold_processed_features.csv
+2025-11-24 23:45:03 - src.training.data_provider - INFO - data_provider.py:85 - ✅ Đã split dữ liệu. Train size: 4954, Test size: 1239
+2025-11-24 23:45:03 - src.training.data_provider - INFO - data_provider.py:95 - 💾 Đã lưu Scalers vào: artifacts/models/
+2025-11-24 23:45:03 - src.training.trainer - INFO - trainer.py:47 - 📊 Input Features: Price=5, Macro=4
+2025-11-24 23:45:03 - src.models.hybrid_model - INFO - hybrid_model.py:35 - Đang xây dựng model Hybrid: LSTM ((60, 5)) + Dense ((4,))
+2025-11-24 23:45:03 - src.models.hybrid_model - INFO - hybrid_model.py:73 - Build model kiến trúc thành công.
+2025-11-24 23:45:10 - h5py._conv - DEBUG - attrs.py:204 - Creating converter from 5 to 3
+2025-11-24 23:45:52 - src.training.trainer - INFO - trainer.py:94 - ✅ HUẤN LUYỆN HOÀN TẤT!
+2025-11-24 23:45:52 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'IHDR' 16 13
+2025-11-24 23:45:52 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'sBIT' 41 4
+2025-11-24 23:45:52 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:778 - b'sBIT' 41 4 (unknown)
+2025-11-24 23:45:52 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'pHYs' 57 9
+2025-11-24 23:45:52 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'IDAT' 78 1189
+2025-11-24 23:45:52 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'IHDR' 16 13
+2025-11-24 23:45:52 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'sBIT' 41 4
+2025-11-24 23:45:52 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:778 - b'sBIT' 41 4 (unknown)
+2025-11-24 23:45:52 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'pHYs' 57 9
+2025-11-24 23:45:52 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'IDAT' 78 2994
+2025-11-24 23:45:52 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'IHDR' 16 13
+2025-11-24 23:45:52 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'sBIT' 41 4
+2025-11-24 23:45:52 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:778 - b'sBIT' 41 4 (unknown)
+2025-11-24 23:45:52 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'pHYs' 57 9
+2025-11-24 23:45:52 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'IDAT' 78 696
+2025-11-24 23:45:52 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'IHDR' 16 13
+2025-11-24 23:45:52 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'sBIT' 41 4
+2025-11-24 23:45:52 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:778 - b'sBIT' 41 4 (unknown)
+2025-11-24 23:45:52 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'pHYs' 57 9
+2025-11-24 23:45:52 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'IDAT' 78 526
+2025-11-24 23:45:52 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'IHDR' 16 13
+2025-11-24 23:45:52 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'sBIT' 41 4
+2025-11-24 23:45:52 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:778 - b'sBIT' 41 4 (unknown)
+2025-11-24 23:45:52 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'pHYs' 57 9
+2025-11-24 23:45:52 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'IDAT' 78 499
+2025-11-24 23:45:52 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'IHDR' 16 13
+2025-11-24 23:45:52 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'sBIT' 41 4
+2025-11-24 23:45:52 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:778 - b'sBIT' 41 4 (unknown)
+2025-11-24 23:45:52 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'pHYs' 57 9
+2025-11-24 23:45:52 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'IDAT' 78 673
+2025-11-24 23:45:52 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'IHDR' 16 13
+2025-11-24 23:45:52 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'sBIT' 41 4
+2025-11-24 23:45:52 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:778 - b'sBIT' 41 4 (unknown)
+2025-11-24 23:45:52 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'pHYs' 57 9
+2025-11-24 23:45:52 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'IDAT' 78 922
+2025-11-24 23:45:52 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'IHDR' 16 13
+2025-11-24 23:45:52 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'sBIT' 41 4
+2025-11-24 23:45:52 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:778 - b'sBIT' 41 4 (unknown)
+2025-11-24 23:45:52 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'pHYs' 57 9
+2025-11-24 23:45:52 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'IDAT' 78 568
+2025-11-24 23:45:52 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'IHDR' 16 13
+2025-11-24 23:45:52 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'sBIT' 41 4
+2025-11-24 23:45:52 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:778 - b'sBIT' 41 4 (unknown)
+2025-11-24 23:45:52 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'pHYs' 57 9
+2025-11-24 23:45:52 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'IDAT' 78 626
+2025-11-24 23:45:52 - src.training.trainer - INFO - trainer.py:129 - 📉 Đã lưu biểu đồ training tại: artifacts/figures/training_history.png
+2025-11-24 23:45:52 - MainController - INFO - main.py:57 - ✅ Huấn luyện hoàn tất. Model: artifacts/models/Hybrid_Gold_Forecast_V1_best.keras
+2025-11-24 23:45:52 - MainController - INFO - main.py:65 - 🔮 [4/6] BẮT ĐẦU DỰ ĐOÁN...
+2025-11-24 23:45:52 - src.prediction.predictor - INFO - predictor.py:25 - 📥 Đang tải Model và Scalers...
+2025-11-24 23:45:52 - src.prediction.predictor - INFO - predictor.py:77 - 🔮 Đang thực hiện dự đoán...
+2025-11-24 23:45:52 - MainController - INFO - main.py:69 - ✅ Dự đoán hoàn tất.
+2025-11-24 23:45:52 - MainController - INFO - main.py:77 - 💸 [5/6] BẮT ĐẦU BACKTEST...
+2025-11-24 23:45:52 - src.backtesting.backtester - INFO - backtester.py:25 - ⏳ Đang tải dữ liệu kiểm thử (Test Set)...
+2025-11-24 23:45:52 - src.training.data_provider - INFO - data_provider.py:37 - 📂 Đang đọc dữ liệu từ: data/processed/gold_processed_features.csv
+2025-11-24 23:45:52 - src.training.data_provider - INFO - data_provider.py:85 - ✅ Đã split dữ liệu. Train size: 4954, Test size: 1239
+2025-11-24 23:45:52 - src.backtesting.backtester - INFO - backtester.py:32 - 🧠 Đang load Model để backtest...
+2025-11-24 23:45:53 - src.backtesting.backtester - INFO - backtester.py:60 - 📅 Đang lọc dữ liệu từ đầu năm đến nay...
+2025-11-24 23:45:53 - src.backtesting.backtester - INFO - backtester.py:83 - ✅ Đã lọc: Còn lại 198 phiên giao dịch để Backtest.
+2025-11-24 23:45:53 - src.backtesting.backtester - INFO - backtester.py:87 - 💸 Đang mô phỏng giao dịch...
+2025-11-24 23:45:53 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'IHDR' 16 13
+2025-11-24 23:45:53 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'sBIT' 41 4
+2025-11-24 23:45:53 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:778 - b'sBIT' 41 4 (unknown)
+2025-11-24 23:45:53 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'pHYs' 57 9
+2025-11-24 23:45:53 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'IDAT' 78 1189
+2025-11-24 23:45:53 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'IHDR' 16 13
+2025-11-24 23:45:53 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'sBIT' 41 4
+2025-11-24 23:45:53 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:778 - b'sBIT' 41 4 (unknown)
+2025-11-24 23:45:53 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'pHYs' 57 9
+2025-11-24 23:45:53 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'IDAT' 78 2994
+2025-11-24 23:45:53 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'IHDR' 16 13
+2025-11-24 23:45:53 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'sBIT' 41 4
+2025-11-24 23:45:53 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:778 - b'sBIT' 41 4 (unknown)
+2025-11-24 23:45:53 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'pHYs' 57 9
+2025-11-24 23:45:53 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'IDAT' 78 696
+2025-11-24 23:45:53 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'IHDR' 16 13
+2025-11-24 23:45:53 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'sBIT' 41 4
+2025-11-24 23:45:53 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:778 - b'sBIT' 41 4 (unknown)
+2025-11-24 23:45:53 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'pHYs' 57 9
+2025-11-24 23:45:53 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'IDAT' 78 526
+2025-11-24 23:45:53 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'IHDR' 16 13
+2025-11-24 23:45:53 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'sBIT' 41 4
+2025-11-24 23:45:53 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:778 - b'sBIT' 41 4 (unknown)
+2025-11-24 23:45:53 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'pHYs' 57 9
+2025-11-24 23:45:53 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'IDAT' 78 499
+2025-11-24 23:45:53 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'IHDR' 16 13
+2025-11-24 23:45:53 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'sBIT' 41 4
+2025-11-24 23:45:53 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:778 - b'sBIT' 41 4 (unknown)
+2025-11-24 23:45:53 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'pHYs' 57 9
+2025-11-24 23:45:53 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'IDAT' 78 673
+2025-11-24 23:45:53 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'IHDR' 16 13
+2025-11-24 23:45:53 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'sBIT' 41 4
+2025-11-24 23:45:53 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:778 - b'sBIT' 41 4 (unknown)
+2025-11-24 23:45:53 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'pHYs' 57 9
+2025-11-24 23:45:53 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'IDAT' 78 922
+2025-11-24 23:45:53 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'IHDR' 16 13
+2025-11-24 23:45:53 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'sBIT' 41 4
+2025-11-24 23:45:53 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:778 - b'sBIT' 41 4 (unknown)
+2025-11-24 23:45:53 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'pHYs' 57 9
+2025-11-24 23:45:53 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'IDAT' 78 568
+2025-11-24 23:45:53 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'IHDR' 16 13
+2025-11-24 23:45:53 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'sBIT' 41 4
+2025-11-24 23:45:53 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:778 - b'sBIT' 41 4 (unknown)
+2025-11-24 23:45:53 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'pHYs' 57 9
+2025-11-24 23:45:53 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'IDAT' 78 626
+2025-11-24 23:45:54 - src.backtesting.backtester - INFO - backtester.py:145 - 📉 Đã lưu biểu đồ Backtest tại: artifacts/figures/backtest_YTD.png
+2025-11-24 23:45:54 - MainController - INFO - main.py:81 - ✅ Backtest hoàn tất.
+2025-11-24 23:45:54 - MainController - INFO - main.py:89 - 🎨 [6/6] BẮT ĐẦU VẼ BIỂU ĐỒ...
+2025-11-24 23:45:54 - src.visualization.visualizer - INFO - visualizer.py:21 - 🎨 Đang vẽ biểu đồ dự báo...
+2025-11-24 23:45:54 - src.training.data_provider - INFO - data_provider.py:37 - 📂 Đang đọc dữ liệu từ: data/processed/gold_processed_features.csv
+2025-11-24 23:45:54 - src.training.data_provider - INFO - data_provider.py:85 - ✅ Đã split dữ liệu. Train size: 4954, Test size: 1239
+2025-11-24 23:45:54 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'IHDR' 16 13
+2025-11-24 23:45:54 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'sBIT' 41 4
+2025-11-24 23:45:54 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:778 - b'sBIT' 41 4 (unknown)
+2025-11-24 23:45:54 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'pHYs' 57 9
+2025-11-24 23:45:54 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'IDAT' 78 1189
+2025-11-24 23:45:54 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'IHDR' 16 13
+2025-11-24 23:45:54 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'sBIT' 41 4
+2025-11-24 23:45:54 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:778 - b'sBIT' 41 4 (unknown)
+2025-11-24 23:45:54 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'pHYs' 57 9
+2025-11-24 23:45:54 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'IDAT' 78 2994
+2025-11-24 23:45:54 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'IHDR' 16 13
+2025-11-24 23:45:54 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'sBIT' 41 4
+2025-11-24 23:45:54 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:778 - b'sBIT' 41 4 (unknown)
+2025-11-24 23:45:54 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'pHYs' 57 9
+2025-11-24 23:45:54 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'IDAT' 78 696
+2025-11-24 23:45:54 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'IHDR' 16 13
+2025-11-24 23:45:54 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'sBIT' 41 4
+2025-11-24 23:45:54 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:778 - b'sBIT' 41 4 (unknown)
+2025-11-24 23:45:54 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'pHYs' 57 9
+2025-11-24 23:45:54 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'IDAT' 78 526
+2025-11-24 23:45:54 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'IHDR' 16 13
+2025-11-24 23:45:54 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'sBIT' 41 4
+2025-11-24 23:45:54 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:778 - b'sBIT' 41 4 (unknown)
+2025-11-24 23:45:54 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'pHYs' 57 9
+2025-11-24 23:45:54 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'IDAT' 78 499
+2025-11-24 23:45:54 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'IHDR' 16 13
+2025-11-24 23:45:54 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'sBIT' 41 4
+2025-11-24 23:45:54 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:778 - b'sBIT' 41 4 (unknown)
+2025-11-24 23:45:54 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'pHYs' 57 9
+2025-11-24 23:45:54 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'IDAT' 78 673
+2025-11-24 23:45:54 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'IHDR' 16 13
+2025-11-24 23:45:54 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'sBIT' 41 4
+2025-11-24 23:45:54 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:778 - b'sBIT' 41 4 (unknown)
+2025-11-24 23:45:54 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'pHYs' 57 9
+2025-11-24 23:45:54 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'IDAT' 78 922
+2025-11-24 23:45:54 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'IHDR' 16 13
+2025-11-24 23:45:54 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'sBIT' 41 4
+2025-11-24 23:45:54 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:778 - b'sBIT' 41 4 (unknown)
+2025-11-24 23:45:54 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'pHYs' 57 9
+2025-11-24 23:45:54 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'IDAT' 78 568
+2025-11-24 23:45:54 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'IHDR' 16 13
+2025-11-24 23:45:54 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'sBIT' 41 4
+2025-11-24 23:45:54 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:778 - b'sBIT' 41 4 (unknown)
+2025-11-24 23:45:54 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'pHYs' 57 9
+2025-11-24 23:45:54 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'IDAT' 78 626
+2025-11-24 23:45:55 - src.visualization.visualizer - INFO - visualizer.py:60 - 📉 Đã lưu biểu đồ Vision tại: artifacts/figures/forecast_vision.png
+2025-11-24 23:45:55 - MainController - INFO - main.py:93 - ✅ Vẽ biểu đồ hoàn tất.
+2025-11-24 23:45:55 - MainController - INFO - main.py:129 - 
+==================================================
+2025-11-24 23:45:55 - MainController - INFO - main.py:130 - 🏆 HOÀN THÀNH TẤT CẢ TÁC VỤ! Tổng thời gian: 57.23 giây
+2025-11-24 23:45:55 - MainController - INFO - main.py:131 - ==================================================
+2025-11-24 23:52:56 - root - INFO - config_utils.py:32 - Logging đã được thiết lập từ file yaml.
+2025-11-24 23:52:56 - MainController - INFO - main.py:154 - 🤖 Hệ thống khởi động. Mode: PIPELINE
+2025-11-24 23:52:56 - MainController - INFO - main.py:103 - 
+==================================================
+2025-11-24 23:52:56 - MainController - INFO - main.py:104 - 🚀 BẮT ĐẦU CHẠY TOÀN BỘ HỆ THỐNG (FULL PIPELINE)
+2025-11-24 23:52:56 - MainController - INFO - main.py:105 - ==================================================
+
+2025-11-24 23:52:56 - MainController - INFO - main.py:25 - 📡 [1/6] BẮT ĐẦU TẢI DỮ LIỆU...
+2025-11-24 23:52:56 - src.data_loader.market_loader - INFO - market_loader.py:26 - 🚀 Đang tải dữ liệu thị trường từ 2000-01-01...
+2025-11-24 23:52:56 - yfinance - DEBUG - utils.py:89 - Entering download()
+2025-11-24 23:52:56 - yfinance - DEBUG - multi.py:114 - Disabling multithreading because DEBUG logging enabled
+2025-11-24 23:52:56 - yfinance - DEBUG - utils.py:89 -  Entering history()
+2025-11-24 23:52:56 - peewee - DEBUG - peewee.py:3319 - ('CREATE TABLE IF NOT EXISTS "_tz_kv" ("key" VARCHAR(255) NOT NULL PRIMARY KEY, "value" VARCHAR(255)) WITHOUT ROWID', [])
+2025-11-24 23:52:56 - peewee - DEBUG - peewee.py:3319 - ('SELECT "t1"."key", "t1"."value" FROM "_tz_kv" AS "t1" WHERE ("t1"."key" = ?) LIMIT ? OFFSET ?', ['GC=F', 1, 0])
+2025-11-24 23:52:56 - yfinance - DEBUG - utils.py:89 -   Entering history()
+2025-11-24 23:52:57 - yfinance - DEBUG - history.py:196 - GC=F: Yahoo GET parameters: {'period1': '2000-01-01 00:00:00-05:00', 'period2': '2025-11-24 11:52:57-05:00', 'interval': '1d', 'includePrePost': False, 'events': 'div,splits,capitalGains'}
+2025-11-24 23:52:57 - yfinance - DEBUG - utils.py:89 -    Entering get()
+2025-11-24 23:52:57 - yfinance - DEBUG - utils.py:89 -     Entering _make_request()
+2025-11-24 23:52:57 - yfinance - DEBUG - data.py:394 - url=https://query2.finance.yahoo.com/v8/finance/chart/GC=F
+2025-11-24 23:52:57 - yfinance - DEBUG - data.py:395 - params={'period1': 946702800, 'period2': 1764003177, 'interval': '1d', 'includePrePost': False, 'events': 'div,splits,capitalGains'}
+2025-11-24 23:52:57 - yfinance - DEBUG - utils.py:89 -      Entering _get_cookie_and_crumb()
+2025-11-24 23:52:57 - yfinance - DEBUG - data.py:350 - cookie_mode = 'basic'
+2025-11-24 23:52:57 - yfinance - DEBUG - utils.py:89 -       Entering _get_cookie_and_crumb_basic()
+2025-11-24 23:52:57 - yfinance - DEBUG - utils.py:89 -        Entering _get_cookie_basic()
+2025-11-24 23:52:57 - yfinance - DEBUG - utils.py:89 -         Entering _load_cookie_curlCffi()
+2025-11-24 23:52:57 - peewee - DEBUG - peewee.py:3319 - ('CREATE TABLE IF NOT EXISTS "_cookieschema" ("strategy" VARCHAR(255) NOT NULL PRIMARY KEY, "fetch_date" DATETIME NOT NULL, "cookie_bytes" BLOB NOT NULL) WITHOUT ROWID', [])
+2025-11-24 23:52:57 - peewee - DEBUG - peewee.py:3319 - ('SELECT "t1"."strategy", "t1"."fetch_date", "t1"."cookie_bytes" FROM "_cookieschema" AS "t1" WHERE ("t1"."strategy" = ?) LIMIT ? OFFSET ?', ['curlCffi', 1, 0])
+2025-11-24 23:52:57 - yfinance - DEBUG - utils.py:94 -         Exiting _load_cookie_curlCffi()
+2025-11-24 23:52:57 - yfinance - DEBUG - data.py:191 - reusing persistent cookie
+2025-11-24 23:52:57 - yfinance - DEBUG - utils.py:94 -        Exiting _get_cookie_basic()
+2025-11-24 23:52:57 - yfinance - DEBUG - utils.py:89 -        Entering _get_crumb_basic()
+2025-11-24 23:52:57 - yfinance - DEBUG - utils.py:89 -         Entering _get_cookie_basic()
+2025-11-24 23:52:57 - yfinance - DEBUG - data.py:188 - reusing cookie
+2025-11-24 23:52:57 - yfinance - DEBUG - utils.py:94 -         Exiting _get_cookie_basic()
+2025-11-24 23:52:57 - yfinance - DEBUG - data.py:235 - crumb = 'Ns186LAbZnv'
+2025-11-24 23:52:57 - yfinance - DEBUG - utils.py:94 -        Exiting _get_crumb_basic()
+2025-11-24 23:52:57 - yfinance - DEBUG - utils.py:94 -       Exiting _get_cookie_and_crumb_basic()
+2025-11-24 23:52:57 - yfinance - DEBUG - utils.py:94 -      Exiting _get_cookie_and_crumb()
+2025-11-24 23:52:58 - yfinance - DEBUG - data.py:418 - response code=200
+2025-11-24 23:52:58 - yfinance - DEBUG - utils.py:94 -     Exiting _make_request()
+2025-11-24 23:52:58 - yfinance - DEBUG - utils.py:94 -    Exiting get()
+2025-11-24 23:52:58 - yfinance - DEBUG - history.py:312 - GC=F: yfinance received OHLC data: 2000-08-30 04:00:00 -> 2025-11-24 16:42:49
+2025-11-24 23:52:58 - yfinance - DEBUG - history.py:349 - GC=F: OHLC after cleaning: 2000-08-30 00:00:00-04:00 -> 2025-11-24 11:42:49-05:00
+2025-11-24 23:52:58 - yfinance - DEBUG - history.py:437 - GC=F: OHLC after combining events: 2000-08-30 00:00:00-04:00 -> 2025-11-24 00:00:00-05:00
+2025-11-24 23:52:58 - yfinance - DEBUG - history.py:517 - GC=F: yfinance returning OHLC: 2000-08-30 00:00:00-04:00 -> 2025-11-24 00:00:00-05:00
+2025-11-24 23:52:58 - yfinance - DEBUG - utils.py:94 -   Exiting history()
+2025-11-24 23:52:58 - yfinance - DEBUG - utils.py:94 -  Exiting history()
+2025-11-24 23:52:58 - yfinance - DEBUG - utils.py:89 -  Entering history()
+2025-11-24 23:52:58 - peewee - DEBUG - peewee.py:3319 - ('SELECT "t1"."key", "t1"."value" FROM "_tz_kv" AS "t1" WHERE ("t1"."key" = ?) LIMIT ? OFFSET ?', ['CL=F', 1, 0])
+2025-11-24 23:52:58 - yfinance - DEBUG - utils.py:89 -   Entering history()
+2025-11-24 23:52:58 - yfinance - DEBUG - history.py:196 - CL=F: Yahoo GET parameters: {'period1': '2000-01-01 00:00:00-05:00', 'period2': '2025-11-24 11:52:58-05:00', 'interval': '1d', 'includePrePost': False, 'events': 'div,splits,capitalGains'}
+2025-11-24 23:52:58 - yfinance - DEBUG - utils.py:89 -    Entering get()
+2025-11-24 23:52:58 - yfinance - DEBUG - utils.py:89 -     Entering _make_request()
+2025-11-24 23:52:58 - yfinance - DEBUG - data.py:394 - url=https://query2.finance.yahoo.com/v8/finance/chart/CL=F
+2025-11-24 23:52:58 - yfinance - DEBUG - data.py:395 - params={'period1': 946702800, 'period2': 1764003178, 'interval': '1d', 'includePrePost': False, 'events': 'div,splits,capitalGains'}
+2025-11-24 23:52:58 - yfinance - DEBUG - utils.py:89 -      Entering _get_cookie_and_crumb()
+2025-11-24 23:52:58 - yfinance - DEBUG - data.py:350 - cookie_mode = 'basic'
+2025-11-24 23:52:58 - yfinance - DEBUG - utils.py:89 -       Entering _get_cookie_and_crumb_basic()
+2025-11-24 23:52:58 - yfinance - DEBUG - utils.py:89 -        Entering _get_cookie_basic()
+2025-11-24 23:52:58 - yfinance - DEBUG - data.py:188 - reusing cookie
+2025-11-24 23:52:58 - yfinance - DEBUG - utils.py:94 -        Exiting _get_cookie_basic()
+2025-11-24 23:52:58 - yfinance - DEBUG - utils.py:89 -        Entering _get_crumb_basic()
+2025-11-24 23:52:58 - yfinance - DEBUG - data.py:210 - reusing crumb
+2025-11-24 23:52:58 - yfinance - DEBUG - utils.py:94 -        Exiting _get_crumb_basic()
+2025-11-24 23:52:58 - yfinance - DEBUG - utils.py:94 -       Exiting _get_cookie_and_crumb_basic()
+2025-11-24 23:52:58 - yfinance - DEBUG - utils.py:94 -      Exiting _get_cookie_and_crumb()
+2025-11-24 23:52:58 - yfinance - DEBUG - data.py:418 - response code=200
+2025-11-24 23:52:58 - yfinance - DEBUG - utils.py:94 -     Exiting _make_request()
+2025-11-24 23:52:58 - yfinance - DEBUG - utils.py:94 -    Exiting get()
+2025-11-24 23:52:58 - yfinance - DEBUG - history.py:312 - CL=F: yfinance received OHLC data: 2000-08-23 04:00:00 -> 2025-11-24 16:43:00
+2025-11-24 23:52:58 - yfinance - DEBUG - history.py:349 - CL=F: OHLC after cleaning: 2000-08-23 00:00:00-04:00 -> 2025-11-24 11:43:00-05:00
+2025-11-24 23:52:58 - yfinance - DEBUG - history.py:437 - CL=F: OHLC after combining events: 2000-08-23 00:00:00-04:00 -> 2025-11-24 00:00:00-05:00
+2025-11-24 23:52:58 - yfinance - DEBUG - history.py:517 - CL=F: yfinance returning OHLC: 2000-08-23 00:00:00-04:00 -> 2025-11-24 00:00:00-05:00
+2025-11-24 23:52:58 - yfinance - DEBUG - utils.py:94 -   Exiting history()
+2025-11-24 23:52:58 - yfinance - DEBUG - utils.py:94 -  Exiting history()
+2025-11-24 23:52:58 - yfinance - DEBUG - utils.py:89 -  Entering history()
+2025-11-24 23:52:58 - peewee - DEBUG - peewee.py:3319 - ('SELECT "t1"."key", "t1"."value" FROM "_tz_kv" AS "t1" WHERE ("t1"."key" = ?) LIMIT ? OFFSET ?', ['SI=F', 1, 0])
+2025-11-24 23:52:58 - yfinance - DEBUG - utils.py:89 -   Entering history()
+2025-11-24 23:52:58 - yfinance - DEBUG - history.py:196 - SI=F: Yahoo GET parameters: {'period1': '2000-01-01 00:00:00-05:00', 'period2': '2025-11-24 11:52:58-05:00', 'interval': '1d', 'includePrePost': False, 'events': 'div,splits,capitalGains'}
+2025-11-24 23:52:58 - yfinance - DEBUG - utils.py:89 -    Entering get()
+2025-11-24 23:52:58 - yfinance - DEBUG - utils.py:89 -     Entering _make_request()
+2025-11-24 23:52:58 - yfinance - DEBUG - data.py:394 - url=https://query2.finance.yahoo.com/v8/finance/chart/SI=F
+2025-11-24 23:52:58 - yfinance - DEBUG - data.py:395 - params={'period1': 946702800, 'period2': 1764003178, 'interval': '1d', 'includePrePost': False, 'events': 'div,splits,capitalGains'}
+2025-11-24 23:52:58 - yfinance - DEBUG - utils.py:89 -      Entering _get_cookie_and_crumb()
+2025-11-24 23:52:58 - yfinance - DEBUG - data.py:350 - cookie_mode = 'basic'
+2025-11-24 23:52:58 - yfinance - DEBUG - utils.py:89 -       Entering _get_cookie_and_crumb_basic()
+2025-11-24 23:52:58 - yfinance - DEBUG - utils.py:89 -        Entering _get_cookie_basic()
+2025-11-24 23:52:58 - yfinance - DEBUG - data.py:188 - reusing cookie
+2025-11-24 23:52:58 - yfinance - DEBUG - utils.py:94 -        Exiting _get_cookie_basic()
+2025-11-24 23:52:58 - yfinance - DEBUG - utils.py:89 -        Entering _get_crumb_basic()
+2025-11-24 23:52:58 - yfinance - DEBUG - data.py:210 - reusing crumb
+2025-11-24 23:52:58 - yfinance - DEBUG - utils.py:94 -        Exiting _get_crumb_basic()
+2025-11-24 23:52:58 - yfinance - DEBUG - utils.py:94 -       Exiting _get_cookie_and_crumb_basic()
+2025-11-24 23:52:58 - yfinance - DEBUG - utils.py:94 -      Exiting _get_cookie_and_crumb()
+2025-11-24 23:52:58 - yfinance - DEBUG - data.py:418 - response code=200
+2025-11-24 23:52:58 - yfinance - DEBUG - utils.py:94 -     Exiting _make_request()
+2025-11-24 23:52:58 - yfinance - DEBUG - utils.py:94 -    Exiting get()
+2025-11-24 23:52:58 - yfinance - DEBUG - history.py:312 - SI=F: yfinance received OHLC data: 2000-08-30 04:00:00 -> 2025-11-24 16:42:54
+2025-11-24 23:52:58 - yfinance - DEBUG - history.py:349 - SI=F: OHLC after cleaning: 2000-08-30 00:00:00-04:00 -> 2025-11-24 11:42:54-05:00
+2025-11-24 23:52:58 - yfinance - DEBUG - history.py:437 - SI=F: OHLC after combining events: 2000-08-30 00:00:00-04:00 -> 2025-11-24 00:00:00-05:00
+2025-11-24 23:52:58 - yfinance - DEBUG - history.py:517 - SI=F: yfinance returning OHLC: 2000-08-30 00:00:00-04:00 -> 2025-11-24 00:00:00-05:00
+2025-11-24 23:52:58 - yfinance - DEBUG - utils.py:94 -   Exiting history()
+2025-11-24 23:52:58 - yfinance - DEBUG - utils.py:94 -  Exiting history()
+2025-11-24 23:52:58 - yfinance - DEBUG - utils.py:89 -  Entering history()
+2025-11-24 23:52:58 - peewee - DEBUG - peewee.py:3319 - ('SELECT "t1"."key", "t1"."value" FROM "_tz_kv" AS "t1" WHERE ("t1"."key" = ?) LIMIT ? OFFSET ?', ['DX-Y.NYB', 1, 0])
+2025-11-24 23:52:58 - yfinance - DEBUG - utils.py:89 -   Entering history()
+2025-11-24 23:52:58 - yfinance - DEBUG - history.py:196 - DX-Y.NYB: Yahoo GET parameters: {'period1': '2000-01-01 00:00:00-05:00', 'period2': '2025-11-24 11:52:58-05:00', 'interval': '1d', 'includePrePost': False, 'events': 'div,splits,capitalGains'}
+2025-11-24 23:52:58 - yfinance - DEBUG - utils.py:89 -    Entering get()
+2025-11-24 23:52:58 - yfinance - DEBUG - utils.py:89 -     Entering _make_request()
+2025-11-24 23:52:58 - yfinance - DEBUG - data.py:394 - url=https://query2.finance.yahoo.com/v8/finance/chart/DX-Y.NYB
+2025-11-24 23:52:58 - yfinance - DEBUG - data.py:395 - params={'period1': 946702800, 'period2': 1764003178, 'interval': '1d', 'includePrePost': False, 'events': 'div,splits,capitalGains'}
+2025-11-24 23:52:58 - yfinance - DEBUG - utils.py:89 -      Entering _get_cookie_and_crumb()
+2025-11-24 23:52:58 - yfinance - DEBUG - data.py:350 - cookie_mode = 'basic'
+2025-11-24 23:52:58 - yfinance - DEBUG - utils.py:89 -       Entering _get_cookie_and_crumb_basic()
+2025-11-24 23:52:58 - yfinance - DEBUG - utils.py:89 -        Entering _get_cookie_basic()
+2025-11-24 23:52:58 - yfinance - DEBUG - data.py:188 - reusing cookie
+2025-11-24 23:52:58 - yfinance - DEBUG - utils.py:94 -        Exiting _get_cookie_basic()
+2025-11-24 23:52:58 - yfinance - DEBUG - utils.py:89 -        Entering _get_crumb_basic()
+2025-11-24 23:52:58 - yfinance - DEBUG - data.py:210 - reusing crumb
+2025-11-24 23:52:58 - yfinance - DEBUG - utils.py:94 -        Exiting _get_crumb_basic()
+2025-11-24 23:52:58 - yfinance - DEBUG - utils.py:94 -       Exiting _get_cookie_and_crumb_basic()
+2025-11-24 23:52:58 - yfinance - DEBUG - utils.py:94 -      Exiting _get_cookie_and_crumb()
+2025-11-24 23:52:58 - yfinance - DEBUG - data.py:418 - response code=200
+2025-11-24 23:52:58 - yfinance - DEBUG - utils.py:94 -     Exiting _make_request()
+2025-11-24 23:52:58 - yfinance - DEBUG - utils.py:94 -    Exiting get()
+2025-11-24 23:52:58 - yfinance - DEBUG - history.py:312 - DX-Y.NYB: yfinance received OHLC data: 2000-01-03 05:00:00 -> 2025-11-24 16:43:01
+2025-11-24 23:52:58 - yfinance - DEBUG - history.py:349 - DX-Y.NYB: OHLC after cleaning: 2000-01-03 00:00:00-05:00 -> 2025-11-24 11:43:01-05:00
+2025-11-24 23:52:58 - yfinance - DEBUG - history.py:437 - DX-Y.NYB: OHLC after combining events: 2000-01-03 00:00:00-05:00 -> 2025-11-24 00:00:00-05:00
+2025-11-24 23:52:58 - yfinance - DEBUG - history.py:517 - DX-Y.NYB: yfinance returning OHLC: 2000-01-03 00:00:00-05:00 -> 2025-11-24 00:00:00-05:00
+2025-11-24 23:52:58 - yfinance - DEBUG - utils.py:94 -   Exiting history()
+2025-11-24 23:52:58 - yfinance - DEBUG - utils.py:94 -  Exiting history()
+2025-11-24 23:52:58 - yfinance - DEBUG - utils.py:89 -  Entering history()
+2025-11-24 23:52:58 - peewee - DEBUG - peewee.py:3319 - ('SELECT "t1"."key", "t1"."value" FROM "_tz_kv" AS "t1" WHERE ("t1"."key" = ?) LIMIT ? OFFSET ?', ['^GSPC', 1, 0])
+2025-11-24 23:52:58 - yfinance - DEBUG - utils.py:89 -   Entering history()
+2025-11-24 23:52:58 - yfinance - DEBUG - history.py:196 - ^GSPC: Yahoo GET parameters: {'period1': '2000-01-01 00:00:00-05:00', 'period2': '2025-11-24 11:52:58-05:00', 'interval': '1d', 'includePrePost': False, 'events': 'div,splits,capitalGains'}
+2025-11-24 23:52:58 - yfinance - DEBUG - utils.py:89 -    Entering get()
+2025-11-24 23:52:58 - yfinance - DEBUG - utils.py:89 -     Entering _make_request()
+2025-11-24 23:52:58 - yfinance - DEBUG - data.py:394 - url=https://query2.finance.yahoo.com/v8/finance/chart/^GSPC
+2025-11-24 23:52:58 - yfinance - DEBUG - data.py:395 - params={'period1': 946702800, 'period2': 1764003178, 'interval': '1d', 'includePrePost': False, 'events': 'div,splits,capitalGains'}
+2025-11-24 23:52:58 - yfinance - DEBUG - utils.py:89 -      Entering _get_cookie_and_crumb()
+2025-11-24 23:52:58 - yfinance - DEBUG - data.py:350 - cookie_mode = 'basic'
+2025-11-24 23:52:58 - yfinance - DEBUG - utils.py:89 -       Entering _get_cookie_and_crumb_basic()
+2025-11-24 23:52:58 - yfinance - DEBUG - utils.py:89 -        Entering _get_cookie_basic()
+2025-11-24 23:52:58 - yfinance - DEBUG - data.py:188 - reusing cookie
+2025-11-24 23:52:58 - yfinance - DEBUG - utils.py:94 -        Exiting _get_cookie_basic()
+2025-11-24 23:52:58 - yfinance - DEBUG - utils.py:89 -        Entering _get_crumb_basic()
+2025-11-24 23:52:58 - yfinance - DEBUG - data.py:210 - reusing crumb
+2025-11-24 23:52:58 - yfinance - DEBUG - utils.py:94 -        Exiting _get_crumb_basic()
+2025-11-24 23:52:58 - yfinance - DEBUG - utils.py:94 -       Exiting _get_cookie_and_crumb_basic()
+2025-11-24 23:52:58 - yfinance - DEBUG - utils.py:94 -      Exiting _get_cookie_and_crumb()
+2025-11-24 23:52:59 - yfinance - DEBUG - data.py:418 - response code=200
+2025-11-24 23:52:59 - yfinance - DEBUG - utils.py:94 -     Exiting _make_request()
+2025-11-24 23:52:59 - yfinance - DEBUG - utils.py:94 -    Exiting get()
+2025-11-24 23:52:59 - yfinance - DEBUG - history.py:312 - ^GSPC: yfinance received OHLC data: 2000-01-03 14:30:00 -> 2025-11-21 14:30:00
+2025-11-24 23:52:59 - yfinance - DEBUG - history.py:349 - ^GSPC: OHLC after cleaning: 2000-01-03 09:30:00-05:00 -> 2025-11-21 09:30:00-05:00
+2025-11-24 23:52:59 - yfinance - DEBUG - history.py:437 - ^GSPC: OHLC after combining events: 2000-01-03 00:00:00-05:00 -> 2025-11-21 00:00:00-05:00
+2025-11-24 23:52:59 - yfinance - DEBUG - history.py:517 - ^GSPC: yfinance returning OHLC: 2000-01-03 00:00:00-05:00 -> 2025-11-21 00:00:00-05:00
+2025-11-24 23:52:59 - yfinance - DEBUG - utils.py:94 -   Exiting history()
+2025-11-24 23:52:59 - yfinance - DEBUG - utils.py:94 -  Exiting history()
+2025-11-24 23:52:59 - yfinance - DEBUG - utils.py:94 - Exiting download()
+2025-11-24 23:52:59 - src.data_loader.market_loader - INFO - market_loader.py:53 - ✅ [Market] Đã lưu: Gold -> data/raw/Gold_daily.csv
+2025-11-24 23:52:59 - src.data_loader.market_loader - INFO - market_loader.py:53 - ✅ [Market] Đã lưu: DXY -> data/raw/DXY_daily.csv
+2025-11-24 23:52:59 - src.data_loader.market_loader - INFO - market_loader.py:53 - ✅ [Market] Đã lưu: SP500 -> data/raw/SP500_daily.csv
+2025-11-24 23:52:59 - src.data_loader.market_loader - INFO - market_loader.py:53 - ✅ [Market] Đã lưu: Oil -> data/raw/Oil_daily.csv
+2025-11-24 23:52:59 - src.data_loader.market_loader - INFO - market_loader.py:53 - ✅ [Market] Đã lưu: Silver -> data/raw/Silver_daily.csv
+2025-11-24 23:52:59 - src.data_loader.macro_loader - INFO - macro_loader.py:47 - 🔄 Đang tải dữ liệu Vĩ mô từ FRED...
+2025-11-24 23:53:00 - src.data_loader.macro_loader - INFO - macro_loader.py:67 - ✅ [Macro] Đã lưu: CPI
+2025-11-24 23:53:00 - src.data_loader.macro_loader - INFO - macro_loader.py:67 - ✅ [Macro] Đã lưu: Fed_Rate
+2025-11-24 23:53:01 - src.data_loader.macro_loader - INFO - macro_loader.py:67 - ✅ [Macro] Đã lưu: US10Y
+2025-11-24 23:53:02 - src.data_loader.macro_loader - INFO - macro_loader.py:67 - ✅ [Macro] Đã lưu: M2
+2025-11-24 23:53:02 - MainController - INFO - main.py:33 - ✅ Tải dữ liệu hoàn tất.
+2025-11-24 23:53:02 - MainController - INFO - main.py:41 - ⚙️ [2/6] BẮT ĐẦU XỬ LÝ DỮ LIỆU...
+2025-11-24 23:53:02 - src.processing.processor - INFO - processor.py:21 - --- BẮT ĐẦU QUY TRÌNH XỬ LÝ DỮ LIỆU ---
+2025-11-24 23:53:02 - src.processing.data_merger - INFO - data_merger.py:20 - [Step 1] Đang ghép dữ liệu Market & Macro...
+2025-11-24 23:53:02 - src.processing.data_merger - INFO - data_merger.py:65 - Đã ghép xong. Dữ liệu: 6331 dòng (Đã loại bỏ 2 dòng NaN).
+2025-11-24 23:53:02 - src.processing.feature_builder - INFO - feature_builder.py:12 - [Step 2] Đang tính toán chỉ báo kỹ thuật...
+2025-11-24 23:53:02 - src.processing.feature_builder - INFO - feature_builder.py:42 - [Step 3] Đang tạo nhãn dự báo (30 ngày tới)...
+2025-11-24 23:53:02 - src.processing.processor - INFO - processor.py:39 - Đã lưu dữ liệu sạch tại: data/processed/gold_processed_features.csv
+2025-11-24 23:53:02 - src.processing.processor - INFO - processor.py:40 - Kích thước cuối cùng: (6253, 13)
+2025-11-24 23:53:02 - MainController - INFO - main.py:45 - ✅ Xử lý hoàn tất. File: data/processed/gold_processed_features.csv
+2025-11-24 23:53:02 - MainController - INFO - main.py:53 - 🏋️ [3/6] BẮT ĐẦU HUẤN LUYỆN...
+2025-11-24 23:53:02 - src.training.trainer - INFO - trainer.py:33 - 🚀 BẮT ĐẦU QUÁ TRÌNH HUẤN LUYỆN...
+2025-11-24 23:53:02 - src.training.data_provider - INFO - data_provider.py:37 - 📂 Đang đọc dữ liệu từ: data/processed/gold_processed_features.csv
+2025-11-24 23:53:02 - src.training.data_provider - INFO - data_provider.py:85 - ✅ Đã split dữ liệu. Train size: 4954, Test size: 1239
+2025-11-24 23:53:02 - src.training.data_provider - INFO - data_provider.py:95 - 💾 Đã lưu Scalers vào: artifacts/models/
+2025-11-24 23:53:02 - src.training.trainer - INFO - trainer.py:47 - 📊 Input Features: Price=5, Macro=4
+2025-11-24 23:53:02 - src.models.hybrid_model - INFO - hybrid_model.py:35 - Đang xây dựng model Hybrid: LSTM ((60, 5)) + Dense ((4,))
+2025-11-24 23:53:02 - src.models.hybrid_model - INFO - hybrid_model.py:73 - Build model kiến trúc thành công.
+2025-11-24 23:53:08 - h5py._conv - DEBUG - attrs.py:204 - Creating converter from 5 to 3
+2025-11-24 23:53:57 - src.training.trainer - INFO - trainer.py:94 - ✅ HUẤN LUYỆN HOÀN TẤT!
+2025-11-24 23:53:57 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'IHDR' 16 13
+2025-11-24 23:53:57 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'sBIT' 41 4
+2025-11-24 23:53:57 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:778 - b'sBIT' 41 4 (unknown)
+2025-11-24 23:53:57 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'pHYs' 57 9
+2025-11-24 23:53:57 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'IDAT' 78 1189
+2025-11-24 23:53:57 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'IHDR' 16 13
+2025-11-24 23:53:57 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'sBIT' 41 4
+2025-11-24 23:53:57 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:778 - b'sBIT' 41 4 (unknown)
+2025-11-24 23:53:57 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'pHYs' 57 9
+2025-11-24 23:53:57 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'IDAT' 78 2994
+2025-11-24 23:53:57 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'IHDR' 16 13
+2025-11-24 23:53:57 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'sBIT' 41 4
+2025-11-24 23:53:57 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:778 - b'sBIT' 41 4 (unknown)
+2025-11-24 23:53:57 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'pHYs' 57 9
+2025-11-24 23:53:57 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'IDAT' 78 696
+2025-11-24 23:53:57 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'IHDR' 16 13
+2025-11-24 23:53:57 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'sBIT' 41 4
+2025-11-24 23:53:57 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:778 - b'sBIT' 41 4 (unknown)
+2025-11-24 23:53:57 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'pHYs' 57 9
+2025-11-24 23:53:57 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'IDAT' 78 526
+2025-11-24 23:53:57 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'IHDR' 16 13
+2025-11-24 23:53:57 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'sBIT' 41 4
+2025-11-24 23:53:57 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:778 - b'sBIT' 41 4 (unknown)
+2025-11-24 23:53:57 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'pHYs' 57 9
+2025-11-24 23:53:57 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'IDAT' 78 499
+2025-11-24 23:53:57 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'IHDR' 16 13
+2025-11-24 23:53:57 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'sBIT' 41 4
+2025-11-24 23:53:57 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:778 - b'sBIT' 41 4 (unknown)
+2025-11-24 23:53:57 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'pHYs' 57 9
+2025-11-24 23:53:57 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'IDAT' 78 673
+2025-11-24 23:53:57 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'IHDR' 16 13
+2025-11-24 23:53:57 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'sBIT' 41 4
+2025-11-24 23:53:57 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:778 - b'sBIT' 41 4 (unknown)
+2025-11-24 23:53:57 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'pHYs' 57 9
+2025-11-24 23:53:57 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'IDAT' 78 922
+2025-11-24 23:53:57 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'IHDR' 16 13
+2025-11-24 23:53:57 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'sBIT' 41 4
+2025-11-24 23:53:57 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:778 - b'sBIT' 41 4 (unknown)
+2025-11-24 23:53:57 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'pHYs' 57 9
+2025-11-24 23:53:57 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'IDAT' 78 568
+2025-11-24 23:53:57 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'IHDR' 16 13
+2025-11-24 23:53:57 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'sBIT' 41 4
+2025-11-24 23:53:57 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:778 - b'sBIT' 41 4 (unknown)
+2025-11-24 23:53:57 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'pHYs' 57 9
+2025-11-24 23:53:57 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'IDAT' 78 626
+2025-11-24 23:53:58 - src.training.trainer - INFO - trainer.py:129 - 📉 Đã lưu biểu đồ training tại: artifacts/figures/training_history.png
+2025-11-24 23:53:58 - MainController - INFO - main.py:57 - ✅ Huấn luyện hoàn tất. Model: artifacts/models/Hybrid_Gold_Forecast_V1_best.keras
+2025-11-24 23:53:58 - MainController - INFO - main.py:65 - 🔮 [4/6] BẮT ĐẦU DỰ ĐOÁN...
+2025-11-24 23:53:58 - src.prediction.predictor - INFO - predictor.py:25 - 📥 Đang tải Model và Scalers...
+2025-11-24 23:53:58 - src.prediction.predictor - INFO - predictor.py:77 - 🔮 Đang thực hiện dự đoán...
+2025-11-24 23:53:58 - MainController - ERROR - main.py:71 - ❌ Lỗi dự đoán: 'days'
+2025-11-24 23:53:58 - MainController - CRITICAL - main.py:134 - 🔥 QUY TRÌNH BỊ NGẮT DO LỖI: 'days'
+2025-11-24 23:55:01 - root - INFO - config_utils.py:32 - Logging đã được thiết lập từ file yaml.
+2025-11-24 23:55:01 - MainController - INFO - main.py:154 - 🤖 Hệ thống khởi động. Mode: PREDICT
+2025-11-24 23:55:01 - MainController - INFO - main.py:65 - 🔮 [4/6] BẮT ĐẦU DỰ ĐOÁN...
+2025-11-24 23:55:01 - src.prediction.predictor - INFO - predictor.py:25 - 📥 Đang tải Model và Scalers...
+2025-11-24 23:55:01 - src.prediction.predictor - INFO - predictor.py:77 - 🔮 Đang thực hiện dự đoán...
+2025-11-24 23:55:01 - MainController - ERROR - main.py:71 - ❌ Lỗi dự đoán: name 'days' is not defined
+2025-11-24 23:55:01 - MainController - CRITICAL - main.py:172 - 🔥 LỖI NGHIÊM TRỌNG HỆ THỐNG: name 'days' is not defined
+Traceback (most recent call last):
+  File "D:\Đại Học\Năm 3\Kỳ 1\Data Analyst\Code\Gold\main.py", line 163, in main
+    run_predict(settings)
+  File "D:\Đại Học\Năm 3\Kỳ 1\Data Analyst\Code\Gold\main.py", line 68, in run_predict
+    result = predictor.predict()
+             ^^^^^^^^^^^^^^^^^^^
+  File "D:\Đại Học\Năm 3\Kỳ 1\Data Analyst\Code\Gold\src\prediction\predictor.py", line 106, in predict
+    self._print_result(result)
+  File "D:\Đại Học\Năm 3\Kỳ 1\Data Analyst\Code\Gold\src\prediction\predictor.py", line 112, in _print_result
+    print(f"🌟 KẾT QUẢ DỰ BÁO XU HƯỚNG ({days} NGÀY TỚI)")
+                                         ^^^^
+NameError: name 'days' is not defined
+2025-11-25 00:00:25 - root - INFO - config_utils.py:32 - Logging đã được thiết lập từ file yaml.
+2025-11-25 00:00:25 - MainController - INFO - main.py:154 - 🤖 Hệ thống khởi động. Mode: PIPELINE
+2025-11-25 00:00:25 - MainController - INFO - main.py:103 - 
+==================================================
+2025-11-25 00:00:25 - MainController - INFO - main.py:104 - 🚀 BẮT ĐẦU CHẠY TOÀN BỘ HỆ THỐNG (FULL PIPELINE)
+2025-11-25 00:00:25 - MainController - INFO - main.py:105 - ==================================================
+
+2025-11-25 00:00:25 - MainController - INFO - main.py:25 - 📡 [1/6] BẮT ĐẦU TẢI DỮ LIỆU...
+2025-11-25 00:00:25 - src.data_loader.market_loader - INFO - market_loader.py:26 - 🚀 Đang tải dữ liệu thị trường từ 2000-01-01...
+2025-11-25 00:00:25 - yfinance - DEBUG - utils.py:89 - Entering download()
+2025-11-25 00:00:25 - yfinance - DEBUG - multi.py:114 - Disabling multithreading because DEBUG logging enabled
+2025-11-25 00:00:25 - yfinance - DEBUG - utils.py:89 -  Entering history()
+2025-11-25 00:00:25 - peewee - DEBUG - peewee.py:3319 - ('CREATE TABLE IF NOT EXISTS "_tz_kv" ("key" VARCHAR(255) NOT NULL PRIMARY KEY, "value" VARCHAR(255)) WITHOUT ROWID', [])
+2025-11-25 00:00:25 - peewee - DEBUG - peewee.py:3319 - ('SELECT "t1"."key", "t1"."value" FROM "_tz_kv" AS "t1" WHERE ("t1"."key" = ?) LIMIT ? OFFSET ?', ['CL=F', 1, 0])
+2025-11-25 00:00:25 - yfinance - DEBUG - utils.py:89 -   Entering history()
+2025-11-25 00:00:25 - yfinance - DEBUG - history.py:196 - CL=F: Yahoo GET parameters: {'period1': '2000-01-01 00:00:00-05:00', 'period2': '2025-11-24 12:00:25-05:00', 'interval': '1d', 'includePrePost': False, 'events': 'div,splits,capitalGains'}
+2025-11-25 00:00:25 - yfinance - DEBUG - utils.py:89 -    Entering get()
+2025-11-25 00:00:25 - yfinance - DEBUG - utils.py:89 -     Entering _make_request()
+2025-11-25 00:00:25 - yfinance - DEBUG - data.py:394 - url=https://query2.finance.yahoo.com/v8/finance/chart/CL=F
+2025-11-25 00:00:25 - yfinance - DEBUG - data.py:395 - params={'period1': 946702800, 'period2': 1764003625, 'interval': '1d', 'includePrePost': False, 'events': 'div,splits,capitalGains'}
+2025-11-25 00:00:25 - yfinance - DEBUG - utils.py:89 -      Entering _get_cookie_and_crumb()
+2025-11-25 00:00:25 - yfinance - DEBUG - data.py:350 - cookie_mode = 'basic'
+2025-11-25 00:00:25 - yfinance - DEBUG - utils.py:89 -       Entering _get_cookie_and_crumb_basic()
+2025-11-25 00:00:25 - yfinance - DEBUG - utils.py:89 -        Entering _get_cookie_basic()
+2025-11-25 00:00:25 - yfinance - DEBUG - utils.py:89 -         Entering _load_cookie_curlCffi()
+2025-11-25 00:00:25 - peewee - DEBUG - peewee.py:3319 - ('CREATE TABLE IF NOT EXISTS "_cookieschema" ("strategy" VARCHAR(255) NOT NULL PRIMARY KEY, "fetch_date" DATETIME NOT NULL, "cookie_bytes" BLOB NOT NULL) WITHOUT ROWID', [])
+2025-11-25 00:00:25 - peewee - DEBUG - peewee.py:3319 - ('SELECT "t1"."strategy", "t1"."fetch_date", "t1"."cookie_bytes" FROM "_cookieschema" AS "t1" WHERE ("t1"."strategy" = ?) LIMIT ? OFFSET ?', ['curlCffi', 1, 0])
+2025-11-25 00:00:25 - yfinance - DEBUG - utils.py:94 -         Exiting _load_cookie_curlCffi()
+2025-11-25 00:00:25 - yfinance - DEBUG - data.py:191 - reusing persistent cookie
+2025-11-25 00:00:25 - yfinance - DEBUG - utils.py:94 -        Exiting _get_cookie_basic()
+2025-11-25 00:00:25 - yfinance - DEBUG - utils.py:89 -        Entering _get_crumb_basic()
+2025-11-25 00:00:25 - yfinance - DEBUG - utils.py:89 -         Entering _get_cookie_basic()
+2025-11-25 00:00:25 - yfinance - DEBUG - data.py:188 - reusing cookie
+2025-11-25 00:00:25 - yfinance - DEBUG - utils.py:94 -         Exiting _get_cookie_basic()
+2025-11-25 00:00:26 - yfinance - DEBUG - data.py:235 - crumb = 'Ns186LAbZnv'
+2025-11-25 00:00:26 - yfinance - DEBUG - utils.py:94 -        Exiting _get_crumb_basic()
+2025-11-25 00:00:26 - yfinance - DEBUG - utils.py:94 -       Exiting _get_cookie_and_crumb_basic()
+2025-11-25 00:00:26 - yfinance - DEBUG - utils.py:94 -      Exiting _get_cookie_and_crumb()
+2025-11-25 00:00:26 - yfinance - DEBUG - data.py:418 - response code=200
+2025-11-25 00:00:26 - yfinance - DEBUG - utils.py:94 -     Exiting _make_request()
+2025-11-25 00:00:26 - yfinance - DEBUG - utils.py:94 -    Exiting get()
+2025-11-25 00:00:26 - yfinance - DEBUG - history.py:312 - CL=F: yfinance received OHLC data: 2000-08-23 04:00:00 -> 2025-11-24 16:50:27
+2025-11-25 00:00:26 - yfinance - DEBUG - history.py:349 - CL=F: OHLC after cleaning: 2000-08-23 00:00:00-04:00 -> 2025-11-24 11:50:27-05:00
+2025-11-25 00:00:26 - yfinance - DEBUG - history.py:437 - CL=F: OHLC after combining events: 2000-08-23 00:00:00-04:00 -> 2025-11-24 00:00:00-05:00
+2025-11-25 00:00:26 - yfinance - DEBUG - history.py:517 - CL=F: yfinance returning OHLC: 2000-08-23 00:00:00-04:00 -> 2025-11-24 00:00:00-05:00
+2025-11-25 00:00:26 - yfinance - DEBUG - utils.py:94 -   Exiting history()
+2025-11-25 00:00:26 - yfinance - DEBUG - utils.py:94 -  Exiting history()
+2025-11-25 00:00:26 - yfinance - DEBUG - utils.py:89 -  Entering history()
+2025-11-25 00:00:26 - peewee - DEBUG - peewee.py:3319 - ('SELECT "t1"."key", "t1"."value" FROM "_tz_kv" AS "t1" WHERE ("t1"."key" = ?) LIMIT ? OFFSET ?', ['^GSPC', 1, 0])
+2025-11-25 00:00:26 - yfinance - DEBUG - utils.py:89 -   Entering history()
+2025-11-25 00:00:26 - yfinance - DEBUG - history.py:196 - ^GSPC: Yahoo GET parameters: {'period1': '2000-01-01 00:00:00-05:00', 'period2': '2025-11-24 12:00:26-05:00', 'interval': '1d', 'includePrePost': False, 'events': 'div,splits,capitalGains'}
+2025-11-25 00:00:26 - yfinance - DEBUG - utils.py:89 -    Entering get()
+2025-11-25 00:00:26 - yfinance - DEBUG - utils.py:89 -     Entering _make_request()
+2025-11-25 00:00:26 - yfinance - DEBUG - data.py:394 - url=https://query2.finance.yahoo.com/v8/finance/chart/^GSPC
+2025-11-25 00:00:26 - yfinance - DEBUG - data.py:395 - params={'period1': 946702800, 'period2': 1764003626, 'interval': '1d', 'includePrePost': False, 'events': 'div,splits,capitalGains'}
+2025-11-25 00:00:26 - yfinance - DEBUG - utils.py:89 -      Entering _get_cookie_and_crumb()
+2025-11-25 00:00:26 - yfinance - DEBUG - data.py:350 - cookie_mode = 'basic'
+2025-11-25 00:00:26 - yfinance - DEBUG - utils.py:89 -       Entering _get_cookie_and_crumb_basic()
+2025-11-25 00:00:26 - yfinance - DEBUG - utils.py:89 -        Entering _get_cookie_basic()
+2025-11-25 00:00:26 - yfinance - DEBUG - data.py:188 - reusing cookie
+2025-11-25 00:00:26 - yfinance - DEBUG - utils.py:94 -        Exiting _get_cookie_basic()
+2025-11-25 00:00:26 - yfinance - DEBUG - utils.py:89 -        Entering _get_crumb_basic()
+2025-11-25 00:00:26 - yfinance - DEBUG - data.py:210 - reusing crumb
+2025-11-25 00:00:26 - yfinance - DEBUG - utils.py:94 -        Exiting _get_crumb_basic()
+2025-11-25 00:00:26 - yfinance - DEBUG - utils.py:94 -       Exiting _get_cookie_and_crumb_basic()
+2025-11-25 00:00:26 - yfinance - DEBUG - utils.py:94 -      Exiting _get_cookie_and_crumb()
+2025-11-25 00:00:27 - yfinance - DEBUG - data.py:418 - response code=200
+2025-11-25 00:00:27 - yfinance - DEBUG - utils.py:94 -     Exiting _make_request()
+2025-11-25 00:00:27 - yfinance - DEBUG - utils.py:94 -    Exiting get()
+2025-11-25 00:00:27 - yfinance - DEBUG - history.py:312 - ^GSPC: yfinance received OHLC data: 2000-01-03 14:30:00 -> 2025-11-21 14:30:00
+2025-11-25 00:00:27 - yfinance - DEBUG - history.py:349 - ^GSPC: OHLC after cleaning: 2000-01-03 09:30:00-05:00 -> 2025-11-21 09:30:00-05:00
+2025-11-25 00:00:27 - yfinance - DEBUG - history.py:437 - ^GSPC: OHLC after combining events: 2000-01-03 00:00:00-05:00 -> 2025-11-21 00:00:00-05:00
+2025-11-25 00:00:27 - yfinance - DEBUG - history.py:517 - ^GSPC: yfinance returning OHLC: 2000-01-03 00:00:00-05:00 -> 2025-11-21 00:00:00-05:00
+2025-11-25 00:00:27 - yfinance - DEBUG - utils.py:94 -   Exiting history()
+2025-11-25 00:00:27 - yfinance - DEBUG - utils.py:94 -  Exiting history()
+2025-11-25 00:00:27 - yfinance - DEBUG - utils.py:89 -  Entering history()
+2025-11-25 00:00:27 - peewee - DEBUG - peewee.py:3319 - ('SELECT "t1"."key", "t1"."value" FROM "_tz_kv" AS "t1" WHERE ("t1"."key" = ?) LIMIT ? OFFSET ?', ['GC=F', 1, 0])
+2025-11-25 00:00:27 - yfinance - DEBUG - utils.py:89 -   Entering history()
+2025-11-25 00:00:27 - yfinance - DEBUG - history.py:196 - GC=F: Yahoo GET parameters: {'period1': '2000-01-01 00:00:00-05:00', 'period2': '2025-11-24 12:00:27-05:00', 'interval': '1d', 'includePrePost': False, 'events': 'div,splits,capitalGains'}
+2025-11-25 00:00:27 - yfinance - DEBUG - utils.py:89 -    Entering get()
+2025-11-25 00:00:27 - yfinance - DEBUG - utils.py:89 -     Entering _make_request()
+2025-11-25 00:00:27 - yfinance - DEBUG - data.py:394 - url=https://query2.finance.yahoo.com/v8/finance/chart/GC=F
+2025-11-25 00:00:27 - yfinance - DEBUG - data.py:395 - params={'period1': 946702800, 'period2': 1764003627, 'interval': '1d', 'includePrePost': False, 'events': 'div,splits,capitalGains'}
+2025-11-25 00:00:27 - yfinance - DEBUG - utils.py:89 -      Entering _get_cookie_and_crumb()
+2025-11-25 00:00:27 - yfinance - DEBUG - data.py:350 - cookie_mode = 'basic'
+2025-11-25 00:00:27 - yfinance - DEBUG - utils.py:89 -       Entering _get_cookie_and_crumb_basic()
+2025-11-25 00:00:27 - yfinance - DEBUG - utils.py:89 -        Entering _get_cookie_basic()
+2025-11-25 00:00:27 - yfinance - DEBUG - data.py:188 - reusing cookie
+2025-11-25 00:00:27 - yfinance - DEBUG - utils.py:94 -        Exiting _get_cookie_basic()
+2025-11-25 00:00:27 - yfinance - DEBUG - utils.py:89 -        Entering _get_crumb_basic()
+2025-11-25 00:00:27 - yfinance - DEBUG - data.py:210 - reusing crumb
+2025-11-25 00:00:27 - yfinance - DEBUG - utils.py:94 -        Exiting _get_crumb_basic()
+2025-11-25 00:00:27 - yfinance - DEBUG - utils.py:94 -       Exiting _get_cookie_and_crumb_basic()
+2025-11-25 00:00:27 - yfinance - DEBUG - utils.py:94 -      Exiting _get_cookie_and_crumb()
+2025-11-25 00:00:27 - yfinance - DEBUG - data.py:418 - response code=200
+2025-11-25 00:00:27 - yfinance - DEBUG - utils.py:94 -     Exiting _make_request()
+2025-11-25 00:00:27 - yfinance - DEBUG - utils.py:94 -    Exiting get()
+2025-11-25 00:00:27 - yfinance - DEBUG - history.py:312 - GC=F: yfinance received OHLC data: 2000-08-30 04:00:00 -> 2025-11-24 16:50:28
+2025-11-25 00:00:27 - yfinance - DEBUG - history.py:349 - GC=F: OHLC after cleaning: 2000-08-30 00:00:00-04:00 -> 2025-11-24 11:50:28-05:00
+2025-11-25 00:00:27 - yfinance - DEBUG - history.py:437 - GC=F: OHLC after combining events: 2000-08-30 00:00:00-04:00 -> 2025-11-24 00:00:00-05:00
+2025-11-25 00:00:27 - yfinance - DEBUG - history.py:517 - GC=F: yfinance returning OHLC: 2000-08-30 00:00:00-04:00 -> 2025-11-24 00:00:00-05:00
+2025-11-25 00:00:27 - yfinance - DEBUG - utils.py:94 -   Exiting history()
+2025-11-25 00:00:27 - yfinance - DEBUG - utils.py:94 -  Exiting history()
+2025-11-25 00:00:27 - yfinance - DEBUG - utils.py:89 -  Entering history()
+2025-11-25 00:00:27 - peewee - DEBUG - peewee.py:3319 - ('SELECT "t1"."key", "t1"."value" FROM "_tz_kv" AS "t1" WHERE ("t1"."key" = ?) LIMIT ? OFFSET ?', ['DX-Y.NYB', 1, 0])
+2025-11-25 00:00:27 - yfinance - DEBUG - utils.py:89 -   Entering history()
+2025-11-25 00:00:27 - yfinance - DEBUG - history.py:196 - DX-Y.NYB: Yahoo GET parameters: {'period1': '2000-01-01 00:00:00-05:00', 'period2': '2025-11-24 12:00:27-05:00', 'interval': '1d', 'includePrePost': False, 'events': 'div,splits,capitalGains'}
+2025-11-25 00:00:27 - yfinance - DEBUG - utils.py:89 -    Entering get()
+2025-11-25 00:00:27 - yfinance - DEBUG - utils.py:89 -     Entering _make_request()
+2025-11-25 00:00:27 - yfinance - DEBUG - data.py:394 - url=https://query2.finance.yahoo.com/v8/finance/chart/DX-Y.NYB
+2025-11-25 00:00:27 - yfinance - DEBUG - data.py:395 - params={'period1': 946702800, 'period2': 1764003627, 'interval': '1d', 'includePrePost': False, 'events': 'div,splits,capitalGains'}
+2025-11-25 00:00:27 - yfinance - DEBUG - utils.py:89 -      Entering _get_cookie_and_crumb()
+2025-11-25 00:00:27 - yfinance - DEBUG - data.py:350 - cookie_mode = 'basic'
+2025-11-25 00:00:27 - yfinance - DEBUG - utils.py:89 -       Entering _get_cookie_and_crumb_basic()
+2025-11-25 00:00:27 - yfinance - DEBUG - utils.py:89 -        Entering _get_cookie_basic()
+2025-11-25 00:00:27 - yfinance - DEBUG - data.py:188 - reusing cookie
+2025-11-25 00:00:27 - yfinance - DEBUG - utils.py:94 -        Exiting _get_cookie_basic()
+2025-11-25 00:00:27 - yfinance - DEBUG - utils.py:89 -        Entering _get_crumb_basic()
+2025-11-25 00:00:27 - yfinance - DEBUG - data.py:210 - reusing crumb
+2025-11-25 00:00:27 - yfinance - DEBUG - utils.py:94 -        Exiting _get_crumb_basic()
+2025-11-25 00:00:27 - yfinance - DEBUG - utils.py:94 -       Exiting _get_cookie_and_crumb_basic()
+2025-11-25 00:00:27 - yfinance - DEBUG - utils.py:94 -      Exiting _get_cookie_and_crumb()
+2025-11-25 00:00:27 - yfinance - DEBUG - data.py:418 - response code=200
+2025-11-25 00:00:27 - yfinance - DEBUG - utils.py:94 -     Exiting _make_request()
+2025-11-25 00:00:27 - yfinance - DEBUG - utils.py:94 -    Exiting get()
+2025-11-25 00:00:27 - yfinance - DEBUG - history.py:312 - DX-Y.NYB: yfinance received OHLC data: 2000-01-03 05:00:00 -> 2025-11-24 16:50:30
+2025-11-25 00:00:27 - yfinance - DEBUG - history.py:349 - DX-Y.NYB: OHLC after cleaning: 2000-01-03 00:00:00-05:00 -> 2025-11-24 11:50:30-05:00
+2025-11-25 00:00:27 - yfinance - DEBUG - history.py:437 - DX-Y.NYB: OHLC after combining events: 2000-01-03 00:00:00-05:00 -> 2025-11-24 00:00:00-05:00
+2025-11-25 00:00:27 - yfinance - DEBUG - history.py:517 - DX-Y.NYB: yfinance returning OHLC: 2000-01-03 00:00:00-05:00 -> 2025-11-24 00:00:00-05:00
+2025-11-25 00:00:27 - yfinance - DEBUG - utils.py:94 -   Exiting history()
+2025-11-25 00:00:27 - yfinance - DEBUG - utils.py:94 -  Exiting history()
+2025-11-25 00:00:27 - yfinance - DEBUG - utils.py:89 -  Entering history()
+2025-11-25 00:00:27 - peewee - DEBUG - peewee.py:3319 - ('SELECT "t1"."key", "t1"."value" FROM "_tz_kv" AS "t1" WHERE ("t1"."key" = ?) LIMIT ? OFFSET ?', ['SI=F', 1, 0])
+2025-11-25 00:00:27 - yfinance - DEBUG - utils.py:89 -   Entering history()
+2025-11-25 00:00:27 - yfinance - DEBUG - history.py:196 - SI=F: Yahoo GET parameters: {'period1': '2000-01-01 00:00:00-05:00', 'period2': '2025-11-24 12:00:27-05:00', 'interval': '1d', 'includePrePost': False, 'events': 'div,splits,capitalGains'}
+2025-11-25 00:00:27 - yfinance - DEBUG - utils.py:89 -    Entering get()
+2025-11-25 00:00:27 - yfinance - DEBUG - utils.py:89 -     Entering _make_request()
+2025-11-25 00:00:27 - yfinance - DEBUG - data.py:394 - url=https://query2.finance.yahoo.com/v8/finance/chart/SI=F
+2025-11-25 00:00:27 - yfinance - DEBUG - data.py:395 - params={'period1': 946702800, 'period2': 1764003627, 'interval': '1d', 'includePrePost': False, 'events': 'div,splits,capitalGains'}
+2025-11-25 00:00:27 - yfinance - DEBUG - utils.py:89 -      Entering _get_cookie_and_crumb()
+2025-11-25 00:00:27 - yfinance - DEBUG - data.py:350 - cookie_mode = 'basic'
+2025-11-25 00:00:27 - yfinance - DEBUG - utils.py:89 -       Entering _get_cookie_and_crumb_basic()
+2025-11-25 00:00:27 - yfinance - DEBUG - utils.py:89 -        Entering _get_cookie_basic()
+2025-11-25 00:00:27 - yfinance - DEBUG - data.py:188 - reusing cookie
+2025-11-25 00:00:27 - yfinance - DEBUG - utils.py:94 -        Exiting _get_cookie_basic()
+2025-11-25 00:00:27 - yfinance - DEBUG - utils.py:89 -        Entering _get_crumb_basic()
+2025-11-25 00:00:27 - yfinance - DEBUG - data.py:210 - reusing crumb
+2025-11-25 00:00:27 - yfinance - DEBUG - utils.py:94 -        Exiting _get_crumb_basic()
+2025-11-25 00:00:27 - yfinance - DEBUG - utils.py:94 -       Exiting _get_cookie_and_crumb_basic()
+2025-11-25 00:00:27 - yfinance - DEBUG - utils.py:94 -      Exiting _get_cookie_and_crumb()
+2025-11-25 00:00:27 - yfinance - DEBUG - data.py:418 - response code=200
+2025-11-25 00:00:27 - yfinance - DEBUG - utils.py:94 -     Exiting _make_request()
+2025-11-25 00:00:27 - yfinance - DEBUG - utils.py:94 -    Exiting get()
+2025-11-25 00:00:27 - yfinance - DEBUG - history.py:312 - SI=F: yfinance received OHLC data: 2000-08-30 04:00:00 -> 2025-11-24 16:50:26
+2025-11-25 00:00:27 - yfinance - DEBUG - history.py:349 - SI=F: OHLC after cleaning: 2000-08-30 00:00:00-04:00 -> 2025-11-24 11:50:26-05:00
+2025-11-25 00:00:27 - yfinance - DEBUG - history.py:437 - SI=F: OHLC after combining events: 2000-08-30 00:00:00-04:00 -> 2025-11-24 00:00:00-05:00
+2025-11-25 00:00:27 - yfinance - DEBUG - history.py:517 - SI=F: yfinance returning OHLC: 2000-08-30 00:00:00-04:00 -> 2025-11-24 00:00:00-05:00
+2025-11-25 00:00:27 - yfinance - DEBUG - utils.py:94 -   Exiting history()
+2025-11-25 00:00:27 - yfinance - DEBUG - utils.py:94 -  Exiting history()
+2025-11-25 00:00:27 - yfinance - DEBUG - utils.py:94 - Exiting download()
+2025-11-25 00:00:27 - src.data_loader.market_loader - INFO - market_loader.py:53 - ✅ [Market] Đã lưu: Gold -> data/raw/Gold_daily.csv
+2025-11-25 00:00:27 - src.data_loader.market_loader - INFO - market_loader.py:53 - ✅ [Market] Đã lưu: DXY -> data/raw/DXY_daily.csv
+2025-11-25 00:00:28 - src.data_loader.market_loader - INFO - market_loader.py:53 - ✅ [Market] Đã lưu: SP500 -> data/raw/SP500_daily.csv
+2025-11-25 00:00:28 - src.data_loader.market_loader - INFO - market_loader.py:53 - ✅ [Market] Đã lưu: Oil -> data/raw/Oil_daily.csv
+2025-11-25 00:00:28 - src.data_loader.market_loader - INFO - market_loader.py:53 - ✅ [Market] Đã lưu: Silver -> data/raw/Silver_daily.csv
+2025-11-25 00:00:28 - src.data_loader.macro_loader - INFO - macro_loader.py:47 - 🔄 Đang tải dữ liệu Vĩ mô từ FRED...
+2025-11-25 00:00:28 - src.data_loader.macro_loader - INFO - macro_loader.py:67 - ✅ [Macro] Đã lưu: CPI
+2025-11-25 00:00:29 - src.data_loader.macro_loader - INFO - macro_loader.py:67 - ✅ [Macro] Đã lưu: Fed_Rate
+2025-11-25 00:00:30 - src.data_loader.macro_loader - INFO - macro_loader.py:67 - ✅ [Macro] Đã lưu: US10Y
+2025-11-25 00:00:30 - src.data_loader.macro_loader - INFO - macro_loader.py:67 - ✅ [Macro] Đã lưu: M2
+2025-11-25 00:00:30 - MainController - INFO - main.py:33 - ✅ Tải dữ liệu hoàn tất.
+2025-11-25 00:00:30 - MainController - INFO - main.py:41 - ⚙️ [2/6] BẮT ĐẦU XỬ LÝ DỮ LIỆU...
+2025-11-25 00:00:30 - src.processing.processor - INFO - processor.py:21 - --- BẮT ĐẦU QUY TRÌNH XỬ LÝ DỮ LIỆU ---
+2025-11-25 00:00:30 - src.processing.data_merger - INFO - data_merger.py:20 - [Step 1] Đang ghép dữ liệu Market & Macro...
+2025-11-25 00:00:30 - src.processing.data_merger - WARNING - data_merger.py:60 - Không tìm thấy file Real_Interest_Rate_macro.csv, bỏ qua.
+2025-11-25 00:00:30 - src.processing.data_merger - INFO - data_merger.py:65 - Đã ghép xong. Dữ liệu: 6331 dòng (Đã loại bỏ 2 dòng NaN).
+2025-11-25 00:00:30 - src.processing.feature_builder - INFO - feature_builder.py:12 - [Step 2] Đang tính toán chỉ báo kỹ thuật...
+2025-11-25 00:00:30 - src.processing.feature_builder - INFO - feature_builder.py:42 - [Step 3] Đang tạo nhãn dự báo (30 ngày tới)...
+2025-11-25 00:00:31 - src.processing.processor - INFO - processor.py:39 - Đã lưu dữ liệu sạch tại: data/processed/gold_processed_features.csv
+2025-11-25 00:00:31 - src.processing.processor - INFO - processor.py:40 - Kích thước cuối cùng: (6253, 12)
+2025-11-25 00:00:31 - MainController - INFO - main.py:45 - ✅ Xử lý hoàn tất. File: data/processed/gold_processed_features.csv
+2025-11-25 00:00:31 - MainController - INFO - main.py:53 - 🏋️ [3/6] BẮT ĐẦU HUẤN LUYỆN...
+2025-11-25 00:00:31 - src.training.trainer - INFO - trainer.py:33 - 🚀 BẮT ĐẦU QUÁ TRÌNH HUẤN LUYỆN...
+2025-11-25 00:00:31 - src.training.data_provider - INFO - data_provider.py:37 - 📂 Đang đọc dữ liệu từ: data/processed/gold_processed_features.csv
+2025-11-25 00:00:31 - src.training.data_provider - WARNING - data_provider.py:49 - ⚠️ Thiếu cột dữ liệu! Tech: [], Macro: ['Real_Rate']
+2025-11-25 00:00:31 - MainController - ERROR - main.py:59 - ❌ Lỗi huấn luyện: "['Real_Rate'] not in index"
+2025-11-25 00:00:31 - MainController - CRITICAL - main.py:134 - 🔥 QUY TRÌNH BỊ NGẮT DO LỖI: "['Real_Rate'] not in index"
+2025-11-25 00:01:54 - root - INFO - config_utils.py:32 - Logging đã được thiết lập từ file yaml.
+2025-11-25 00:01:54 - MainController - INFO - main.py:154 - 🤖 Hệ thống khởi động. Mode: PIPELINE
+2025-11-25 00:01:54 - MainController - INFO - main.py:103 - 
+==================================================
+2025-11-25 00:01:54 - MainController - INFO - main.py:104 - 🚀 BẮT ĐẦU CHẠY TOÀN BỘ HỆ THỐNG (FULL PIPELINE)
+2025-11-25 00:01:54 - MainController - INFO - main.py:105 - ==================================================
+
+2025-11-25 00:01:54 - MainController - INFO - main.py:25 - 📡 [1/6] BẮT ĐẦU TẢI DỮ LIỆU...
+2025-11-25 00:01:54 - src.data_loader.market_loader - INFO - market_loader.py:26 - 🚀 Đang tải dữ liệu thị trường từ 2000-01-01...
+2025-11-25 00:01:54 - yfinance - DEBUG - utils.py:89 - Entering download()
+2025-11-25 00:01:54 - yfinance - DEBUG - multi.py:114 - Disabling multithreading because DEBUG logging enabled
+2025-11-25 00:01:54 - yfinance - DEBUG - utils.py:89 -  Entering history()
+2025-11-25 00:01:54 - peewee - DEBUG - peewee.py:3319 - ('CREATE TABLE IF NOT EXISTS "_tz_kv" ("key" VARCHAR(255) NOT NULL PRIMARY KEY, "value" VARCHAR(255)) WITHOUT ROWID', [])
+2025-11-25 00:01:54 - peewee - DEBUG - peewee.py:3319 - ('SELECT "t1"."key", "t1"."value" FROM "_tz_kv" AS "t1" WHERE ("t1"."key" = ?) LIMIT ? OFFSET ?', ['CL=F', 1, 0])
+2025-11-25 00:01:54 - yfinance - DEBUG - utils.py:89 -   Entering history()
+2025-11-25 00:01:54 - yfinance - DEBUG - history.py:196 - CL=F: Yahoo GET parameters: {'period1': '2000-01-01 00:00:00-05:00', 'period2': '2025-11-24 12:01:54-05:00', 'interval': '1d', 'includePrePost': False, 'events': 'div,splits,capitalGains'}
+2025-11-25 00:01:54 - yfinance - DEBUG - utils.py:89 -    Entering get()
+2025-11-25 00:01:54 - yfinance - DEBUG - utils.py:89 -     Entering _make_request()
+2025-11-25 00:01:54 - yfinance - DEBUG - data.py:394 - url=https://query2.finance.yahoo.com/v8/finance/chart/CL=F
+2025-11-25 00:01:54 - yfinance - DEBUG - data.py:395 - params={'period1': 946702800, 'period2': 1764003714, 'interval': '1d', 'includePrePost': False, 'events': 'div,splits,capitalGains'}
+2025-11-25 00:01:54 - yfinance - DEBUG - utils.py:89 -      Entering _get_cookie_and_crumb()
+2025-11-25 00:01:54 - yfinance - DEBUG - data.py:350 - cookie_mode = 'basic'
+2025-11-25 00:01:54 - yfinance - DEBUG - utils.py:89 -       Entering _get_cookie_and_crumb_basic()
+2025-11-25 00:01:54 - yfinance - DEBUG - utils.py:89 -        Entering _get_cookie_basic()
+2025-11-25 00:01:54 - yfinance - DEBUG - utils.py:89 -         Entering _load_cookie_curlCffi()
+2025-11-25 00:01:54 - peewee - DEBUG - peewee.py:3319 - ('CREATE TABLE IF NOT EXISTS "_cookieschema" ("strategy" VARCHAR(255) NOT NULL PRIMARY KEY, "fetch_date" DATETIME NOT NULL, "cookie_bytes" BLOB NOT NULL) WITHOUT ROWID', [])
+2025-11-25 00:01:54 - peewee - DEBUG - peewee.py:3319 - ('SELECT "t1"."strategy", "t1"."fetch_date", "t1"."cookie_bytes" FROM "_cookieschema" AS "t1" WHERE ("t1"."strategy" = ?) LIMIT ? OFFSET ?', ['curlCffi', 1, 0])
+2025-11-25 00:01:54 - yfinance - DEBUG - utils.py:94 -         Exiting _load_cookie_curlCffi()
+2025-11-25 00:01:54 - yfinance - DEBUG - data.py:191 - reusing persistent cookie
+2025-11-25 00:01:54 - yfinance - DEBUG - utils.py:94 -        Exiting _get_cookie_basic()
+2025-11-25 00:01:54 - yfinance - DEBUG - utils.py:89 -        Entering _get_crumb_basic()
+2025-11-25 00:01:54 - yfinance - DEBUG - utils.py:89 -         Entering _get_cookie_basic()
+2025-11-25 00:01:54 - yfinance - DEBUG - data.py:188 - reusing cookie
+2025-11-25 00:01:54 - yfinance - DEBUG - utils.py:94 -         Exiting _get_cookie_basic()
+2025-11-25 00:01:55 - yfinance - DEBUG - data.py:235 - crumb = 'Ns186LAbZnv'
+2025-11-25 00:01:55 - yfinance - DEBUG - utils.py:94 -        Exiting _get_crumb_basic()
+2025-11-25 00:01:55 - yfinance - DEBUG - utils.py:94 -       Exiting _get_cookie_and_crumb_basic()
+2025-11-25 00:01:55 - yfinance - DEBUG - utils.py:94 -      Exiting _get_cookie_and_crumb()
+2025-11-25 00:01:55 - yfinance - DEBUG - data.py:418 - response code=200
+2025-11-25 00:01:55 - yfinance - DEBUG - utils.py:94 -     Exiting _make_request()
+2025-11-25 00:01:55 - yfinance - DEBUG - utils.py:94 -    Exiting get()
+2025-11-25 00:01:55 - yfinance - DEBUG - history.py:312 - CL=F: yfinance received OHLC data: 2000-08-23 04:00:00 -> 2025-11-24 16:51:54
+2025-11-25 00:01:55 - yfinance - DEBUG - history.py:349 - CL=F: OHLC after cleaning: 2000-08-23 00:00:00-04:00 -> 2025-11-24 11:51:54-05:00
+2025-11-25 00:01:55 - yfinance - DEBUG - history.py:437 - CL=F: OHLC after combining events: 2000-08-23 00:00:00-04:00 -> 2025-11-24 00:00:00-05:00
+2025-11-25 00:01:55 - yfinance - DEBUG - history.py:517 - CL=F: yfinance returning OHLC: 2000-08-23 00:00:00-04:00 -> 2025-11-24 00:00:00-05:00
+2025-11-25 00:01:55 - yfinance - DEBUG - utils.py:94 -   Exiting history()
+2025-11-25 00:01:55 - yfinance - DEBUG - utils.py:94 -  Exiting history()
+2025-11-25 00:01:55 - yfinance - DEBUG - utils.py:89 -  Entering history()
+2025-11-25 00:01:55 - peewee - DEBUG - peewee.py:3319 - ('SELECT "t1"."key", "t1"."value" FROM "_tz_kv" AS "t1" WHERE ("t1"."key" = ?) LIMIT ? OFFSET ?', ['DX-Y.NYB', 1, 0])
+2025-11-25 00:01:55 - yfinance - DEBUG - utils.py:89 -   Entering history()
+2025-11-25 00:01:55 - yfinance - DEBUG - history.py:196 - DX-Y.NYB: Yahoo GET parameters: {'period1': '2000-01-01 00:00:00-05:00', 'period2': '2025-11-24 12:01:55-05:00', 'interval': '1d', 'includePrePost': False, 'events': 'div,splits,capitalGains'}
+2025-11-25 00:01:55 - yfinance - DEBUG - utils.py:89 -    Entering get()
+2025-11-25 00:01:55 - yfinance - DEBUG - utils.py:89 -     Entering _make_request()
+2025-11-25 00:01:55 - yfinance - DEBUG - data.py:394 - url=https://query2.finance.yahoo.com/v8/finance/chart/DX-Y.NYB
+2025-11-25 00:01:55 - yfinance - DEBUG - data.py:395 - params={'period1': 946702800, 'period2': 1764003715, 'interval': '1d', 'includePrePost': False, 'events': 'div,splits,capitalGains'}
+2025-11-25 00:01:55 - yfinance - DEBUG - utils.py:89 -      Entering _get_cookie_and_crumb()
+2025-11-25 00:01:55 - yfinance - DEBUG - data.py:350 - cookie_mode = 'basic'
+2025-11-25 00:01:55 - yfinance - DEBUG - utils.py:89 -       Entering _get_cookie_and_crumb_basic()
+2025-11-25 00:01:55 - yfinance - DEBUG - utils.py:89 -        Entering _get_cookie_basic()
+2025-11-25 00:01:55 - yfinance - DEBUG - data.py:188 - reusing cookie
+2025-11-25 00:01:55 - yfinance - DEBUG - utils.py:94 -        Exiting _get_cookie_basic()
+2025-11-25 00:01:55 - yfinance - DEBUG - utils.py:89 -        Entering _get_crumb_basic()
+2025-11-25 00:01:55 - yfinance - DEBUG - data.py:210 - reusing crumb
+2025-11-25 00:01:55 - yfinance - DEBUG - utils.py:94 -        Exiting _get_crumb_basic()
+2025-11-25 00:01:55 - yfinance - DEBUG - utils.py:94 -       Exiting _get_cookie_and_crumb_basic()
+2025-11-25 00:01:55 - yfinance - DEBUG - utils.py:94 -      Exiting _get_cookie_and_crumb()
+2025-11-25 00:01:56 - yfinance - DEBUG - data.py:418 - response code=200
+2025-11-25 00:01:56 - yfinance - DEBUG - utils.py:94 -     Exiting _make_request()
+2025-11-25 00:01:56 - yfinance - DEBUG - utils.py:94 -    Exiting get()
+2025-11-25 00:01:56 - yfinance - DEBUG - history.py:312 - DX-Y.NYB: yfinance received OHLC data: 2000-01-03 05:00:00 -> 2025-11-24 16:51:58
+2025-11-25 00:01:56 - yfinance - DEBUG - history.py:349 - DX-Y.NYB: OHLC after cleaning: 2000-01-03 00:00:00-05:00 -> 2025-11-24 11:51:58-05:00
+2025-11-25 00:01:56 - yfinance - DEBUG - history.py:437 - DX-Y.NYB: OHLC after combining events: 2000-01-03 00:00:00-05:00 -> 2025-11-24 00:00:00-05:00
+2025-11-25 00:01:56 - yfinance - DEBUG - history.py:517 - DX-Y.NYB: yfinance returning OHLC: 2000-01-03 00:00:00-05:00 -> 2025-11-24 00:00:00-05:00
+2025-11-25 00:01:56 - yfinance - DEBUG - utils.py:94 -   Exiting history()
+2025-11-25 00:01:56 - yfinance - DEBUG - utils.py:94 -  Exiting history()
+2025-11-25 00:01:56 - yfinance - DEBUG - utils.py:89 -  Entering history()
+2025-11-25 00:01:56 - peewee - DEBUG - peewee.py:3319 - ('SELECT "t1"."key", "t1"."value" FROM "_tz_kv" AS "t1" WHERE ("t1"."key" = ?) LIMIT ? OFFSET ?', ['GC=F', 1, 0])
+2025-11-25 00:01:56 - yfinance - DEBUG - utils.py:89 -   Entering history()
+2025-11-25 00:01:56 - yfinance - DEBUG - history.py:196 - GC=F: Yahoo GET parameters: {'period1': '2000-01-01 00:00:00-05:00', 'period2': '2025-11-24 12:01:56-05:00', 'interval': '1d', 'includePrePost': False, 'events': 'div,splits,capitalGains'}
+2025-11-25 00:01:56 - yfinance - DEBUG - utils.py:89 -    Entering get()
+2025-11-25 00:01:56 - yfinance - DEBUG - utils.py:89 -     Entering _make_request()
+2025-11-25 00:01:56 - yfinance - DEBUG - data.py:394 - url=https://query2.finance.yahoo.com/v8/finance/chart/GC=F
+2025-11-25 00:01:56 - yfinance - DEBUG - data.py:395 - params={'period1': 946702800, 'period2': 1764003716, 'interval': '1d', 'includePrePost': False, 'events': 'div,splits,capitalGains'}
+2025-11-25 00:01:56 - yfinance - DEBUG - utils.py:89 -      Entering _get_cookie_and_crumb()
+2025-11-25 00:01:56 - yfinance - DEBUG - data.py:350 - cookie_mode = 'basic'
+2025-11-25 00:01:56 - yfinance - DEBUG - utils.py:89 -       Entering _get_cookie_and_crumb_basic()
+2025-11-25 00:01:56 - yfinance - DEBUG - utils.py:89 -        Entering _get_cookie_basic()
+2025-11-25 00:01:56 - yfinance - DEBUG - data.py:188 - reusing cookie
+2025-11-25 00:01:56 - yfinance - DEBUG - utils.py:94 -        Exiting _get_cookie_basic()
+2025-11-25 00:01:56 - yfinance - DEBUG - utils.py:89 -        Entering _get_crumb_basic()
+2025-11-25 00:01:56 - yfinance - DEBUG - data.py:210 - reusing crumb
+2025-11-25 00:01:56 - yfinance - DEBUG - utils.py:94 -        Exiting _get_crumb_basic()
+2025-11-25 00:01:56 - yfinance - DEBUG - utils.py:94 -       Exiting _get_cookie_and_crumb_basic()
+2025-11-25 00:01:56 - yfinance - DEBUG - utils.py:94 -      Exiting _get_cookie_and_crumb()
+2025-11-25 00:01:56 - yfinance - DEBUG - data.py:418 - response code=200
+2025-11-25 00:01:56 - yfinance - DEBUG - utils.py:94 -     Exiting _make_request()
+2025-11-25 00:01:56 - yfinance - DEBUG - utils.py:94 -    Exiting get()
+2025-11-25 00:01:56 - yfinance - DEBUG - history.py:312 - GC=F: yfinance received OHLC data: 2000-08-30 04:00:00 -> 2025-11-24 16:51:56
+2025-11-25 00:01:56 - yfinance - DEBUG - history.py:349 - GC=F: OHLC after cleaning: 2000-08-30 00:00:00-04:00 -> 2025-11-24 11:51:56-05:00
+2025-11-25 00:01:56 - yfinance - DEBUG - history.py:437 - GC=F: OHLC after combining events: 2000-08-30 00:00:00-04:00 -> 2025-11-24 00:00:00-05:00
+2025-11-25 00:01:56 - yfinance - DEBUG - history.py:517 - GC=F: yfinance returning OHLC: 2000-08-30 00:00:00-04:00 -> 2025-11-24 00:00:00-05:00
+2025-11-25 00:01:56 - yfinance - DEBUG - utils.py:94 -   Exiting history()
+2025-11-25 00:01:56 - yfinance - DEBUG - utils.py:94 -  Exiting history()
+2025-11-25 00:01:56 - yfinance - DEBUG - utils.py:89 -  Entering history()
+2025-11-25 00:01:56 - peewee - DEBUG - peewee.py:3319 - ('SELECT "t1"."key", "t1"."value" FROM "_tz_kv" AS "t1" WHERE ("t1"."key" = ?) LIMIT ? OFFSET ?', ['SI=F', 1, 0])
+2025-11-25 00:01:56 - yfinance - DEBUG - utils.py:89 -   Entering history()
+2025-11-25 00:01:56 - yfinance - DEBUG - history.py:196 - SI=F: Yahoo GET parameters: {'period1': '2000-01-01 00:00:00-05:00', 'period2': '2025-11-24 12:01:56-05:00', 'interval': '1d', 'includePrePost': False, 'events': 'div,splits,capitalGains'}
+2025-11-25 00:01:56 - yfinance - DEBUG - utils.py:89 -    Entering get()
+2025-11-25 00:01:56 - yfinance - DEBUG - utils.py:89 -     Entering _make_request()
+2025-11-25 00:01:56 - yfinance - DEBUG - data.py:394 - url=https://query2.finance.yahoo.com/v8/finance/chart/SI=F
+2025-11-25 00:01:56 - yfinance - DEBUG - data.py:395 - params={'period1': 946702800, 'period2': 1764003716, 'interval': '1d', 'includePrePost': False, 'events': 'div,splits,capitalGains'}
+2025-11-25 00:01:56 - yfinance - DEBUG - utils.py:89 -      Entering _get_cookie_and_crumb()
+2025-11-25 00:01:56 - yfinance - DEBUG - data.py:350 - cookie_mode = 'basic'
+2025-11-25 00:01:56 - yfinance - DEBUG - utils.py:89 -       Entering _get_cookie_and_crumb_basic()
+2025-11-25 00:01:56 - yfinance - DEBUG - utils.py:89 -        Entering _get_cookie_basic()
+2025-11-25 00:01:56 - yfinance - DEBUG - data.py:188 - reusing cookie
+2025-11-25 00:01:56 - yfinance - DEBUG - utils.py:94 -        Exiting _get_cookie_basic()
+2025-11-25 00:01:56 - yfinance - DEBUG - utils.py:89 -        Entering _get_crumb_basic()
+2025-11-25 00:01:56 - yfinance - DEBUG - data.py:210 - reusing crumb
+2025-11-25 00:01:56 - yfinance - DEBUG - utils.py:94 -        Exiting _get_crumb_basic()
+2025-11-25 00:01:56 - yfinance - DEBUG - utils.py:94 -       Exiting _get_cookie_and_crumb_basic()
+2025-11-25 00:01:56 - yfinance - DEBUG - utils.py:94 -      Exiting _get_cookie_and_crumb()
+2025-11-25 00:01:56 - yfinance - DEBUG - data.py:418 - response code=200
+2025-11-25 00:01:56 - yfinance - DEBUG - utils.py:94 -     Exiting _make_request()
+2025-11-25 00:01:56 - yfinance - DEBUG - utils.py:94 -    Exiting get()
+2025-11-25 00:01:56 - yfinance - DEBUG - history.py:312 - SI=F: yfinance received OHLC data: 2000-08-30 04:00:00 -> 2025-11-24 16:51:59
+2025-11-25 00:01:56 - yfinance - DEBUG - history.py:349 - SI=F: OHLC after cleaning: 2000-08-30 00:00:00-04:00 -> 2025-11-24 11:51:59-05:00
+2025-11-25 00:01:56 - yfinance - DEBUG - history.py:437 - SI=F: OHLC after combining events: 2000-08-30 00:00:00-04:00 -> 2025-11-24 00:00:00-05:00
+2025-11-25 00:01:56 - yfinance - DEBUG - history.py:517 - SI=F: yfinance returning OHLC: 2000-08-30 00:00:00-04:00 -> 2025-11-24 00:00:00-05:00
+2025-11-25 00:01:56 - yfinance - DEBUG - utils.py:94 -   Exiting history()
+2025-11-25 00:01:56 - yfinance - DEBUG - utils.py:94 -  Exiting history()
+2025-11-25 00:01:56 - yfinance - DEBUG - utils.py:89 -  Entering history()
+2025-11-25 00:01:56 - peewee - DEBUG - peewee.py:3319 - ('SELECT "t1"."key", "t1"."value" FROM "_tz_kv" AS "t1" WHERE ("t1"."key" = ?) LIMIT ? OFFSET ?', ['^GSPC', 1, 0])
+2025-11-25 00:01:56 - yfinance - DEBUG - utils.py:89 -   Entering history()
+2025-11-25 00:01:56 - yfinance - DEBUG - history.py:196 - ^GSPC: Yahoo GET parameters: {'period1': '2000-01-01 00:00:00-05:00', 'period2': '2025-11-24 12:01:56-05:00', 'interval': '1d', 'includePrePost': False, 'events': 'div,splits,capitalGains'}
+2025-11-25 00:01:56 - yfinance - DEBUG - utils.py:89 -    Entering get()
+2025-11-25 00:01:56 - yfinance - DEBUG - utils.py:89 -     Entering _make_request()
+2025-11-25 00:01:56 - yfinance - DEBUG - data.py:394 - url=https://query2.finance.yahoo.com/v8/finance/chart/^GSPC
+2025-11-25 00:01:56 - yfinance - DEBUG - data.py:395 - params={'period1': 946702800, 'period2': 1764003716, 'interval': '1d', 'includePrePost': False, 'events': 'div,splits,capitalGains'}
+2025-11-25 00:01:56 - yfinance - DEBUG - utils.py:89 -      Entering _get_cookie_and_crumb()
+2025-11-25 00:01:56 - yfinance - DEBUG - data.py:350 - cookie_mode = 'basic'
+2025-11-25 00:01:56 - yfinance - DEBUG - utils.py:89 -       Entering _get_cookie_and_crumb_basic()
+2025-11-25 00:01:56 - yfinance - DEBUG - utils.py:89 -        Entering _get_cookie_basic()
+2025-11-25 00:01:56 - yfinance - DEBUG - data.py:188 - reusing cookie
+2025-11-25 00:01:56 - yfinance - DEBUG - utils.py:94 -        Exiting _get_cookie_basic()
+2025-11-25 00:01:56 - yfinance - DEBUG - utils.py:89 -        Entering _get_crumb_basic()
+2025-11-25 00:01:56 - yfinance - DEBUG - data.py:210 - reusing crumb
+2025-11-25 00:01:56 - yfinance - DEBUG - utils.py:94 -        Exiting _get_crumb_basic()
+2025-11-25 00:01:56 - yfinance - DEBUG - utils.py:94 -       Exiting _get_cookie_and_crumb_basic()
+2025-11-25 00:01:56 - yfinance - DEBUG - utils.py:94 -      Exiting _get_cookie_and_crumb()
+2025-11-25 00:01:56 - yfinance - DEBUG - data.py:418 - response code=200
+2025-11-25 00:01:56 - yfinance - DEBUG - utils.py:94 -     Exiting _make_request()
+2025-11-25 00:01:56 - yfinance - DEBUG - utils.py:94 -    Exiting get()
+2025-11-25 00:01:56 - yfinance - DEBUG - history.py:312 - ^GSPC: yfinance received OHLC data: 2000-01-03 14:30:00 -> 2025-11-21 14:30:00
+2025-11-25 00:01:56 - yfinance - DEBUG - history.py:349 - ^GSPC: OHLC after cleaning: 2000-01-03 09:30:00-05:00 -> 2025-11-21 09:30:00-05:00
+2025-11-25 00:01:56 - yfinance - DEBUG - history.py:437 - ^GSPC: OHLC after combining events: 2000-01-03 00:00:00-05:00 -> 2025-11-21 00:00:00-05:00
+2025-11-25 00:01:56 - yfinance - DEBUG - history.py:517 - ^GSPC: yfinance returning OHLC: 2000-01-03 00:00:00-05:00 -> 2025-11-21 00:00:00-05:00
+2025-11-25 00:01:56 - yfinance - DEBUG - utils.py:94 -   Exiting history()
+2025-11-25 00:01:56 - yfinance - DEBUG - utils.py:94 -  Exiting history()
+2025-11-25 00:01:56 - yfinance - DEBUG - utils.py:94 - Exiting download()
+2025-11-25 00:01:56 - src.data_loader.market_loader - INFO - market_loader.py:53 - ✅ [Market] Đã lưu: Gold -> data/raw/Gold_daily.csv
+2025-11-25 00:01:56 - src.data_loader.market_loader - INFO - market_loader.py:53 - ✅ [Market] Đã lưu: DXY -> data/raw/DXY_daily.csv
+2025-11-25 00:01:56 - src.data_loader.market_loader - INFO - market_loader.py:53 - ✅ [Market] Đã lưu: SP500 -> data/raw/SP500_daily.csv
+2025-11-25 00:01:56 - src.data_loader.market_loader - INFO - market_loader.py:53 - ✅ [Market] Đã lưu: Oil -> data/raw/Oil_daily.csv
+2025-11-25 00:01:56 - src.data_loader.market_loader - INFO - market_loader.py:53 - ✅ [Market] Đã lưu: Silver -> data/raw/Silver_daily.csv
+2025-11-25 00:01:56 - src.data_loader.macro_loader - INFO - macro_loader.py:47 - 🔄 Đang tải dữ liệu Vĩ mô từ FRED...
+2025-11-25 00:01:57 - src.data_loader.macro_loader - INFO - macro_loader.py:67 - ✅ [Macro] Đã lưu: CPI
+2025-11-25 00:01:58 - src.data_loader.macro_loader - INFO - macro_loader.py:67 - ✅ [Macro] Đã lưu: Fed_Rate
+2025-11-25 00:01:59 - src.data_loader.macro_loader - INFO - macro_loader.py:67 - ✅ [Macro] Đã lưu: US10Y
+2025-11-25 00:01:59 - src.data_loader.macro_loader - INFO - macro_loader.py:67 - ✅ [Macro] Đã lưu: M2
+2025-11-25 00:01:59 - MainController - INFO - main.py:33 - ✅ Tải dữ liệu hoàn tất.
+2025-11-25 00:01:59 - MainController - INFO - main.py:41 - ⚙️ [2/6] BẮT ĐẦU XỬ LÝ DỮ LIỆU...
+2025-11-25 00:01:59 - src.processing.processor - INFO - processor.py:21 - ⚙️ --- BẮT ĐẦU QUY TRÌNH XỬ LÝ DỮ LIỆU ---
+2025-11-25 00:01:59 - src.processing.data_merger - INFO - data_merger.py:20 - [Step 1] Đang ghép dữ liệu Market & Macro...
+2025-11-25 00:01:59 - src.processing.data_merger - WARNING - data_merger.py:60 - Không tìm thấy file Real_Interest_Rate_macro.csv, bỏ qua.
+2025-11-25 00:01:59 - src.processing.data_merger - INFO - data_merger.py:65 - Đã ghép xong. Dữ liệu: 6331 dòng (Đã loại bỏ 2 dòng NaN).
+2025-11-25 00:01:59 - src.processing.feature_builder - INFO - feature_builder.py:12 - [Step 2] Đang tính toán chỉ báo kỹ thuật...
+2025-11-25 00:01:59 - src.processing.feature_builder - INFO - feature_builder.py:42 - [Step 3] Đang tạo nhãn dự báo (30 ngày tới)...
+2025-11-25 00:01:59 - src.processing.processor - INFO - processor.py:39 - 💾 Đã lưu dữ liệu sạch tại: data/processed/gold_processed_features.csv
+2025-11-25 00:01:59 - src.processing.processor - INFO - processor.py:40 - 📊 Kích thước cuối cùng: (6253, 12)
+2025-11-25 00:01:59 - MainController - INFO - main.py:45 - ✅ Xử lý hoàn tất. File: data/processed/gold_processed_features.csv
+2025-11-25 00:01:59 - MainController - INFO - main.py:53 - 🏋️ [3/6] BẮT ĐẦU HUẤN LUYỆN...
+2025-11-25 00:01:59 - src.training.trainer - INFO - trainer.py:33 - 🚀 BẮT ĐẦU QUÁ TRÌNH HUẤN LUYỆN...
+2025-11-25 00:01:59 - src.training.data_provider - INFO - data_provider.py:37 - 📂 Đang đọc dữ liệu từ: data/processed/gold_processed_features.csv
+2025-11-25 00:01:59 - src.training.data_provider - WARNING - data_provider.py:49 - ⚠️ Thiếu cột dữ liệu! Tech: [], Macro: ['Real_Rate']
+2025-11-25 00:01:59 - MainController - ERROR - main.py:59 - ❌ Lỗi huấn luyện: "['Real_Rate'] not in index"
+2025-11-25 00:01:59 - MainController - CRITICAL - main.py:134 - 🔥 QUY TRÌNH BỊ NGẮT DO LỖI: "['Real_Rate'] not in index"
+2025-11-25 00:04:14 - root - INFO - config_utils.py:32 - Logging đã được thiết lập từ file yaml.
+2025-11-25 00:04:14 - MainController - INFO - main.py:154 - 🤖 Hệ thống khởi động. Mode: PIPELINE
+2025-11-25 00:04:14 - MainController - INFO - main.py:103 - 
+==================================================
+2025-11-25 00:04:14 - MainController - INFO - main.py:104 - 🚀 BẮT ĐẦU CHẠY TOÀN BỘ HỆ THỐNG (FULL PIPELINE)
+2025-11-25 00:04:14 - MainController - INFO - main.py:105 - ==================================================
+
+2025-11-25 00:04:14 - MainController - INFO - main.py:25 - 📡 [1/6] BẮT ĐẦU TẢI DỮ LIỆU...
+2025-11-25 00:04:14 - src.data_loader.market_loader - INFO - market_loader.py:26 - 🚀 Đang tải dữ liệu thị trường từ 2000-01-01...
+2025-11-25 00:04:14 - yfinance - DEBUG - utils.py:89 - Entering download()
+2025-11-25 00:04:14 - yfinance - DEBUG - multi.py:114 - Disabling multithreading because DEBUG logging enabled
+2025-11-25 00:04:14 - yfinance - DEBUG - utils.py:89 -  Entering history()
+2025-11-25 00:04:14 - peewee - DEBUG - peewee.py:3319 - ('CREATE TABLE IF NOT EXISTS "_tz_kv" ("key" VARCHAR(255) NOT NULL PRIMARY KEY, "value" VARCHAR(255)) WITHOUT ROWID', [])
+2025-11-25 00:04:14 - peewee - DEBUG - peewee.py:3319 - ('SELECT "t1"."key", "t1"."value" FROM "_tz_kv" AS "t1" WHERE ("t1"."key" = ?) LIMIT ? OFFSET ?', ['^GSPC', 1, 0])
+2025-11-25 00:04:14 - yfinance - DEBUG - utils.py:89 -   Entering history()
+2025-11-25 00:04:14 - yfinance - DEBUG - history.py:196 - ^GSPC: Yahoo GET parameters: {'period1': '2000-01-01 00:00:00-05:00', 'period2': '2025-11-24 12:04:14-05:00', 'interval': '1d', 'includePrePost': False, 'events': 'div,splits,capitalGains'}
+2025-11-25 00:04:14 - yfinance - DEBUG - utils.py:89 -    Entering get()
+2025-11-25 00:04:14 - yfinance - DEBUG - utils.py:89 -     Entering _make_request()
+2025-11-25 00:04:14 - yfinance - DEBUG - data.py:394 - url=https://query2.finance.yahoo.com/v8/finance/chart/^GSPC
+2025-11-25 00:04:14 - yfinance - DEBUG - data.py:395 - params={'period1': 946702800, 'period2': 1764003854, 'interval': '1d', 'includePrePost': False, 'events': 'div,splits,capitalGains'}
+2025-11-25 00:04:14 - yfinance - DEBUG - utils.py:89 -      Entering _get_cookie_and_crumb()
+2025-11-25 00:04:14 - yfinance - DEBUG - data.py:350 - cookie_mode = 'basic'
+2025-11-25 00:04:14 - yfinance - DEBUG - utils.py:89 -       Entering _get_cookie_and_crumb_basic()
+2025-11-25 00:04:14 - yfinance - DEBUG - utils.py:89 -        Entering _get_cookie_basic()
+2025-11-25 00:04:14 - yfinance - DEBUG - utils.py:89 -         Entering _load_cookie_curlCffi()
+2025-11-25 00:04:14 - peewee - DEBUG - peewee.py:3319 - ('CREATE TABLE IF NOT EXISTS "_cookieschema" ("strategy" VARCHAR(255) NOT NULL PRIMARY KEY, "fetch_date" DATETIME NOT NULL, "cookie_bytes" BLOB NOT NULL) WITHOUT ROWID', [])
+2025-11-25 00:04:14 - peewee - DEBUG - peewee.py:3319 - ('SELECT "t1"."strategy", "t1"."fetch_date", "t1"."cookie_bytes" FROM "_cookieschema" AS "t1" WHERE ("t1"."strategy" = ?) LIMIT ? OFFSET ?', ['curlCffi', 1, 0])
+2025-11-25 00:04:14 - yfinance - DEBUG - utils.py:94 -         Exiting _load_cookie_curlCffi()
+2025-11-25 00:04:14 - yfinance - DEBUG - data.py:191 - reusing persistent cookie
+2025-11-25 00:04:14 - yfinance - DEBUG - utils.py:94 -        Exiting _get_cookie_basic()
+2025-11-25 00:04:14 - yfinance - DEBUG - utils.py:89 -        Entering _get_crumb_basic()
+2025-11-25 00:04:14 - yfinance - DEBUG - utils.py:89 -         Entering _get_cookie_basic()
+2025-11-25 00:04:14 - yfinance - DEBUG - data.py:188 - reusing cookie
+2025-11-25 00:04:14 - yfinance - DEBUG - utils.py:94 -         Exiting _get_cookie_basic()
+2025-11-25 00:04:15 - yfinance - DEBUG - data.py:235 - crumb = 'Ns186LAbZnv'
+2025-11-25 00:04:15 - yfinance - DEBUG - utils.py:94 -        Exiting _get_crumb_basic()
+2025-11-25 00:04:15 - yfinance - DEBUG - utils.py:94 -       Exiting _get_cookie_and_crumb_basic()
+2025-11-25 00:04:15 - yfinance - DEBUG - utils.py:94 -      Exiting _get_cookie_and_crumb()
+2025-11-25 00:04:15 - yfinance - DEBUG - data.py:418 - response code=200
+2025-11-25 00:04:15 - yfinance - DEBUG - utils.py:94 -     Exiting _make_request()
+2025-11-25 00:04:15 - yfinance - DEBUG - utils.py:94 -    Exiting get()
+2025-11-25 00:04:15 - yfinance - DEBUG - history.py:312 - ^GSPC: yfinance received OHLC data: 2000-01-03 14:30:00 -> 2025-11-21 14:30:00
+2025-11-25 00:04:15 - yfinance - DEBUG - history.py:349 - ^GSPC: OHLC after cleaning: 2000-01-03 09:30:00-05:00 -> 2025-11-21 09:30:00-05:00
+2025-11-25 00:04:15 - yfinance - DEBUG - history.py:437 - ^GSPC: OHLC after combining events: 2000-01-03 00:00:00-05:00 -> 2025-11-21 00:00:00-05:00
+2025-11-25 00:04:15 - yfinance - DEBUG - history.py:517 - ^GSPC: yfinance returning OHLC: 2000-01-03 00:00:00-05:00 -> 2025-11-21 00:00:00-05:00
+2025-11-25 00:04:15 - yfinance - DEBUG - utils.py:94 -   Exiting history()
+2025-11-25 00:04:15 - yfinance - DEBUG - utils.py:94 -  Exiting history()
+2025-11-25 00:04:15 - yfinance - DEBUG - utils.py:89 -  Entering history()
+2025-11-25 00:04:15 - peewee - DEBUG - peewee.py:3319 - ('SELECT "t1"."key", "t1"."value" FROM "_tz_kv" AS "t1" WHERE ("t1"."key" = ?) LIMIT ? OFFSET ?', ['DX-Y.NYB', 1, 0])
+2025-11-25 00:04:15 - yfinance - DEBUG - utils.py:89 -   Entering history()
+2025-11-25 00:04:15 - yfinance - DEBUG - history.py:196 - DX-Y.NYB: Yahoo GET parameters: {'period1': '2000-01-01 00:00:00-05:00', 'period2': '2025-11-24 12:04:15-05:00', 'interval': '1d', 'includePrePost': False, 'events': 'div,splits,capitalGains'}
+2025-11-25 00:04:15 - yfinance - DEBUG - utils.py:89 -    Entering get()
+2025-11-25 00:04:15 - yfinance - DEBUG - utils.py:89 -     Entering _make_request()
+2025-11-25 00:04:15 - yfinance - DEBUG - data.py:394 - url=https://query2.finance.yahoo.com/v8/finance/chart/DX-Y.NYB
+2025-11-25 00:04:15 - yfinance - DEBUG - data.py:395 - params={'period1': 946702800, 'period2': 1764003855, 'interval': '1d', 'includePrePost': False, 'events': 'div,splits,capitalGains'}
+2025-11-25 00:04:15 - yfinance - DEBUG - utils.py:89 -      Entering _get_cookie_and_crumb()
+2025-11-25 00:04:15 - yfinance - DEBUG - data.py:350 - cookie_mode = 'basic'
+2025-11-25 00:04:15 - yfinance - DEBUG - utils.py:89 -       Entering _get_cookie_and_crumb_basic()
+2025-11-25 00:04:15 - yfinance - DEBUG - utils.py:89 -        Entering _get_cookie_basic()
+2025-11-25 00:04:15 - yfinance - DEBUG - data.py:188 - reusing cookie
+2025-11-25 00:04:15 - yfinance - DEBUG - utils.py:94 -        Exiting _get_cookie_basic()
+2025-11-25 00:04:15 - yfinance - DEBUG - utils.py:89 -        Entering _get_crumb_basic()
+2025-11-25 00:04:15 - yfinance - DEBUG - data.py:210 - reusing crumb
+2025-11-25 00:04:15 - yfinance - DEBUG - utils.py:94 -        Exiting _get_crumb_basic()
+2025-11-25 00:04:15 - yfinance - DEBUG - utils.py:94 -       Exiting _get_cookie_and_crumb_basic()
+2025-11-25 00:04:15 - yfinance - DEBUG - utils.py:94 -      Exiting _get_cookie_and_crumb()
+2025-11-25 00:04:16 - yfinance - DEBUG - data.py:418 - response code=200
+2025-11-25 00:04:16 - yfinance - DEBUG - utils.py:94 -     Exiting _make_request()
+2025-11-25 00:04:16 - yfinance - DEBUG - utils.py:94 -    Exiting get()
+2025-11-25 00:04:16 - yfinance - DEBUG - history.py:312 - DX-Y.NYB: yfinance received OHLC data: 2000-01-03 05:00:00 -> 2025-11-24 16:54:18
+2025-11-25 00:04:16 - yfinance - DEBUG - history.py:349 - DX-Y.NYB: OHLC after cleaning: 2000-01-03 00:00:00-05:00 -> 2025-11-24 11:54:18-05:00
+2025-11-25 00:04:16 - yfinance - DEBUG - history.py:437 - DX-Y.NYB: OHLC after combining events: 2000-01-03 00:00:00-05:00 -> 2025-11-24 00:00:00-05:00
+2025-11-25 00:04:16 - yfinance - DEBUG - history.py:517 - DX-Y.NYB: yfinance returning OHLC: 2000-01-03 00:00:00-05:00 -> 2025-11-24 00:00:00-05:00
+2025-11-25 00:04:16 - yfinance - DEBUG - utils.py:94 -   Exiting history()
+2025-11-25 00:04:16 - yfinance - DEBUG - utils.py:94 -  Exiting history()
+2025-11-25 00:04:16 - yfinance - DEBUG - utils.py:89 -  Entering history()
+2025-11-25 00:04:16 - peewee - DEBUG - peewee.py:3319 - ('SELECT "t1"."key", "t1"."value" FROM "_tz_kv" AS "t1" WHERE ("t1"."key" = ?) LIMIT ? OFFSET ?', ['SI=F', 1, 0])
+2025-11-25 00:04:16 - yfinance - DEBUG - utils.py:89 -   Entering history()
+2025-11-25 00:04:16 - yfinance - DEBUG - history.py:196 - SI=F: Yahoo GET parameters: {'period1': '2000-01-01 00:00:00-05:00', 'period2': '2025-11-24 12:04:16-05:00', 'interval': '1d', 'includePrePost': False, 'events': 'div,splits,capitalGains'}
+2025-11-25 00:04:16 - yfinance - DEBUG - utils.py:89 -    Entering get()
+2025-11-25 00:04:16 - yfinance - DEBUG - utils.py:89 -     Entering _make_request()
+2025-11-25 00:04:16 - yfinance - DEBUG - data.py:394 - url=https://query2.finance.yahoo.com/v8/finance/chart/SI=F
+2025-11-25 00:04:16 - yfinance - DEBUG - data.py:395 - params={'period1': 946702800, 'period2': 1764003856, 'interval': '1d', 'includePrePost': False, 'events': 'div,splits,capitalGains'}
+2025-11-25 00:04:16 - yfinance - DEBUG - utils.py:89 -      Entering _get_cookie_and_crumb()
+2025-11-25 00:04:16 - yfinance - DEBUG - data.py:350 - cookie_mode = 'basic'
+2025-11-25 00:04:16 - yfinance - DEBUG - utils.py:89 -       Entering _get_cookie_and_crumb_basic()
+2025-11-25 00:04:16 - yfinance - DEBUG - utils.py:89 -        Entering _get_cookie_basic()
+2025-11-25 00:04:16 - yfinance - DEBUG - data.py:188 - reusing cookie
+2025-11-25 00:04:16 - yfinance - DEBUG - utils.py:94 -        Exiting _get_cookie_basic()
+2025-11-25 00:04:16 - yfinance - DEBUG - utils.py:89 -        Entering _get_crumb_basic()
+2025-11-25 00:04:16 - yfinance - DEBUG - data.py:210 - reusing crumb
+2025-11-25 00:04:16 - yfinance - DEBUG - utils.py:94 -        Exiting _get_crumb_basic()
+2025-11-25 00:04:16 - yfinance - DEBUG - utils.py:94 -       Exiting _get_cookie_and_crumb_basic()
+2025-11-25 00:04:16 - yfinance - DEBUG - utils.py:94 -      Exiting _get_cookie_and_crumb()
+2025-11-25 00:04:16 - yfinance - DEBUG - data.py:418 - response code=200
+2025-11-25 00:04:16 - yfinance - DEBUG - utils.py:94 -     Exiting _make_request()
+2025-11-25 00:04:16 - yfinance - DEBUG - utils.py:94 -    Exiting get()
+2025-11-25 00:04:16 - yfinance - DEBUG - history.py:312 - SI=F: yfinance received OHLC data: 2000-08-30 04:00:00 -> 2025-11-24 16:54:17
+2025-11-25 00:04:16 - yfinance - DEBUG - history.py:349 - SI=F: OHLC after cleaning: 2000-08-30 00:00:00-04:00 -> 2025-11-24 11:54:17-05:00
+2025-11-25 00:04:16 - yfinance - DEBUG - history.py:437 - SI=F: OHLC after combining events: 2000-08-30 00:00:00-04:00 -> 2025-11-24 00:00:00-05:00
+2025-11-25 00:04:16 - yfinance - DEBUG - history.py:517 - SI=F: yfinance returning OHLC: 2000-08-30 00:00:00-04:00 -> 2025-11-24 00:00:00-05:00
+2025-11-25 00:04:16 - yfinance - DEBUG - utils.py:94 -   Exiting history()
+2025-11-25 00:04:16 - yfinance - DEBUG - utils.py:94 -  Exiting history()
+2025-11-25 00:04:16 - yfinance - DEBUG - utils.py:89 -  Entering history()
+2025-11-25 00:04:16 - peewee - DEBUG - peewee.py:3319 - ('SELECT "t1"."key", "t1"."value" FROM "_tz_kv" AS "t1" WHERE ("t1"."key" = ?) LIMIT ? OFFSET ?', ['GC=F', 1, 0])
+2025-11-25 00:04:16 - yfinance - DEBUG - utils.py:89 -   Entering history()
+2025-11-25 00:04:16 - yfinance - DEBUG - history.py:196 - GC=F: Yahoo GET parameters: {'period1': '2000-01-01 00:00:00-05:00', 'period2': '2025-11-24 12:04:16-05:00', 'interval': '1d', 'includePrePost': False, 'events': 'div,splits,capitalGains'}
+2025-11-25 00:04:16 - yfinance - DEBUG - utils.py:89 -    Entering get()
+2025-11-25 00:04:16 - yfinance - DEBUG - utils.py:89 -     Entering _make_request()
+2025-11-25 00:04:16 - yfinance - DEBUG - data.py:394 - url=https://query2.finance.yahoo.com/v8/finance/chart/GC=F
+2025-11-25 00:04:16 - yfinance - DEBUG - data.py:395 - params={'period1': 946702800, 'period2': 1764003856, 'interval': '1d', 'includePrePost': False, 'events': 'div,splits,capitalGains'}
+2025-11-25 00:04:16 - yfinance - DEBUG - utils.py:89 -      Entering _get_cookie_and_crumb()
+2025-11-25 00:04:16 - yfinance - DEBUG - data.py:350 - cookie_mode = 'basic'
+2025-11-25 00:04:16 - yfinance - DEBUG - utils.py:89 -       Entering _get_cookie_and_crumb_basic()
+2025-11-25 00:04:16 - yfinance - DEBUG - utils.py:89 -        Entering _get_cookie_basic()
+2025-11-25 00:04:16 - yfinance - DEBUG - data.py:188 - reusing cookie
+2025-11-25 00:04:16 - yfinance - DEBUG - utils.py:94 -        Exiting _get_cookie_basic()
+2025-11-25 00:04:16 - yfinance - DEBUG - utils.py:89 -        Entering _get_crumb_basic()
+2025-11-25 00:04:16 - yfinance - DEBUG - data.py:210 - reusing crumb
+2025-11-25 00:04:16 - yfinance - DEBUG - utils.py:94 -        Exiting _get_crumb_basic()
+2025-11-25 00:04:16 - yfinance - DEBUG - utils.py:94 -       Exiting _get_cookie_and_crumb_basic()
+2025-11-25 00:04:16 - yfinance - DEBUG - utils.py:94 -      Exiting _get_cookie_and_crumb()
+2025-11-25 00:04:16 - yfinance - DEBUG - data.py:418 - response code=200
+2025-11-25 00:04:16 - yfinance - DEBUG - utils.py:94 -     Exiting _make_request()
+2025-11-25 00:04:16 - yfinance - DEBUG - utils.py:94 -    Exiting get()
+2025-11-25 00:04:16 - yfinance - DEBUG - history.py:312 - GC=F: yfinance received OHLC data: 2000-08-30 04:00:00 -> 2025-11-24 16:54:18
+2025-11-25 00:04:16 - yfinance - DEBUG - history.py:349 - GC=F: OHLC after cleaning: 2000-08-30 00:00:00-04:00 -> 2025-11-24 11:54:18-05:00
+2025-11-25 00:04:16 - yfinance - DEBUG - history.py:437 - GC=F: OHLC after combining events: 2000-08-30 00:00:00-04:00 -> 2025-11-24 00:00:00-05:00
+2025-11-25 00:04:16 - yfinance - DEBUG - history.py:517 - GC=F: yfinance returning OHLC: 2000-08-30 00:00:00-04:00 -> 2025-11-24 00:00:00-05:00
+2025-11-25 00:04:16 - yfinance - DEBUG - utils.py:94 -   Exiting history()
+2025-11-25 00:04:16 - yfinance - DEBUG - utils.py:94 -  Exiting history()
+2025-11-25 00:04:16 - yfinance - DEBUG - utils.py:89 -  Entering history()
+2025-11-25 00:04:16 - peewee - DEBUG - peewee.py:3319 - ('SELECT "t1"."key", "t1"."value" FROM "_tz_kv" AS "t1" WHERE ("t1"."key" = ?) LIMIT ? OFFSET ?', ['CL=F', 1, 0])
+2025-11-25 00:04:16 - yfinance - DEBUG - utils.py:89 -   Entering history()
+2025-11-25 00:04:16 - yfinance - DEBUG - history.py:196 - CL=F: Yahoo GET parameters: {'period1': '2000-01-01 00:00:00-05:00', 'period2': '2025-11-24 12:04:16-05:00', 'interval': '1d', 'includePrePost': False, 'events': 'div,splits,capitalGains'}
+2025-11-25 00:04:16 - yfinance - DEBUG - utils.py:89 -    Entering get()
+2025-11-25 00:04:16 - yfinance - DEBUG - utils.py:89 -     Entering _make_request()
+2025-11-25 00:04:16 - yfinance - DEBUG - data.py:394 - url=https://query2.finance.yahoo.com/v8/finance/chart/CL=F
+2025-11-25 00:04:16 - yfinance - DEBUG - data.py:395 - params={'period1': 946702800, 'period2': 1764003856, 'interval': '1d', 'includePrePost': False, 'events': 'div,splits,capitalGains'}
+2025-11-25 00:04:16 - yfinance - DEBUG - utils.py:89 -      Entering _get_cookie_and_crumb()
+2025-11-25 00:04:16 - yfinance - DEBUG - data.py:350 - cookie_mode = 'basic'
+2025-11-25 00:04:16 - yfinance - DEBUG - utils.py:89 -       Entering _get_cookie_and_crumb_basic()
+2025-11-25 00:04:16 - yfinance - DEBUG - utils.py:89 -        Entering _get_cookie_basic()
+2025-11-25 00:04:16 - yfinance - DEBUG - data.py:188 - reusing cookie
+2025-11-25 00:04:16 - yfinance - DEBUG - utils.py:94 -        Exiting _get_cookie_basic()
+2025-11-25 00:04:16 - yfinance - DEBUG - utils.py:89 -        Entering _get_crumb_basic()
+2025-11-25 00:04:16 - yfinance - DEBUG - data.py:210 - reusing crumb
+2025-11-25 00:04:16 - yfinance - DEBUG - utils.py:94 -        Exiting _get_crumb_basic()
+2025-11-25 00:04:16 - yfinance - DEBUG - utils.py:94 -       Exiting _get_cookie_and_crumb_basic()
+2025-11-25 00:04:16 - yfinance - DEBUG - utils.py:94 -      Exiting _get_cookie_and_crumb()
+2025-11-25 00:04:16 - yfinance - DEBUG - data.py:418 - response code=200
+2025-11-25 00:04:16 - yfinance - DEBUG - utils.py:94 -     Exiting _make_request()
+2025-11-25 00:04:16 - yfinance - DEBUG - utils.py:94 -    Exiting get()
+2025-11-25 00:04:16 - yfinance - DEBUG - history.py:312 - CL=F: yfinance received OHLC data: 2000-08-23 04:00:00 -> 2025-11-24 16:54:19
+2025-11-25 00:04:16 - yfinance - DEBUG - history.py:349 - CL=F: OHLC after cleaning: 2000-08-23 00:00:00-04:00 -> 2025-11-24 11:54:19-05:00
+2025-11-25 00:04:16 - yfinance - DEBUG - history.py:437 - CL=F: OHLC after combining events: 2000-08-23 00:00:00-04:00 -> 2025-11-24 00:00:00-05:00
+2025-11-25 00:04:16 - yfinance - DEBUG - history.py:517 - CL=F: yfinance returning OHLC: 2000-08-23 00:00:00-04:00 -> 2025-11-24 00:00:00-05:00
+2025-11-25 00:04:16 - yfinance - DEBUG - utils.py:94 -   Exiting history()
+2025-11-25 00:04:16 - yfinance - DEBUG - utils.py:94 -  Exiting history()
+2025-11-25 00:04:17 - yfinance - DEBUG - utils.py:94 - Exiting download()
+2025-11-25 00:04:17 - src.data_loader.market_loader - INFO - market_loader.py:53 - ✅ [Market] Đã lưu: Gold -> data/raw/Gold_daily.csv
+2025-11-25 00:04:17 - src.data_loader.market_loader - INFO - market_loader.py:53 - ✅ [Market] Đã lưu: DXY -> data/raw/DXY_daily.csv
+2025-11-25 00:04:17 - src.data_loader.market_loader - INFO - market_loader.py:53 - ✅ [Market] Đã lưu: SP500 -> data/raw/SP500_daily.csv
+2025-11-25 00:04:17 - src.data_loader.market_loader - INFO - market_loader.py:53 - ✅ [Market] Đã lưu: Oil -> data/raw/Oil_daily.csv
+2025-11-25 00:04:17 - src.data_loader.market_loader - INFO - market_loader.py:53 - ✅ [Market] Đã lưu: Silver -> data/raw/Silver_daily.csv
+2025-11-25 00:04:17 - src.data_loader.macro_loader - INFO - macro_loader.py:47 - 🔄 Đang tải dữ liệu Vĩ mô từ FRED...
+2025-11-25 00:04:17 - src.data_loader.macro_loader - INFO - macro_loader.py:67 - ✅ [Macro] Đã lưu: CPI
+2025-11-25 00:04:18 - src.data_loader.macro_loader - INFO - macro_loader.py:67 - ✅ [Macro] Đã lưu: Fed_Rate
+2025-11-25 00:04:19 - src.data_loader.macro_loader - INFO - macro_loader.py:67 - ✅ [Macro] Đã lưu: US10Y
+2025-11-25 00:04:19 - src.data_loader.macro_loader - INFO - macro_loader.py:67 - ✅ [Macro] Đã lưu: M2
+2025-11-25 00:04:20 - src.data_loader.macro_loader - INFO - macro_loader.py:67 - ✅ [Macro] Đã lưu: Real_Rate
+2025-11-25 00:04:20 - MainController - INFO - main.py:33 - ✅ Tải dữ liệu hoàn tất.
+2025-11-25 00:04:20 - MainController - INFO - main.py:41 - ⚙️ [2/6] BẮT ĐẦU XỬ LÝ DỮ LIỆU...
+2025-11-25 00:04:20 - src.processing.processor - INFO - processor.py:21 - ⚙️ --- BẮT ĐẦU QUY TRÌNH XỬ LÝ DỮ LIỆU ---
+2025-11-25 00:04:20 - src.processing.data_merger - INFO - data_merger.py:25 - 🔄 [Step 1] Đang ghép dữ liệu Market & Macro...
+2025-11-25 00:04:20 - src.processing.data_merger - INFO - data_merger.py:70 - ✅ Đã ghép xong. Dữ liệu: 6331 dòng (Loại bỏ 2 dòng NaN).
+2025-11-25 00:04:20 - src.processing.feature_builder - INFO - feature_builder.py:12 - [Step 2] Đang tính toán chỉ báo kỹ thuật...
+2025-11-25 00:04:20 - src.processing.feature_builder - INFO - feature_builder.py:42 - [Step 3] Đang tạo nhãn dự báo (30 ngày tới)...
+2025-11-25 00:04:20 - src.processing.processor - INFO - processor.py:39 - 💾 Đã lưu dữ liệu sạch tại: data/processed/gold_processed_features.csv
+2025-11-25 00:04:20 - src.processing.processor - INFO - processor.py:40 - 📊 Kích thước cuối cùng: (6253, 13)
+2025-11-25 00:04:20 - MainController - INFO - main.py:45 - ✅ Xử lý hoàn tất. File: data/processed/gold_processed_features.csv
+2025-11-25 00:04:20 - MainController - INFO - main.py:53 - 🏋️ [3/6] BẮT ĐẦU HUẤN LUYỆN...
+2025-11-25 00:04:20 - src.training.trainer - INFO - trainer.py:33 - 🚀 BẮT ĐẦU QUÁ TRÌNH HUẤN LUYỆN...
+2025-11-25 00:04:20 - src.training.data_provider - INFO - data_provider.py:37 - 📂 Đang đọc dữ liệu từ: data/processed/gold_processed_features.csv
+2025-11-25 00:04:20 - src.training.data_provider - INFO - data_provider.py:85 - ✅ Đã split dữ liệu. Train size: 4954, Test size: 1239
+2025-11-25 00:04:20 - src.training.data_provider - INFO - data_provider.py:95 - 💾 Đã lưu Scalers vào: artifacts/models/
+2025-11-25 00:04:20 - src.training.trainer - INFO - trainer.py:47 - 📊 Input Features: Price=5, Macro=4
+2025-11-25 00:04:20 - src.models.hybrid_model - INFO - hybrid_model.py:35 - Đang xây dựng model Hybrid: LSTM ((60, 5)) + Dense ((4,))
+2025-11-25 00:04:20 - src.models.hybrid_model - INFO - hybrid_model.py:73 - Build model kiến trúc thành công.
+2025-11-25 00:04:26 - h5py._conv - DEBUG - attrs.py:204 - Creating converter from 5 to 3
+2025-11-25 00:05:15 - src.training.trainer - INFO - trainer.py:94 - ✅ HUẤN LUYỆN HOÀN TẤT!
+2025-11-25 00:05:15 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'IHDR' 16 13
+2025-11-25 00:05:15 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'sBIT' 41 4
+2025-11-25 00:05:15 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:778 - b'sBIT' 41 4 (unknown)
+2025-11-25 00:05:15 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'pHYs' 57 9
+2025-11-25 00:05:15 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'IDAT' 78 1189
+2025-11-25 00:05:15 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'IHDR' 16 13
+2025-11-25 00:05:15 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'sBIT' 41 4
+2025-11-25 00:05:15 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:778 - b'sBIT' 41 4 (unknown)
+2025-11-25 00:05:15 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'pHYs' 57 9
+2025-11-25 00:05:15 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'IDAT' 78 2994
+2025-11-25 00:05:15 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'IHDR' 16 13
+2025-11-25 00:05:15 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'sBIT' 41 4
+2025-11-25 00:05:15 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:778 - b'sBIT' 41 4 (unknown)
+2025-11-25 00:05:15 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'pHYs' 57 9
+2025-11-25 00:05:15 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'IDAT' 78 696
+2025-11-25 00:05:15 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'IHDR' 16 13
+2025-11-25 00:05:15 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'sBIT' 41 4
+2025-11-25 00:05:15 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:778 - b'sBIT' 41 4 (unknown)
+2025-11-25 00:05:15 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'pHYs' 57 9
+2025-11-25 00:05:15 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'IDAT' 78 526
+2025-11-25 00:05:15 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'IHDR' 16 13
+2025-11-25 00:05:15 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'sBIT' 41 4
+2025-11-25 00:05:15 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:778 - b'sBIT' 41 4 (unknown)
+2025-11-25 00:05:15 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'pHYs' 57 9
+2025-11-25 00:05:15 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'IDAT' 78 499
+2025-11-25 00:05:15 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'IHDR' 16 13
+2025-11-25 00:05:15 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'sBIT' 41 4
+2025-11-25 00:05:15 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:778 - b'sBIT' 41 4 (unknown)
+2025-11-25 00:05:15 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'pHYs' 57 9
+2025-11-25 00:05:15 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'IDAT' 78 673
+2025-11-25 00:05:15 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'IHDR' 16 13
+2025-11-25 00:05:15 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'sBIT' 41 4
+2025-11-25 00:05:15 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:778 - b'sBIT' 41 4 (unknown)
+2025-11-25 00:05:15 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'pHYs' 57 9
+2025-11-25 00:05:15 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'IDAT' 78 922
+2025-11-25 00:05:15 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'IHDR' 16 13
+2025-11-25 00:05:15 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'sBIT' 41 4
+2025-11-25 00:05:15 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:778 - b'sBIT' 41 4 (unknown)
+2025-11-25 00:05:15 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'pHYs' 57 9
+2025-11-25 00:05:15 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'IDAT' 78 568
+2025-11-25 00:05:15 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'IHDR' 16 13
+2025-11-25 00:05:15 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'sBIT' 41 4
+2025-11-25 00:05:15 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:778 - b'sBIT' 41 4 (unknown)
+2025-11-25 00:05:15 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'pHYs' 57 9
+2025-11-25 00:05:15 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'IDAT' 78 626
+2025-11-25 00:05:15 - src.training.trainer - INFO - trainer.py:129 - 📉 Đã lưu biểu đồ training tại: artifacts/figures/training_history.png
+2025-11-25 00:05:15 - MainController - INFO - main.py:57 - ✅ Huấn luyện hoàn tất. Model: artifacts/models/Hybrid_Gold_Forecast_V1_best.keras
+2025-11-25 00:05:15 - MainController - INFO - main.py:65 - 🔮 [4/6] BẮT ĐẦU DỰ ĐOÁN...
+2025-11-25 00:05:15 - src.prediction.predictor - INFO - predictor.py:25 - 📥 Đang tải Model và Scalers...
+2025-11-25 00:05:15 - src.prediction.predictor - INFO - predictor.py:77 - 🔮 Đang thực hiện dự đoán...
+2025-11-25 00:05:16 - MainController - INFO - main.py:69 - ✅ Dự đoán hoàn tất.
+2025-11-25 00:05:16 - MainController - INFO - main.py:77 - 💸 [5/6] BẮT ĐẦU BACKTEST...
+2025-11-25 00:05:16 - src.backtesting.backtester - INFO - backtester.py:25 - ⏳ Đang tải dữ liệu kiểm thử (Test Set)...
+2025-11-25 00:05:16 - src.training.data_provider - INFO - data_provider.py:37 - 📂 Đang đọc dữ liệu từ: data/processed/gold_processed_features.csv
+2025-11-25 00:05:16 - src.training.data_provider - INFO - data_provider.py:85 - ✅ Đã split dữ liệu. Train size: 4954, Test size: 1239
+2025-11-25 00:05:16 - src.backtesting.backtester - INFO - backtester.py:32 - 🧠 Đang load Model để backtest...
+2025-11-25 00:05:17 - src.backtesting.backtester - INFO - backtester.py:60 - 📅 Đang lọc dữ liệu từ đầu năm đến nay...
+2025-11-25 00:05:17 - src.backtesting.backtester - INFO - backtester.py:83 - ✅ Đã lọc: Còn lại 198 phiên giao dịch để Backtest.
+2025-11-25 00:05:17 - src.backtesting.backtester - INFO - backtester.py:87 - 💸 Đang mô phỏng giao dịch...
+2025-11-25 00:05:17 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'IHDR' 16 13
+2025-11-25 00:05:17 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'sBIT' 41 4
+2025-11-25 00:05:17 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:778 - b'sBIT' 41 4 (unknown)
+2025-11-25 00:05:17 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'pHYs' 57 9
+2025-11-25 00:05:17 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'IDAT' 78 1189
+2025-11-25 00:05:17 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'IHDR' 16 13
+2025-11-25 00:05:17 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'sBIT' 41 4
+2025-11-25 00:05:17 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:778 - b'sBIT' 41 4 (unknown)
+2025-11-25 00:05:17 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'pHYs' 57 9
+2025-11-25 00:05:17 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'IDAT' 78 2994
+2025-11-25 00:05:17 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'IHDR' 16 13
+2025-11-25 00:05:17 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'sBIT' 41 4
+2025-11-25 00:05:17 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:778 - b'sBIT' 41 4 (unknown)
+2025-11-25 00:05:17 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'pHYs' 57 9
+2025-11-25 00:05:17 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'IDAT' 78 696
+2025-11-25 00:05:17 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'IHDR' 16 13
+2025-11-25 00:05:17 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'sBIT' 41 4
+2025-11-25 00:05:17 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:778 - b'sBIT' 41 4 (unknown)
+2025-11-25 00:05:17 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'pHYs' 57 9
+2025-11-25 00:05:17 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'IDAT' 78 526
+2025-11-25 00:05:17 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'IHDR' 16 13
+2025-11-25 00:05:17 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'sBIT' 41 4
+2025-11-25 00:05:17 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:778 - b'sBIT' 41 4 (unknown)
+2025-11-25 00:05:17 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'pHYs' 57 9
+2025-11-25 00:05:17 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'IDAT' 78 499
+2025-11-25 00:05:17 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'IHDR' 16 13
+2025-11-25 00:05:17 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'sBIT' 41 4
+2025-11-25 00:05:17 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:778 - b'sBIT' 41 4 (unknown)
+2025-11-25 00:05:17 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'pHYs' 57 9
+2025-11-25 00:05:17 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'IDAT' 78 673
+2025-11-25 00:05:17 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'IHDR' 16 13
+2025-11-25 00:05:17 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'sBIT' 41 4
+2025-11-25 00:05:17 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:778 - b'sBIT' 41 4 (unknown)
+2025-11-25 00:05:17 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'pHYs' 57 9
+2025-11-25 00:05:17 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'IDAT' 78 922
+2025-11-25 00:05:17 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'IHDR' 16 13
+2025-11-25 00:05:17 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'sBIT' 41 4
+2025-11-25 00:05:17 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:778 - b'sBIT' 41 4 (unknown)
+2025-11-25 00:05:17 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'pHYs' 57 9
+2025-11-25 00:05:17 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'IDAT' 78 568
+2025-11-25 00:05:17 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'IHDR' 16 13
+2025-11-25 00:05:17 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'sBIT' 41 4
+2025-11-25 00:05:17 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:778 - b'sBIT' 41 4 (unknown)
+2025-11-25 00:05:17 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'pHYs' 57 9
+2025-11-25 00:05:17 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'IDAT' 78 626
+2025-11-25 00:05:17 - src.backtesting.backtester - INFO - backtester.py:145 - 📉 Đã lưu biểu đồ Backtest tại: artifacts/figures/backtest_YTD.png
+2025-11-25 00:05:17 - MainController - INFO - main.py:81 - ✅ Backtest hoàn tất.
+2025-11-25 00:05:17 - MainController - INFO - main.py:89 - 🎨 [6/6] BẮT ĐẦU VẼ BIỂU ĐỒ...
+2025-11-25 00:05:17 - src.visualization.visualizer - INFO - visualizer.py:21 - 🎨 Đang vẽ biểu đồ dự báo...
+2025-11-25 00:05:17 - src.training.data_provider - INFO - data_provider.py:37 - 📂 Đang đọc dữ liệu từ: data/processed/gold_processed_features.csv
+2025-11-25 00:05:17 - src.training.data_provider - INFO - data_provider.py:85 - ✅ Đã split dữ liệu. Train size: 4954, Test size: 1239
+2025-11-25 00:05:18 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'IHDR' 16 13
+2025-11-25 00:05:18 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'sBIT' 41 4
+2025-11-25 00:05:18 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:778 - b'sBIT' 41 4 (unknown)
+2025-11-25 00:05:18 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'pHYs' 57 9
+2025-11-25 00:05:18 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'IDAT' 78 1189
+2025-11-25 00:05:18 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'IHDR' 16 13
+2025-11-25 00:05:18 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'sBIT' 41 4
+2025-11-25 00:05:18 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:778 - b'sBIT' 41 4 (unknown)
+2025-11-25 00:05:18 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'pHYs' 57 9
+2025-11-25 00:05:18 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'IDAT' 78 2994
+2025-11-25 00:05:18 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'IHDR' 16 13
+2025-11-25 00:05:18 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'sBIT' 41 4
+2025-11-25 00:05:18 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:778 - b'sBIT' 41 4 (unknown)
+2025-11-25 00:05:18 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'pHYs' 57 9
+2025-11-25 00:05:18 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'IDAT' 78 696
+2025-11-25 00:05:18 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'IHDR' 16 13
+2025-11-25 00:05:18 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'sBIT' 41 4
+2025-11-25 00:05:18 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:778 - b'sBIT' 41 4 (unknown)
+2025-11-25 00:05:18 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'pHYs' 57 9
+2025-11-25 00:05:18 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'IDAT' 78 526
+2025-11-25 00:05:18 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'IHDR' 16 13
+2025-11-25 00:05:18 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'sBIT' 41 4
+2025-11-25 00:05:18 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:778 - b'sBIT' 41 4 (unknown)
+2025-11-25 00:05:18 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'pHYs' 57 9
+2025-11-25 00:05:18 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'IDAT' 78 499
+2025-11-25 00:05:18 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'IHDR' 16 13
+2025-11-25 00:05:18 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'sBIT' 41 4
+2025-11-25 00:05:18 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:778 - b'sBIT' 41 4 (unknown)
+2025-11-25 00:05:18 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'pHYs' 57 9
+2025-11-25 00:05:18 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'IDAT' 78 673
+2025-11-25 00:05:18 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'IHDR' 16 13
+2025-11-25 00:05:18 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'sBIT' 41 4
+2025-11-25 00:05:18 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:778 - b'sBIT' 41 4 (unknown)
+2025-11-25 00:05:18 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'pHYs' 57 9
+2025-11-25 00:05:18 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'IDAT' 78 922
+2025-11-25 00:05:18 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'IHDR' 16 13
+2025-11-25 00:05:18 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'sBIT' 41 4
+2025-11-25 00:05:18 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:778 - b'sBIT' 41 4 (unknown)
+2025-11-25 00:05:18 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'pHYs' 57 9
+2025-11-25 00:05:18 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'IDAT' 78 568
+2025-11-25 00:05:18 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'IHDR' 16 13
+2025-11-25 00:05:18 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'sBIT' 41 4
+2025-11-25 00:05:18 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:778 - b'sBIT' 41 4 (unknown)
+2025-11-25 00:05:18 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'pHYs' 57 9
+2025-11-25 00:05:18 - PIL.PngImagePlugin - DEBUG - PngImagePlugin.py:198 - STREAM b'IDAT' 78 626
+2025-11-25 00:05:18 - src.visualization.visualizer - INFO - visualizer.py:60 - 📉 Đã lưu biểu đồ Vision tại: artifacts/figures/forecast_vision.png
+2025-11-25 00:05:18 - MainController - INFO - main.py:93 - ✅ Vẽ biểu đồ hoàn tất.
+2025-11-25 00:05:18 - MainController - INFO - main.py:129 - 
+==================================================
+2025-11-25 00:05:18 - MainController - INFO - main.py:130 - 🏆 HOÀN THÀNH TẤT CẢ TÁC VỤ! Tổng thời gian: 63.95 giây
+2025-11-25 00:05:18 - MainController - INFO - main.py:131 - ==================================================
