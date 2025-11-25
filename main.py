@@ -15,6 +15,7 @@ from src.training import ModelTrainer
 from src.prediction import GoldPredictor
 from src.backtesting import Backtester
 from src.visualization import Visualizer
+from src.evaluation import ModelEvaluator
 
 # Khởi tạo logger
 logger = logging.getLogger("MainController")
@@ -89,7 +90,9 @@ def run_visualize(settings):
     logger.info("🎨 [6/6] BẮT ĐẦU VẼ BIỂU ĐỒ...")
     try:
         viz = Visualizer(settings)
-        viz.plot_forecast()
+        # viz.plot_forecast()
+        # viz.plot_test_results()
+        viz.plot_test_simulation()
         logger.info("✅ Vẽ biểu đồ hoàn tất.")
     except Exception as e:
         logger.error(f"❌ Lỗi Visualize: {e}")
@@ -117,6 +120,9 @@ def run_pipeline(settings):
         run_train(settings)
         print("-" * 30)
 
+        run_evaluate(settings)
+        print("-" * 30)
+
         run_predict(settings)
         print("-" * 30)
 
@@ -134,13 +140,23 @@ def run_pipeline(settings):
         logger.critical(f"🔥 QUY TRÌNH BỊ NGẮT DO LỖI: {e}")
         sys.exit(1)
 
+def run_evaluate(settings):
+    """Bước phụ: Đánh giá hiệu suất chi tiết"""
+    logger.info("📊 [Evaluate] ĐÁNH GIÁ MÔ HÌNH...")
+    try:
+        evaluator = ModelEvaluator(settings)
+        evaluator.run()
+        logger.info("✅ Đánh giá hoàn tất.")
+    except Exception as e:
+        logger.error(f"❌ Lỗi đánh giá: {e}")
+
 
 def main():
     parser = argparse.ArgumentParser(description="Gold Price Forecast Professional System")
 
     # Thêm lựa chọn 'pipeline' vào danh sách
     parser.add_argument('mode', type=str,
-                        choices=['fetch', 'process', 'train', 'predict', 'backtest', 'visualize', 'pipeline'],
+                        choices=['fetch', 'process', 'train', 'predict', 'backtest', 'visualize', 'pipeline', 'evaluate'],
                         help="Chọn chế độ chạy. Chọn 'pipeline' để chạy tất cả.")
 
     parser.add_argument('--config', type=str, default='config/settings.yaml', help="Đường dẫn config")
@@ -165,8 +181,10 @@ def main():
             run_backtest(settings)
         elif args.mode == 'visualize':
             run_visualize(settings)
-        elif args.mode == 'pipeline':  # 👈 Chế độ mới
+        elif args.mode == 'pipeline':
             run_pipeline(settings)
+        elif args.mode == 'evaluate':
+            run_evaluate(settings)
 
     except Exception as e:
         logger.critical(f"🔥 LỖI NGHIÊM TRỌNG HỆ THỐNG: {e}", exc_info=True)
