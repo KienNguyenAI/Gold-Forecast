@@ -15,8 +15,7 @@ class DataMerger:
             'DXY': 'DXY_daily.csv',
             'US10Y': 'US10Y_macro.csv',
             'CPI': 'CPI_macro.csv',
-            'Real_Rate': 'Real_Rate_macro.csv',  # 👈 SỬA TÊN FILE NÀY (Bỏ chữ Interest)
-            # Nếu bạn có thêm Fed_Rate hay M2 thì thêm vào đây luôn nếu muốn dùng
+            'Real_Rate': 'Real_Rate_macro.csv',
             # 'Fed_Rate': 'Fed_Rate_macro.csv',
             # 'M2': 'M2_macro.csv'
         }
