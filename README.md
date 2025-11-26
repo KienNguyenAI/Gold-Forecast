@@ -13,4 +13,7 @@ Hệ thống dự báo giá vàng sử dụng mô hình Hybrid (LSTM + Macroecon
 2. `pip install -r requirements.txt`
 3. Tạo file `.env` và điền `FRED_API_KEY=...`
 4. Chạy: `python main.py pipeline`
-
+## Đánh giá 
+- **Evaluator.py** = Chỉ dùng để đo Accuracy. KHÔNG dùng để tính P/L.
+- **Backtester.py** = Đánh giá hiệu suất thật. Dùng kết quả này để quyết định chiến lược.
+Chỉ cần Accuracy > 55% là mô hình có thể tạo lợi nhuận với quản lý vốn hợp lý.
