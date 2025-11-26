@@ -123,21 +123,21 @@ class Visualizer:
         os.makedirs(self.figures_dir, exist_ok=True)
         save_path = os.path.join(self.figures_dir, "test_evaluation_chart.png")
         plt.savefig(save_path)
-        self.logger.info(f"✅ Đã lưu biểu đồ kiểm định tại: {save_path}")
+        self.logger.info(f"Đã lưu biểu đồ kiểm định tại: {save_path}")
 
     def plot_test_simulation(self):
         """
-        🔍 Kiểm chứng quá khứ: Chọn 1 ngày ngẫu nhiên trong tập Test,
+        Kiểm chứng quá khứ: Chọn 1 ngày ngẫu nhiên trong tập Test,
         vẽ vùng dự báo và so sánh với giá chạy thực tế.
         """
-        self.logger.info("🎲 Đang chạy mô phỏng kiểm chứng trên tập Test...")
+        self.logger.info("Đang chạy mô phỏng kiểm chứng trên tập Test...")
 
         # 1. Load Data & Model
         # for_training=False để lấy full dữ liệu
         df = pd.read_csv(self.provider.data_path, index_col=0, parse_dates=True)
 
         if not os.path.exists(self.model_path):
-            self.logger.error("❌ Chưa có model.")
+            self.logger.error("Chưa có model.")
             return
         model = tf.keras.models.load_model(self.model_path)
 

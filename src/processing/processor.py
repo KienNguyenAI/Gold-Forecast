@@ -21,26 +21,22 @@ class DataProcessor:
         self.logger.info("⚙️ --- BẮT ĐẦU QUY TRÌNH XỬ LÝ DỮ LIỆU ---")
 
         try:
-            # 1. Ghép dữ liệu
             df = self.merger.load_and_merge()
 
-            # 2. Tạo chỉ báo kỹ thuật
             df = self.builder.add_technical_indicators(df)
 
-            # 3. Tạo Target (Lấy window_size từ config nếu có, mặc định 30)
-            pred_window = 30  # Bạn có thể thêm vào settings.yaml
+            pred_window = 30
             df = self.builder.create_targets(df, prediction_window=pred_window)
 
-            # 4. Lưu file kết quả
             os.makedirs(self.processed_path, exist_ok=True)
             save_file = os.path.join(self.processed_path, "gold_processed_features.csv")
 
             df.to_csv(save_file)
-            self.logger.info(f"💾 Đã lưu dữ liệu sạch tại: {save_file}")
-            self.logger.info(f"📊 Kích thước cuối cùng: {df.shape}")
+            self.logger.info(f"Đã lưu dữ liệu sạch tại: {save_file}")
+            self.logger.info(f"Kích thước cuối cùng: {df.shape}")
 
             return save_file
 
         except Exception as e:
-            self.logger.error(f"❌ Lỗi trong quá trình xử lý: {e}", exc_info=True)
+            self.logger.error(f"Lỗi trong quá trình xử lý: {e}", exc_info=True)
             raise

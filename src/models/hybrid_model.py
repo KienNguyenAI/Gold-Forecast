@@ -7,28 +7,20 @@ import logging
 class GoldPriceModel:
     def __init__(self, settings: Dict):
         """
-        Khởi tạo mô hình với các tham số từ file cấu hình.
         :param settings: Dictionary chứa toàn bộ config (settings.yaml)
         """
         self.logger = logging.getLogger(__name__)
-
-        # Lấy tham số từ config (Phần 'model' và 'processing')
         self.model_conf = settings['model']
         self.process_conf = settings['processing']
 
-        # Gán biến để dễ dùng
         self.window_size = self.process_conf['window_size']
         self.dropout_rate = self.model_conf.get('dropout', 0.2)
         self.hidden_dim = self.model_conf.get('hidden_dim', 64)
 
-        # Lưu ý: Input dim sẽ được truyền vào khi build hoặc lấy từ config
-        # Mặc định lấy tạm từ biến nếu config không có, nhưng tốt nhất nên truyền động
         self.n_features_price = self.model_conf.get('input_dim', 6)
-        # (Lưu ý: số feature thực tế sẽ được xác định trong lúc train)
 
     def build_model(self, input_shape_price: Tuple[int, int], input_shape_macro: Tuple[int,]):
         """
-        Xây dựng kiến trúc mô hình.
         :param input_shape_price: Shape của nhánh giá (window_size, n_features)
         :param input_shape_macro: Shape của nhánh vĩ mô (n_features,)
         """
@@ -39,7 +31,7 @@ class GoldPriceModel:
 
         x1 = LSTM(self.hidden_dim, return_sequences=True, activation='tanh')(input_price)
         x1 = Dropout(self.dropout_rate)(x1)
-        x1 = LSTM(int(self.hidden_dim / 2), return_sequences=False, activation='tanh')(x1)  # Giảm nửa số node
+        x1 = LSTM(int(self.hidden_dim / 2), return_sequences=False, activation='tanh')(x1)
         x1 = BatchNormalization()(x1)
 
         # --- NHÁNH 2: Xử lý Vĩ Mô (Macro Data) ---
@@ -63,8 +55,6 @@ class GoldPriceModel:
         # Tạo Model tổng thể
         model = Model(inputs=[input_price, input_macro], outputs=[out_min, out_max])
 
-        # Compile Model (Nên làm luôn ở đây hoặc trong Trainer)
-        # Sử dụng tham số từ config nếu có
         learning_rate = 0.001
         # optimizer = tf.keras.optimizers.Adam(learning_rate=learning_rate)
         # model.compile(optimizer=optimizer, loss='mse')
@@ -74,7 +64,6 @@ class GoldPriceModel:
         return model
 
 
-# Phần test nhanh (chỉ chạy khi gọi trực tiếp file này)
 if __name__ == "__main__":
     # Giả lập settings để test
     mock_settings = {
@@ -83,8 +72,8 @@ if __name__ == "__main__":
     }
 
     # Giả lập shape dữ liệu
-    mock_shape_price = (60, 6)  # 60 ngày, 6 feature
-    mock_shape_macro = (4,)  # 4 chỉ số vĩ mô
+    mock_shape_price = (60, 6)
+    mock_shape_macro = (4,)
 
     try:
         builder = GoldPriceModel(mock_settings)

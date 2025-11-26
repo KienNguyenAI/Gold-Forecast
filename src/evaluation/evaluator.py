@@ -18,82 +18,94 @@ class ModelEvaluator:
         self.model_path = os.path.join(settings['paths']['model_save'], f"{model_name}_best.keras")
 
     def run(self):
-        self.logger.info("📊 Đang tính toán các chỉ số hiệu suất...")
+        self.logger.info("Calculating performance metrics...")
 
-        # 1. Load dữ liệu Test
-        # Lưu ý: for_training=True để đảm bảo có Target để so sánh
-        _, _, X_test, y_test = self.provider.load_and_split(for_training=True)
-
-        # 2. Load Model & Predict
-        if not os.path.exists(self.model_path):
-            self.logger.error("❌ Chưa có model để đánh giá.")
+        try:
+            _, _, X_test, y_test = self.provider.load_and_split(for_training=True)
+        except Exception as e:
+            self.logger.error(f"Error loading test data: {e}")
             return
 
-        model = tf.keras.models.load_model(self.model_path)
-        preds = model.predict([X_test['input_price'], X_test['input_macro']], verbose=0)
+        if not os.path.exists(self.model_path):
+            self.logger.error(f"Model not found at: {self.model_path}")
+            return
 
-        # Tách dự báo Min/Max
+        try:
+            model = tf.keras.models.load_model(self.model_path)
+            preds = model.predict([X_test['input_price'], X_test['input_macro']], verbose=0)
+        except Exception as e:
+            self.logger.error(f"Error running model: {e}")
+            return
+
         pred_min = preds[0].flatten()
         pred_max = preds[1].flatten()
-        pred_avg = (pred_min + pred_max) / 2  # Giá dự báo trung bình
+        pred_avg = (pred_min + pred_max) / 2
 
-        # Lấy thực tế
         actual_min = y_test['output_min']
         actual_max = y_test['output_max']
         actual_avg = (actual_min + actual_max) / 2
 
-        # --- TÍNH TOÁN CHỈ SỐ ---
         self._calculate_metrics(actual_avg, pred_avg, pred_min, pred_max)
 
     def _calculate_metrics(self, actual, predicted, pred_min, pred_max):
-        # 1. Regression Metrics (Độ sai số)
         mae = mean_absolute_error(actual, predicted)
         rmse = np.sqrt(mean_squared_error(actual, predicted))
         r2 = r2_score(actual, predicted)
-
-        # MAPE (Mean Absolute Percentage Error)
-        # Tránh chia cho 0 bằng cách cộng epsilon nhỏ
         mape = np.mean(np.abs((actual - predicted) / (actual + 1e-8))) * 100
 
-        # 2. Direction Accuracy (Độ chính xác xu hướng)
-        # Nếu cùng dấu (cùng dương hoặc cùng âm) -> Đoán đúng hướng
         correct_direction = np.sign(predicted) == np.sign(actual)
         direction_acc = np.mean(correct_direction) * 100
 
-        # 3. Risk Metrics (Giả lập giao dịch trên tập Test)
-        # Giả sử: Mua nếu dự báo > 0, Bán nếu dự báo < 0
-        signals = np.sign(predicted)
-        returns = actual * signals  # Lợi nhuận từng ngày
-        cumulative_returns = np.cumsum(returns)
+        STOP_LOSS_PCT = 0.02
 
-        # Max Drawdown (Mức sụt giảm tài khoản lớn nhất)
+        signals = np.sign(predicted)
+        risk_managed_returns = []
+
+        for i in range(len(actual)):
+            # Raw return: Signal * Actual Change
+            raw_return = signals[i] * actual[i]
+
+            # Apply Stop Loss Logic
+            if raw_return < -STOP_LOSS_PCT:
+                risk_managed_returns.append(-STOP_LOSS_PCT)
+            else:
+                risk_managed_returns.append(raw_return)
+
+        risk_managed_returns = np.array(risk_managed_returns)
+
+        # Equity Curve Calculation
+        cumulative_returns = np.cumprod(1 + risk_managed_returns)
         peak = np.maximum.accumulate(cumulative_returns)
-        # Tránh chia cho 0 nếu peak = 0
-        drawdown = (cumulative_returns - peak) / (np.abs(peak) + 1e-8)
+        drawdown = (cumulative_returns - peak) / peak
         max_drawdown = np.min(drawdown) * 100
 
-        # Sharpe Ratio (Hiệu suất/Rủi ro) - Giả định lãi suất phi rủi ro = 0
-        # Nhân căn(252) để quy đổi ra năm
-        sharpe = (np.mean(returns) / (np.std(returns) + 1e-8)) * np.sqrt(252)
+        # Sharpe Ratio (Annualized)
+        mean_ret = np.mean(risk_managed_returns)
+        std_ret = np.std(risk_managed_returns)
 
-        # Win Rate
-        win_rate = np.mean(returns > 0) * 100
+        if std_ret == 0:
+            sharpe = 0
+        else:
+            sharpe = (mean_ret / std_ret) * np.sqrt(252)
 
-        # --- IN BÁO CÁO ---
+        # Win Rate (Trades with positive return)
+        win_rate = np.mean(risk_managed_returns > 0) * 100
+
+        # Print Report
         print("\n" + "=" * 50)
-        print("📊 BÁO CÁO HIỆU SUẤT MÔ HÌNH (MODEL EVALUATION)")
+        print("MODEL EVALUATION REPORT (RISK MANAGED: SL 2%)")
         print("=" * 50)
-        print("1. ĐỘ CHÍNH XÁC DỰ BÁO (REGRESSION):")
-        print(f"   - MAE (Sai số tuyệt đối):   {mae:.4f} ")
-        print(f"   - RMSE (Sai số bình phương):{rmse:.4f}")
-        print(f"   - MAPE (Sai số phần trăm):  {mape:.2f}%")
-        print(f"   - R² Score (Độ phù hợp):    {r2:.4f} ")
+        print("REGRESSION METRICS:")
+        print(f" - MAE:  {mae:.4f}")
+        print(f" - RMSE: {rmse:.4f}")
+        print(f" - MAPE: {mape:.2f}%")
+        print(f" - R2:   {r2:.4f}")
 
-        print("\n2. ĐỘ CHÍNH XÁC XU HƯỚNG (DIRECTION):")
-        print(f"   - Accuracy (Đoán đúng Tăng/Giảm): {direction_acc:.2f}%")
+        print("\nDIRECTION METRICS:")
+        print(f" - Accuracy: {direction_acc:.2f}%")
 
-        print("\n3. CHỈ SỐ TÀI CHÍNH (RISK & STRATEGY):")
-        print(f"   - Win Rate (Tỷ lệ thắng lệnh):    {win_rate:.2f}%")
-        print(f"   - Max Drawdown (Rủi ro sụt giảm): {max_drawdown:.2f}%")
-        print(f"   - Sharpe Ratio (Hiệu quả đầu tư): {sharpe:.2f} (>1 là tốt)")
+        print("\nFINANCIAL METRICS:")
+        print(f" - Win Rate:     {win_rate:.2f}%")
+        print(f" - Max Drawdown: {max_drawdown:.2f}%")
+        print(f" - Sharpe Ratio: {sharpe:.2f}")
         print("=" * 50 + "\n")

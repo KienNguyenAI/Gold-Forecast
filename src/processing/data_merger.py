@@ -9,7 +9,6 @@ class DataMerger:
         self.logger = logging.getLogger(__name__)
         self.raw_dir = config['paths']['raw_data']
 
-        # Cấu hình tên file khớp với MacroLoader tải về
         # Quy tắc MacroLoader: {Key}_macro.csv
         self.macro_files = {
             'DXY': 'DXY_daily.csv',
@@ -21,12 +20,12 @@ class DataMerger:
         }
 
     def load_and_merge(self) -> pd.DataFrame:
-        self.logger.info("🔄 [Step 1] Đang ghép dữ liệu Market & Macro...")
+        self.logger.info("[Step 1] Đang ghép dữ liệu Market & Macro...")
 
         # --- BƯỚC 1: Load Dữ liệu Vàng ---
         gold_path = os.path.join(self.raw_dir, "Gold_daily.csv")
         if not os.path.exists(gold_path):
-            raise FileNotFoundError(f"❌ Thiếu file Gold tại {gold_path}. Hãy chạy mode 'fetch' trước!")
+            raise FileNotFoundError(f"Thiếu file Gold tại {gold_path}. Hãy chạy mode 'fetch' trước!")
 
         df_gold = pd.read_csv(gold_path, index_col=0, parse_dates=True)
 
@@ -61,12 +60,12 @@ class DataMerger:
                 df_gold = df_gold.join(df_macro, how='left')
                 df_gold[name] = df_gold[name].ffill()
             else:
-                self.logger.warning(f"⚠️ Không tìm thấy file {filename}, dữ liệu {name} sẽ thiếu!")
+                self.logger.warning(f"Không tìm thấy file {filename}, dữ liệu {name} sẽ thiếu!")
 
         # Xóa NaN đầu dòng
         original_len = len(df_gold)
         df_gold.dropna(inplace=True)
         self.logger.info(
-            f"✅ Đã ghép xong. Dữ liệu: {len(df_gold)} dòng (Loại bỏ {original_len - len(df_gold)} dòng NaN).")
+            f"Đã ghép xong. Dữ liệu: {len(df_gold)} dòng (Loại bỏ {original_len - len(df_gold)} dòng NaN).")
 
         return df_gold

@@ -14,7 +14,6 @@ class MarketLoader:
         self.settings = settings
         self.raw_data_path = settings['paths']['raw_data']
 
-        # Lấy danh sách ticker từ config, nếu không có thì dùng mặc định
         self.tickers = settings['data'].get('market_tickers', {
             'Gold': 'GC=F',
             'DXY': 'DX-Y.NYB',
@@ -23,26 +22,23 @@ class MarketLoader:
         })
 
     def fetch_data(self, start_date: str = "2000-01-01"):
-        self.logger.info(f"🚀 Đang tải dữ liệu thị trường từ {start_date}...")
+        self.logger.info(f"Đang tải dữ liệu thị trường từ {start_date}...")
 
         try:
-            # Tải dữ liệu từ Yahoo Finance
-            # group_by='ticker' để gom nhóm theo mã chứng khoán
             data = yf.download(list(self.tickers.values()), start=start_date, group_by='ticker', progress=False)
 
             saved_files = {}
             os.makedirs(self.raw_data_path, exist_ok=True)
 
             for name, ticker in self.tickers.items():
-                # Kiểm tra xem ticker có trong dữ liệu tải về không
                 try:
                     if len(self.tickers) > 1:
                         df = data[ticker].copy()
                     else:
-                        df = data.copy()  # Trường hợp chỉ tải 1 mã
+                        df = data.copy()
 
                     if df.empty:
-                        self.logger.warning(f"⚠️ Không có dữ liệu cho {name} ({ticker})")
+                        self.logger.warning(f"Không có dữ liệu cho {name} ({ticker})")
                         continue
 
                     df = df.dropna()
@@ -50,12 +46,12 @@ class MarketLoader:
                     df.to_csv(save_path)
 
                     saved_files[name] = save_path
-                    self.logger.info(f"✅ [Market] Đã lưu: {name} -> {save_path}")
+                    self.logger.info(f"[Market] Đã lưu: {name} -> {save_path}")
                 except KeyError:
-                    self.logger.warning(f"⚠️ Lỗi truy cập dữ liệu cho {name} ({ticker})")
+                    self.logger.warning(f"Lỗi truy cập dữ liệu cho {name} ({ticker})")
 
             return saved_files
 
         except Exception as e:
-            self.logger.error(f"❌ Lỗi nghiêm trọng khi tải Market Data: {e}")
+            self.logger.error(f"Lỗi nghiêm trọng khi tải Market Data: {e}")
             raise

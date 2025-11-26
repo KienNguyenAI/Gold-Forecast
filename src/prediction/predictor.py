@@ -20,16 +20,16 @@ class GoldPredictor:
         self._load_artifacts()
 
     def _load_artifacts(self):
-        self.logger.info("📥 Đang tải Model và Scalers...")
+        self.logger.info("Đang tải Model và Scalers...")
         if not os.path.exists(self.model_path):
-            raise FileNotFoundError(f"❌ Chưa tìm thấy Model tại {self.model_path}")
+            raise FileNotFoundError(f"Chưa tìm thấy Model tại {self.model_path}")
 
         self.model = tf.keras.models.load_model(self.model_path)
         try:
             self.scaler_tech = joblib.load(os.path.join(self.scaler_path, "scaler_tech.pkl"))
             self.scaler_macro = joblib.load(os.path.join(self.scaler_path, "scaler_macro.pkl"))
         except FileNotFoundError:
-            raise FileNotFoundError("❌ Thiếu file Scaler.")
+            raise FileNotFoundError("Thiếu file Scaler.")
 
     def prepare_last_window(self):
         df = pd.read_csv(self.data_path, index_col=0, parse_dates=True)
@@ -43,7 +43,7 @@ class GoldPredictor:
 
         # Cho phép chạy dự báo ngay cả khi thiếu vài dòng (fallback)
         if len(last_window_df) < window_size:
-            self.logger.warning(f"⚠️ Dữ liệu hơi ít ({len(last_window_df)} dòng), kết quả có thể kém chính xác.")
+            self.logger.warning(f"Dữ liệu hơi ít ({len(last_window_df)} dòng), kết quả có thể kém chính xác.")
 
         current_price = last_window_df['Gold_Close'].iloc[-1]
         last_date = last_window_df.index[-1]
@@ -58,7 +58,7 @@ class GoldPredictor:
         return input_price, input_macro, current_price, last_date
 
     def predict(self):
-        self.logger.info("🔮 Đang thực hiện dự đoán...")
+        self.logger.info("Đang thực hiện dự đoán...")
 
         X_price, X_macro, current_price, last_date = self.prepare_last_window()
 
@@ -72,15 +72,13 @@ class GoldPredictor:
         price_close_forecast = (price_min + price_max) / 2
 
         # --- TÍNH TOÁN NGÀY KẾT THÚC (FIX LỖI) ---
-        # Lấy số ngày dự báo từ config (ví dụ 30 ngày)
         prediction_days = self.settings['processing'].get('window_size', 30)
 
-        # Cộng thêm ngày vào last_date
         end_date = last_date + timedelta(days=prediction_days)
 
         result = {
             "last_date": last_date.strftime('%Y-%m-%d'),
-            "end_date": end_date.strftime('%Y-%m-%d'),  # 👈 Đây là cái Visualizer đang thiếu
+            "end_date": end_date.strftime('%Y-%m-%d'),
             "days": prediction_days,
             "current_price": current_price,
             "forecast_min": price_min,
@@ -95,17 +93,17 @@ class GoldPredictor:
 
     def _print_result(self, res):
         print("\n" + "=" * 50)
-        print(f"🌟 KẾT QUẢ DỰ BÁO GIÁ VÀNG ({res['days']} NGÀY TỚI)")
+        print(f"KẾT QUẢ DỰ BÁO GIÁ VÀNG ({res['days']} NGÀY TỚI)")
         print("=" * 50)
-        print(f"📅 Dữ liệu đến ngày:      {res['last_date']}")
-        print(f"🏁 Dự báo đến ngày:      {res['end_date']}")
-        print(f"💰 Giá hiện tại:          ${res['current_price']:.2f}")
+        print(f"Dữ liệu đến ngày:      {res['last_date']}")
+        print(f"Dự báo đến ngày:      {res['end_date']}")
+        print(f"Giá hiện tại:          ${res['current_price']:.2f}")
         print("-" * 50)
-        print(f"📉 Đáy dự kiến:           ${res['forecast_min']:.2f} ({res['change_pct_min']:.2f}%)")
-        print(f"📈 Đỉnh dự kiến:          ${res['forecast_max']:.2f} ({res['change_pct_max']:.2f}%)")
+        print(f"Đáy dự kiến:           ${res['forecast_min']:.2f} ({res['change_pct_min']:.2f}%)")
+        print(f"Đỉnh dự kiến:          ${res['forecast_max']:.2f} ({res['change_pct_max']:.2f}%)")
         print("-" * 50)
 
         avg = (res['forecast_min'] + res['forecast_max']) / 2
-        trend = "TĂNG 🟢" if avg > res['current_price'] else "GIẢM 🔴"
-        print(f"🎯 Xu hướng tổng thể:      {trend}")
+        trend = "TĂNG" if avg > res['current_price'] else "GIẢM"
+        print(f"Xu hướng tổng thể:      {trend}")
         print("=" * 50 + "\n")
