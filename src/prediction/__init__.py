@@ -1,2 +1,4 @@
 from .predictor import GoldPredictor
-__all__ = ['GoldPredictor']
+from .forecast_generator import ForecastGenerator
+
+__all__ = ['GoldPredictor', 'ForecastGenerator']

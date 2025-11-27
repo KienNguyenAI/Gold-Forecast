@@ -5,8 +5,8 @@ import pandas as pd
 import numpy as np
 import tensorflow as tf
 from typing import Dict
-from datetime import datetime, timedelta  # 👈 Quan trọng: Thư viện xử lý ngày tháng
-
+from datetime import datetime, timedelta
+from .forecast_generator import ForecastGenerator
 
 class GoldPredictor:
     def __init__(self, settings: Dict):
@@ -15,6 +15,9 @@ class GoldPredictor:
 
         self.model_path = os.path.join(settings['paths']['model_save'], f"{settings['model']['name']}_best.keras")
         self.scaler_path = settings['paths']['model_save']
+        self.processed_dir = settings['paths']['processed_data']
+        self.final_dir = settings['paths'].get('final_data', 'data/final/')
+
         self.data_path = os.path.join(settings['paths']['processed_data'], "gold_processed_features.csv")
 
         self._load_artifacts()
@@ -87,6 +90,15 @@ class GoldPredictor:
             "change_pct_min": pred_min_change * 100,
             "change_pct_max": pred_max_change * 100
         }
+
+        os.makedirs(self.final_dir, exist_ok=True)
+        save_path = os.path.join(self.final_dir, f"{result['days']}day_forecast.csv")
+        df_result = pd.DataFrame([result])
+        df_result.to_csv(save_path, index=False)
+        self.logger.info(f"Đã lưu kết quả dự báo FINAL vào: {save_path}")
+
+        generator = ForecastGenerator()
+        generator.generate(result, self.final_dir)
 
         self._print_result(result)
         return result

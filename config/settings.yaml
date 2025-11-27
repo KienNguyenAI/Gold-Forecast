@@ -8,6 +8,7 @@ seed: 42
 paths:
   raw_data: "data/raw/"
   processed_data: "data/processed/"
+  final_data: "data/final/"
   model_save: "artifacts/models/"
   figures_save: "artifacts/figures/"
   logs: "logs/"
@@ -35,6 +36,7 @@ data:
 
 processing:
   window_size: 60
+  forecast_horizon: 30
   test_size: 0.2
   scaler_type: "minmax"
 
