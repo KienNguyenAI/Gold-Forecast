@@ -81,29 +81,24 @@ class Backtester:
 
             # 3. LOGIC THOÁT LỆNH (EXIT) - Dựa trên Min/Max của AI
             elif position == 1:
-                # Kiểm tra giá ngày mai (giả lập diễn biến thị trường)
 
-                # Kịch bản A: Chạm Đỉnh dự báo -> CHỐT LỜI
                 if next_price >= ai_max_level:
                     position = 0
                     balance = balance * (next_price / entry_price)
-                    trade_history.append((dates[i + 1], next_price, 'sell_tp'))  # TP: Take Profit
+                    trade_history.append((dates[i + 1], next_price, 'sell_tp'))
 
-                # Kịch bản B: Thủng Đáy dự báo -> CẮT LỖ
                 elif next_price <= ai_min_level:
                     position = 0
                     balance = balance * (next_price / entry_price)
-                    trade_history.append((dates[i + 1], next_price, 'sell_sl'))  # SL: Stop Loss
+                    trade_history.append((dates[i + 1], next_price, 'sell_sl'))
 
-                # Kịch bản C: Trend đảo chiều thành Giảm -> Thoát sớm
                 elif trend == "DOWN":
                     position = 0
                     balance = balance * (next_price / entry_price)
                     trade_history.append((dates[i + 1], next_price, 'sell_trend'))
 
-                # Nếu chưa chạm gì cả -> Giữ lệnh, cập nhật giá trị tài sản tạm tính
                 else:
-                    pass  # Hold
+                    pass
 
             # Cập nhật giá trị tài sản (Equity)
             if position == 1:
@@ -121,29 +116,41 @@ class Backtester:
     def plot_sniper_results(self, dates, strategy_equity, prices, trades):
         plt.figure(figsize=(14, 7))
 
-        # 1. Vẽ đường cong vốn
-        buy_hold = (prices / prices[0]) * self.initial_capital
-        plt.plot(dates, buy_hold, label='Buy & Hold', color='gray', linestyle='--', alpha=0.5)
-        plt.plot(dates, strategy_equity, label='AI Sniper Strategy', color='blue', linewidth=2)
+        # --- 1. TÍNH TOÁN BUY & HOLD ---
+        initial_price = prices[0]
+        final_price = prices[-1]
 
-        # 2. Vẽ điểm mua bán
-        for date, price, type in trades:
-            # Chuyển đổi giá sang tỉ lệ vốn để vẽ đúng vị trí trên trục Y
-            # (Mẹo: Đây là vẽ tượng trưng, thực tế nên vẽ 2 subplot: Giá và Vốn riêng)
-            pass
+        # Lợi nhuận % của Buy & Hold
+        buy_hold_return_pct = ((final_price - initial_price) / initial_price) * 100
+        # Tài sản cuối cùng của Buy & Hold
+        buy_hold_final_bal = self.initial_capital * (final_price / initial_price)
 
-            # Tính chỉ số
+        # Vẽ đường Buy & Hold
+        # Chuẩn hóa về cùng vốn khởi điểm để so sánh
+        buy_hold_equity = (prices / initial_price) * self.initial_capital
+        plt.plot(dates, buy_hold_equity, label=f'Buy & Hold (Lãi: {buy_hold_return_pct:.2f}%)',
+                 color='gray', linestyle='--', alpha=0.5)
+
+        # --- 2. TÍNH TOÁN AI SNIPER ---
         final_bal = strategy_equity[-1]
-        profit = ((final_bal - self.initial_capital) / self.initial_capital) * 100
+        strategy_profit_pct = ((final_bal - self.initial_capital) / self.initial_capital) * 100
 
-        # Drawdown
+        # Vẽ đường AI Sniper
+        plt.plot(dates, strategy_equity, label=f'AI Sniper (Lãi: {strategy_profit_pct:.2f}%)',
+                 color='blue', linewidth=2)
+
+        # Vẽ các điểm vào lệnh (Optional)
+        # (Giữ code cũ nếu bạn muốn vẽ mũi tên mua bán)
+
+        # --- 3. TÍNH DRAWDOWN ---
         equity_arr = np.array(strategy_equity)
         peak = np.maximum.accumulate(equity_arr)
         drawdown = (equity_arr - peak) / peak
         max_dd = np.min(drawdown) * 100
 
+        # --- 4. TRANG TRÍ BIỂU ĐỒ ---
         plt.title(
-            f'Chiến thuật Sniper (Dựa trên Min/Max Dự báo)\nLợi nhuận: {profit:.2f}% | Max Drawdown: {max_dd:.2f}%')
+            f'So sánh hiệu quả: AI Sniper vs Buy & Hold\nAI Profit: {strategy_profit_pct:.2f}% | Max Drawdown: {max_dd:.2f}%')
         plt.legend()
         plt.grid(True, alpha=0.3)
         plt.ylabel('Tài sản ($)')
@@ -153,10 +160,25 @@ class Backtester:
         plt.savefig(save_path)
         self.logger.info(f"📉 Đã lưu kết quả Sniper tại: {save_path}")
 
-        print("\n" + "=" * 40)
-        print(f"🔫 KẾT QUẢ CHIẾN THUẬT SNIPER")
-        print(f"💰 Vốn cuối cùng: ${final_bal:,.2f}")
-        print(f"📈 Lợi nhuận ròng: {profit:.2f}%")
-        print(f"📉 Max Drawdown:  {max_dd:.2f}% (Rủi ro tối đa)")
-        print(f"🔄 Tổng số lệnh:  {len(trades) // 2} vòng giao dịch")
-        print("=" * 40 + "\n")
+        # --- 5. IN BÁO CÁO SO SÁNH ---
+        print("\n" + "=" * 50)
+        print(f"🔫 KẾT QUẢ ĐỐI ĐẦU: AI vs THỊ TRƯỜNG")
+        print("=" * 50)
+        print(f"1. CHIẾN LƯỢC BUY & HOLD (Mua để đó):")
+        print(f"   - Vốn kết thúc:   ${buy_hold_final_bal:,.2f}")
+        print(f"   - Lợi nhuận ròng: {buy_hold_return_pct:.2f}%")
+        print("-" * 50)
+        print(f"2. CHIẾN LƯỢC AI SNIPER (Bắn tỉa):")
+        print(f"   - Vốn kết thúc:   ${final_bal:,.2f}")
+        print(f"   - Lợi nhuận ròng: {strategy_profit_pct:.2f}%")
+        print(f"   - Rủi ro tối đa:  {max_dd:.2f}%")
+        print(f"   - Tổng số lệnh:   {len(trades) // 2} vòng")
+        print("-" * 50)
+
+        # Đánh giá cuối cùng
+        alpha = strategy_profit_pct - buy_hold_return_pct
+        if alpha > 0:
+            print(f"🏆 KẾT LUẬN: AI CHIẾN THẮNG! (Vượt trội hơn {alpha:.2f}%)")
+        else:
+            print(f"🐢 KẾT LUẬN: AI THUA (Kém hơn {abs(alpha):.2f}%). Nên xem lại chiến thuật.")
+        print("=" * 50 + "\n")

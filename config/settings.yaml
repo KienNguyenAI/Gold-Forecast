@@ -53,3 +53,4 @@ training:
   learning_rate: 0.001
   patience: 10
   device: "auto"
+  loss_function: "mse"

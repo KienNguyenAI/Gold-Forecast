@@ -5,6 +5,9 @@ import logging
 import matplotlib.pyplot as plt
 from typing import Dict
 
+import mlflow
+import mlflow.tensorflow
+
 from .data_provider import DataProvider
 from src.models.hybrid_model import GoldPriceModel
 

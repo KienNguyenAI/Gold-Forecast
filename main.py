@@ -91,8 +91,8 @@ def run_visualize(settings):
     try:
         viz = Visualizer(settings)
         # viz.plot_forecast()
-        # viz.plot_test_results()
-        viz.plot_test_simulation()
+        viz.plot_test_results()
+        # viz.plot_test_simulation()
         logger.info("✅ Vẽ biểu đồ hoàn tất.")
     except Exception as e:
         logger.error(f"❌ Lỗi Visualize: {e}")

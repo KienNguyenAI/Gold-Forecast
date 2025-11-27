@@ -8,6 +8,7 @@ from typing import Dict
 from src.training.data_provider import DataProvider
 from src.prediction import GoldPredictor
 import random
+from datetime import datetime
 
 class Visualizer:
     def __init__(self, settings: Dict):
@@ -67,14 +68,14 @@ class Visualizer:
 
     def plot_test_results(self):
         """
-        👇 [MỚI] Hàm vẽ biểu đồ so sánh Thực tế vs Dự báo trên tập Test
+        📊 Vẽ biểu đồ so sánh YTD (Từ đầu năm đến nay)
+        Gộp cả Min/Max vào chung 1 biểu đồ để dễ nhìn.
         """
-        self.logger.info("📊 Đang vẽ biểu đồ kiểm định trên tập Test...")
+        self.logger.info("📊 Đang vẽ biểu đồ kiểm định YTD (Year-To-Date)...")
 
-        # 1. Lấy dữ liệu Test (for_training=True để lấy đúng target)
+        # 1. Load Data & Model
         _, _, X_test, y_test = self.provider.load_and_split(for_training=True)
 
-        # 2. Load Model & Predict
         if not os.path.exists(self.model_path):
             self.logger.error("❌ Chưa có model.")
             return
@@ -82,48 +83,81 @@ class Visualizer:
         model = tf.keras.models.load_model(self.model_path)
         preds = model.predict([X_test['input_price'], X_test['input_macro']], verbose=0)
 
-        # Tách output
-        pred_min = preds[0].flatten()
-        pred_max = preds[1].flatten()
+        # 2. Chuẩn bị dữ liệu % Change
+        pred_min_pct = preds[0].flatten()
+        pred_max_pct = preds[1].flatten()
 
-        actual_min = y_test['output_min']
-        actual_max = y_test['output_max']
-
-        # 3. Lấy ngày tháng tương ứng
-        # (Thủ thuật: Lấy n ngày cuối cùng của file dữ liệu gốc, với n = số lượng mẫu test)
+        # 3. Lấy dữ liệu gốc để quy đổi ra Giá ($)
         df = pd.read_csv(self.provider.data_path, index_col=0, parse_dates=True)
-        # Lọc dòng thiếu target trước khi lấy index (để khớp với logic của load_and_split)
         df_clean = df.dropna(subset=self.provider.target_cols)
-        test_dates = df_clean.index[-len(actual_min):]
 
-        # 4. Vẽ biểu đồ so sánh
-        plt.figure(figsize=(14, 8))
+        # Lấy đoạn dữ liệu tương ứng với tập Test
+        test_slice = df_clean.iloc[-len(pred_min_pct):]
+        test_dates = test_slice.index
+        base_prices = test_slice['Gold_Close'].values
 
-        # Subplot 1: Min Change
-        plt.subplot(2, 1, 1)
-        plt.plot(test_dates, actual_min, label='Thực tế (Min)', color='gray', alpha=0.7, linewidth=1)
-        plt.plot(test_dates, pred_min, label='AI Dự báo (Min)', color='red', alpha=0.8, linewidth=1.5, linestyle='--')
-        plt.title('Kiểm định: Biến động giá THẤP NHẤT (Min % Change)')
-        plt.ylabel('% Thay đổi')
-        plt.legend()
+        # 4. Quy đổi ra Giá USD
+        pred_price_min = base_prices * (1 + pred_min_pct)
+        pred_price_max = base_prices * (1 + pred_max_pct)
+
+        # Giá thực tế (dùng giá Close làm tham chiếu chính)
+        actual_prices = base_prices
+
+        # 5. LỌC DỮ LIỆU YTD (CHỈ LẤY TỪ ĐẦU NĂM NAY)
+        current_year = datetime.now().year
+        # Hoặc nếu data của bạn ở tương lai (2025), hãy lấy năm của data:
+        # current_year = test_dates[-1].year
+
+        # Tạo DataFrame tạm để lọc cho dễ
+        eval_df = pd.DataFrame({
+            'Date': test_dates,
+            'Actual_Close': actual_prices,
+            'AI_Min': pred_price_min,
+            'AI_Max': pred_price_max
+        })
+        eval_df.set_index('Date', inplace=True)
+
+        # Lọc lấy năm hiện tại (VD: 2025)
+        ytd_df = eval_df[eval_df.index.year == current_year]
+
+        if ytd_df.empty:
+            self.logger.warning(f"⚠️ Không có dữ liệu test cho năm {current_year}. Vẽ toàn bộ test set.")
+            ytd_df = eval_df  # Fallback nếu không có data năm nay
+
+        # 6. VẼ BIỂU ĐỒ GỘP (COMBINED CHART)
+        plt.figure(figsize=(15, 8))
+
+        dates = ytd_df.index
+
+        # A. Vẽ Vùng Dự Báo AI (Màu xanh lá nhạt)
+        plt.fill_between(dates, ytd_df['AI_Min'], ytd_df['AI_Max'],
+                         color='green', alpha=0.15, label='Vùng An Toàn AI (Risk Range)')
+
+        # B. Vẽ biên Min/Max của AI (Nét đứt)
+        plt.plot(dates, ytd_df['AI_Min'], color='green', linestyle=':', linewidth=1, alpha=0.6)
+        plt.plot(dates, ytd_df['AI_Max'], color='green', linestyle=':', linewidth=1, alpha=0.6)
+
+        # C. Vẽ Giá Thực Tế (Màu Đen/Xanh đậm)
+        plt.plot(dates, ytd_df['Actual_Close'], color='#1f77b4', linewidth=2, label='Giá Thực Tế (Close)')
+
+        # D. Đánh dấu những điểm giá vọt ra khỏi vùng dự báo (Outliers)
+        # Để xem khi nào AI bị sai
+        outliers = ytd_df[(ytd_df['Actual_Close'] < ytd_df['AI_Min']) | (ytd_df['Actual_Close'] > ytd_df['AI_Max'])]
+        if not outliers.empty:
+            plt.scatter(outliers.index, outliers['Actual_Close'], color='red', s=30, marker='x',
+                        label='Ngoại lệ (AI Sai)')
+
+        # Trang trí
+        plt.title(f'Hiệu suất AI từ đầu năm {current_year} đến nay (YTD Evaluation)', fontsize=14)
+        plt.ylabel('Giá Vàng (USD)')
+        plt.legend(loc='upper left')
         plt.grid(True, alpha=0.3)
-
-        # Subplot 2: Max Change
-        plt.subplot(2, 1, 2)
-        plt.plot(test_dates, actual_max, label='Thực tế (Max)', color='gray', alpha=0.7, linewidth=1)
-        plt.plot(test_dates, pred_max, label='AI Dự báo (Max)', color='green', alpha=0.8, linewidth=1.5, linestyle='--')
-        plt.title('Kiểm định: Biến động giá CAO NHẤT (Max % Change)')
-        plt.ylabel('% Thay đổi')
-        plt.legend()
-        plt.grid(True, alpha=0.3)
-
-        plt.tight_layout()
 
         # Lưu ảnh
         os.makedirs(self.figures_dir, exist_ok=True)
         save_path = os.path.join(self.figures_dir, "test_evaluation_chart.png")
         plt.savefig(save_path)
-        self.logger.info(f"Đã lưu biểu đồ kiểm định tại: {save_path}")
+        self.logger.info(f"✅ Đã lưu biểu đồ YTD (USD) tại: {save_path}")
 
     def plot_test_simulation(self):
         """
