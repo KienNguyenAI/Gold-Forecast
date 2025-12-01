@@ -49,6 +49,7 @@ def render_time_range_buttons(stats):
         is_active = (st.session_state.get('time_range', '1Y') == key)
         btn_type = "primary" if is_active else "secondary"
 
-        if col.button(btn_label, key=key, type=btn_type, use_container_width=True):
+        # SỬA: Dùng width="stretch" cho Button
+        if col.button(btn_label, key=key, type=btn_type, width="stretch"):
             st.session_state.time_range = key
             st.rerun()

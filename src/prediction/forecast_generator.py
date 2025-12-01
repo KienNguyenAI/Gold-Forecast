@@ -43,7 +43,7 @@ class ForecastGenerator:
             # Thêm nhiễu (Random Noise) để nhìn giống thật
             # Giả định biến động 0.5% mỗi ngày
             np.random.seed(42)  # Cố định seed để kết quả nhất quán mỗi lần chạy
-            noise = np.random.normal(0, current_price * 0.005, days_count)
+            noise = np.random.normal(0, current_price * 0.01, days_count)
             generated_prices = trend_line + noise
 
             # 4. Sinh dữ liệu dải Min/Max (Hình nón mở rộng dần)
@@ -53,7 +53,7 @@ class ForecastGenerator:
             upper_bound = np.linspace(current_price, target_max, days_count)
 
             # (Optional) Clip giá nằm trong dải Min/Max để logic không bị vỡ
-            generated_prices = np.clip(generated_prices, lower_bound, upper_bound)
+            # generated_prices = np.clip(generated_prices, lower_bound, upper_bound)
 
             # 5. Tạo DataFrame
             df_detail = pd.DataFrame({
