@@ -1,0 +1,10 @@
+artifact_location: /home/phuquocchamp/dev/vku/analysist/Gold-Forecast/mlruns/843917467714655631/models/m-ae76df11a6a642479f7d781080112101/artifacts
+creation_timestamp: 1766066491051
+experiment_id: '843917467714655631'
+last_updated_timestamp: 1766066497260
+model_id: m-ae76df11a6a642479f7d781080112101
+model_type: null
+name: model
+source_run_id: fd6b3e020728463fad8170c641bfcb46
+status: 2
+status_message: null

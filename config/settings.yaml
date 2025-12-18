@@ -13,6 +13,10 @@ paths:
   figures_save: "artifacts/figures/"
   logs: "logs/"
 
+mlflow:
+  experiment_name: "Gold_Price_Forecast"
+  tracking_uri: "mlruns"
+
 data:
   fred_api_key: "YOUR_FRED_API_KEY_HERE"
 
@@ -42,6 +46,7 @@ processing:
 
 model:
   name: "Hybrid_Gold_Forecast_V1"
+  type: "attention" # Options: hybrid, attention
   input_dim: "auto"
   hidden_dim: 64
   num_layers: 2

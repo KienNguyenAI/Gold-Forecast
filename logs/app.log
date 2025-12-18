@@ -6003,3 +6003,328 @@ NameError: name 'np' is not defined
 ==================================================
 2025-12-18 13:17:47 - MainController - INFO - main.py:136 - 🏆 HOÀN THÀNH TẤT CẢ TÁC VỤ! Tổng thời gian: 106.54 giây
 2025-12-18 13:17:47 - MainController - INFO - main.py:137 - ==================================================
+2025-12-18 13:47:42 - root - INFO - config_utils.py:32 - Logging đã được thiết lập từ file yaml.
+2025-12-18 13:47:42 - MainController - INFO - main.py:170 - 🤖 Hệ thống khởi động. Mode: TRAIN
+2025-12-18 13:47:42 - MainController - INFO - main.py:54 - 🏋️ [3/6] BẮT ĐẦU HUẤN LUYỆN...
+2025-12-18 13:47:42 - src.training.trainer - INFO - trainer.py:34 - BẮT ĐẦU QUÁ TRÌNH HUẤN LUYỆN...
+2025-12-18 13:47:42 - src.training.data_provider - INFO - data_provider.py:33 - Đang đọc dữ liệu từ: data/processed/gold_processed_features.csv
+2025-12-18 13:47:42 - src.training.data_provider - INFO - data_provider.py:80 - Đã split dữ liệu. Train size: 4968, Test size: 1242
+2025-12-18 13:47:42 - src.training.data_provider - INFO - data_provider.py:90 - Đã lưu Scalers vào: artifacts/models/
+2025-12-18 13:47:42 - src.training.trainer - INFO - trainer.py:44 - 📊 Input Features: Price=5, Macro=4
+2025-12-18 13:47:42 - src.training.trainer - INFO - trainer.py:50 - 🏗️ Selected Model: STANDARD HYBRID
+2025-12-18 13:47:42 - src.models.hybrid_model - INFO - hybrid_model.py:27 - Đang xây dựng model Hybrid: LSTM ((60, 5)) + Dense ((4,))
+2025-12-18 13:47:42 - src.models.hybrid_model - INFO - hybrid_model.py:63 - Build model kiến trúc thành công.
+2025-12-18 13:47:54 - h5py._conv - DEBUG - attrs.py:204 - Creating converter from 5 to 3
+2025-12-18 13:49:28 - src.training.trainer - INFO - trainer.py:90 - HUẤN LUYỆN HOÀN TẤT!
+2025-12-18 13:49:29 - src.training.trainer - INFO - trainer.py:120 - Đã lưu biểu đồ training tại: artifacts/figures/training_history.png
+2025-12-18 13:49:29 - MainController - INFO - main.py:58 - ✅ Huấn luyện hoàn tất. Model: artifacts/models/Hybrid_Gold_Forecast_V1_hybrid_best.keras
+2025-12-18 13:50:34 - root - INFO - config_utils.py:32 - Logging đã được thiết lập từ file yaml.
+2025-12-18 13:50:34 - MainController - INFO - main.py:170 - 🤖 Hệ thống khởi động. Mode: TRAIN
+2025-12-18 13:50:34 - MainController - INFO - main.py:54 - 🏋️ [3/6] BẮT ĐẦU HUẤN LUYỆN...
+2025-12-18 13:50:34 - src.training.trainer - INFO - trainer.py:34 - BẮT ĐẦU QUÁ TRÌNH HUẤN LUYỆN...
+2025-12-18 13:50:34 - src.training.data_provider - INFO - data_provider.py:33 - Đang đọc dữ liệu từ: data/processed/gold_processed_features.csv
+2025-12-18 13:50:34 - src.training.data_provider - INFO - data_provider.py:80 - Đã split dữ liệu. Train size: 4968, Test size: 1242
+2025-12-18 13:50:34 - src.training.data_provider - INFO - data_provider.py:90 - Đã lưu Scalers vào: artifacts/models/
+2025-12-18 13:50:34 - src.training.trainer - INFO - trainer.py:44 - 📊 Input Features: Price=5, Macro=4
+2025-12-18 13:50:34 - src.training.trainer - INFO - trainer.py:47 - 🏗️ Selected Model: ATTENTION MECHANISM
+2025-12-18 13:50:34 - src.models.attention_model - INFO - attention_model.py:54 - Đang xây dựng model Attention: LSTM+Attention ((60, 5)) + Dense ((4,))
+2025-12-18 13:50:34 - src.models.attention_model - INFO - attention_model.py:105 - Build model Attention kiến trúc thành công.
+2025-12-18 13:50:43 - h5py._conv - DEBUG - attrs.py:204 - Creating converter from 5 to 3
+2025-12-18 13:51:37 - src.training.trainer - INFO - trainer.py:90 - HUẤN LUYỆN HOÀN TẤT!
+2025-12-18 13:51:38 - src.training.trainer - INFO - trainer.py:120 - Đã lưu biểu đồ training tại: artifacts/figures/training_history.png
+2025-12-18 13:51:38 - MainController - INFO - main.py:58 - ✅ Huấn luyện hoàn tất. Model: artifacts/models/Hybrid_Gold_Forecast_V1_attention_best.keras
+2025-12-18 13:52:07 - root - INFO - config_utils.py:32 - Logging đã được thiết lập từ file yaml.
+2025-12-18 13:52:07 - MainController - INFO - main.py:170 - 🤖 Hệ thống khởi động. Mode: PIPELINE
+2025-12-18 13:52:07 - MainController - INFO - main.py:106 - 
+==================================================
+2025-12-18 13:52:07 - MainController - INFO - main.py:107 - 🚀 BẮT ĐẦU CHẠY TOÀN BỘ HỆ THỐNG (FULL PIPELINE)
+2025-12-18 13:52:07 - MainController - INFO - main.py:108 - ==================================================
+
+2025-12-18 13:52:07 - MainController - INFO - main.py:26 - 📡 [1/6] BẮT ĐẦU TẢI DỮ LIỆU...
+2025-12-18 13:52:07 - src.data_loader.market_loader - INFO - market_loader.py:25 - Đang tải dữ liệu thị trường từ 2000-01-01...
+2025-12-18 13:52:07 - yfinance - DEBUG - utils.py:89 - Entering download()
+2025-12-18 13:52:07 - yfinance - DEBUG - multi.py:114 - Disabling multithreading because DEBUG logging enabled
+2025-12-18 13:52:07 - yfinance - DEBUG - utils.py:89 -  Entering history()
+2025-12-18 13:52:07 - peewee - DEBUG - peewee.py:3319 - ('CREATE TABLE IF NOT EXISTS "_tz_kv" ("key" VARCHAR(255) NOT NULL PRIMARY KEY, "value" VARCHAR(255)) WITHOUT ROWID', [])
+2025-12-18 13:52:07 - peewee - DEBUG - peewee.py:3319 - ('SELECT "t1"."key", "t1"."value" FROM "_tz_kv" AS "t1" WHERE ("t1"."key" = ?) LIMIT ? OFFSET ?', ['^GSPC', 1, 0])
+2025-12-18 13:52:07 - yfinance - DEBUG - utils.py:89 -   Entering history()
+2025-12-18 13:52:07 - yfinance - DEBUG - history.py:196 - ^GSPC: Yahoo GET parameters: {'period1': '2000-01-01 00:00:00-05:00', 'period2': '2025-12-18 08:52:07-05:00', 'interval': '1d', 'includePrePost': False, 'events': 'div,splits,capitalGains'}
+2025-12-18 13:52:07 - yfinance - DEBUG - utils.py:89 -    Entering get()
+2025-12-18 13:52:07 - yfinance - DEBUG - utils.py:89 -     Entering _make_request()
+2025-12-18 13:52:07 - yfinance - DEBUG - data.py:394 - url=https://query2.finance.yahoo.com/v8/finance/chart/^GSPC
+2025-12-18 13:52:07 - yfinance - DEBUG - data.py:395 - params={'period1': 946702800, 'period2': 1766065927, 'interval': '1d', 'includePrePost': False, 'events': 'div,splits,capitalGains'}
+2025-12-18 13:52:07 - yfinance - DEBUG - utils.py:89 -      Entering _get_cookie_and_crumb()
+2025-12-18 13:52:07 - yfinance - DEBUG - data.py:350 - cookie_mode = 'basic'
+2025-12-18 13:52:07 - yfinance - DEBUG - utils.py:89 -       Entering _get_cookie_and_crumb_basic()
+2025-12-18 13:52:07 - yfinance - DEBUG - utils.py:89 -        Entering _get_cookie_basic()
+2025-12-18 13:52:07 - yfinance - DEBUG - utils.py:89 -         Entering _load_cookie_curlCffi()
+2025-12-18 13:52:07 - peewee - DEBUG - peewee.py:3319 - ('CREATE TABLE IF NOT EXISTS "_cookieschema" ("strategy" VARCHAR(255) NOT NULL PRIMARY KEY, "fetch_date" DATETIME NOT NULL, "cookie_bytes" BLOB NOT NULL) WITHOUT ROWID', [])
+2025-12-18 13:52:07 - peewee - DEBUG - peewee.py:3319 - ('SELECT "t1"."strategy", "t1"."fetch_date", "t1"."cookie_bytes" FROM "_cookieschema" AS "t1" WHERE ("t1"."strategy" = ?) LIMIT ? OFFSET ?', ['curlCffi', 1, 0])
+2025-12-18 13:52:07 - yfinance - DEBUG - utils.py:94 -         Exiting _load_cookie_curlCffi()
+2025-12-18 13:52:07 - yfinance - DEBUG - data.py:191 - reusing persistent cookie
+2025-12-18 13:52:07 - yfinance - DEBUG - utils.py:94 -        Exiting _get_cookie_basic()
+2025-12-18 13:52:07 - yfinance - DEBUG - utils.py:89 -        Entering _get_crumb_basic()
+2025-12-18 13:52:07 - yfinance - DEBUG - utils.py:89 -         Entering _get_cookie_basic()
+2025-12-18 13:52:07 - yfinance - DEBUG - data.py:188 - reusing cookie
+2025-12-18 13:52:07 - yfinance - DEBUG - utils.py:94 -         Exiting _get_cookie_basic()
+2025-12-18 13:52:07 - yfinance - DEBUG - data.py:235 - crumb = 'cYiHOqlCtcX'
+2025-12-18 13:52:07 - yfinance - DEBUG - utils.py:94 -        Exiting _get_crumb_basic()
+2025-12-18 13:52:07 - yfinance - DEBUG - utils.py:94 -       Exiting _get_cookie_and_crumb_basic()
+2025-12-18 13:52:07 - yfinance - DEBUG - utils.py:94 -      Exiting _get_cookie_and_crumb()
+2025-12-18 13:52:08 - yfinance - DEBUG - data.py:418 - response code=200
+2025-12-18 13:52:08 - yfinance - DEBUG - utils.py:94 -     Exiting _make_request()
+2025-12-18 13:52:08 - yfinance - DEBUG - utils.py:94 -    Exiting get()
+2025-12-18 13:52:08 - yfinance - DEBUG - history.py:312 - ^GSPC: yfinance received OHLC data: 2000-01-03 14:30:00 -> 2025-12-17 14:30:00
+2025-12-18 13:52:08 - yfinance - DEBUG - history.py:349 - ^GSPC: OHLC after cleaning: 2000-01-03 09:30:00-05:00 -> 2025-12-17 09:30:00-05:00
+2025-12-18 13:52:08 - yfinance - DEBUG - history.py:437 - ^GSPC: OHLC after combining events: 2000-01-03 00:00:00-05:00 -> 2025-12-17 00:00:00-05:00
+2025-12-18 13:52:08 - yfinance - DEBUG - history.py:517 - ^GSPC: yfinance returning OHLC: 2000-01-03 00:00:00-05:00 -> 2025-12-17 00:00:00-05:00
+2025-12-18 13:52:08 - yfinance - DEBUG - utils.py:94 -   Exiting history()
+2025-12-18 13:52:08 - yfinance - DEBUG - utils.py:94 -  Exiting history()
+2025-12-18 13:52:08 - yfinance - DEBUG - utils.py:89 -  Entering history()
+2025-12-18 13:52:08 - peewee - DEBUG - peewee.py:3319 - ('SELECT "t1"."key", "t1"."value" FROM "_tz_kv" AS "t1" WHERE ("t1"."key" = ?) LIMIT ? OFFSET ?', ['CL=F', 1, 0])
+2025-12-18 13:52:08 - yfinance - DEBUG - utils.py:89 -   Entering history()
+2025-12-18 13:52:08 - yfinance - DEBUG - history.py:196 - CL=F: Yahoo GET parameters: {'period1': '2000-01-01 00:00:00-05:00', 'period2': '2025-12-18 08:52:08-05:00', 'interval': '1d', 'includePrePost': False, 'events': 'div,splits,capitalGains'}
+2025-12-18 13:52:08 - yfinance - DEBUG - utils.py:89 -    Entering get()
+2025-12-18 13:52:08 - yfinance - DEBUG - utils.py:89 -     Entering _make_request()
+2025-12-18 13:52:08 - yfinance - DEBUG - data.py:394 - url=https://query2.finance.yahoo.com/v8/finance/chart/CL=F
+2025-12-18 13:52:08 - yfinance - DEBUG - data.py:395 - params={'period1': 946702800, 'period2': 1766065928, 'interval': '1d', 'includePrePost': False, 'events': 'div,splits,capitalGains'}
+2025-12-18 13:52:08 - yfinance - DEBUG - utils.py:89 -      Entering _get_cookie_and_crumb()
+2025-12-18 13:52:08 - yfinance - DEBUG - data.py:350 - cookie_mode = 'basic'
+2025-12-18 13:52:08 - yfinance - DEBUG - utils.py:89 -       Entering _get_cookie_and_crumb_basic()
+2025-12-18 13:52:08 - yfinance - DEBUG - utils.py:89 -        Entering _get_cookie_basic()
+2025-12-18 13:52:08 - yfinance - DEBUG - data.py:188 - reusing cookie
+2025-12-18 13:52:08 - yfinance - DEBUG - utils.py:94 -        Exiting _get_cookie_basic()
+2025-12-18 13:52:08 - yfinance - DEBUG - utils.py:89 -        Entering _get_crumb_basic()
+2025-12-18 13:52:08 - yfinance - DEBUG - data.py:210 - reusing crumb
+2025-12-18 13:52:08 - yfinance - DEBUG - utils.py:94 -        Exiting _get_crumb_basic()
+2025-12-18 13:52:08 - yfinance - DEBUG - utils.py:94 -       Exiting _get_cookie_and_crumb_basic()
+2025-12-18 13:52:08 - yfinance - DEBUG - utils.py:94 -      Exiting _get_cookie_and_crumb()
+2025-12-18 13:52:08 - yfinance - DEBUG - data.py:418 - response code=200
+2025-12-18 13:52:08 - yfinance - DEBUG - utils.py:94 -     Exiting _make_request()
+2025-12-18 13:52:08 - yfinance - DEBUG - utils.py:94 -    Exiting get()
+2025-12-18 13:52:08 - yfinance - DEBUG - history.py:312 - CL=F: yfinance received OHLC data: 2000-08-23 04:00:00 -> 2025-12-18 13:41:56
+2025-12-18 13:52:08 - yfinance - DEBUG - history.py:349 - CL=F: OHLC after cleaning: 2000-08-23 00:00:00-04:00 -> 2025-12-18 08:41:56-05:00
+2025-12-18 13:52:08 - yfinance - DEBUG - history.py:437 - CL=F: OHLC after combining events: 2000-08-23 00:00:00-04:00 -> 2025-12-18 00:00:00-05:00
+2025-12-18 13:52:08 - yfinance - DEBUG - history.py:517 - CL=F: yfinance returning OHLC: 2000-08-23 00:00:00-04:00 -> 2025-12-18 00:00:00-05:00
+2025-12-18 13:52:08 - yfinance - DEBUG - utils.py:94 -   Exiting history()
+2025-12-18 13:52:08 - yfinance - DEBUG - utils.py:94 -  Exiting history()
+2025-12-18 13:52:08 - yfinance - DEBUG - utils.py:89 -  Entering history()
+2025-12-18 13:52:08 - peewee - DEBUG - peewee.py:3319 - ('SELECT "t1"."key", "t1"."value" FROM "_tz_kv" AS "t1" WHERE ("t1"."key" = ?) LIMIT ? OFFSET ?', ['DX-Y.NYB', 1, 0])
+2025-12-18 13:52:08 - yfinance - DEBUG - utils.py:89 -   Entering history()
+2025-12-18 13:52:08 - yfinance - DEBUG - history.py:196 - DX-Y.NYB: Yahoo GET parameters: {'period1': '2000-01-01 00:00:00-05:00', 'period2': '2025-12-18 08:52:08-05:00', 'interval': '1d', 'includePrePost': False, 'events': 'div,splits,capitalGains'}
+2025-12-18 13:52:08 - yfinance - DEBUG - utils.py:89 -    Entering get()
+2025-12-18 13:52:08 - yfinance - DEBUG - utils.py:89 -     Entering _make_request()
+2025-12-18 13:52:08 - yfinance - DEBUG - data.py:394 - url=https://query2.finance.yahoo.com/v8/finance/chart/DX-Y.NYB
+2025-12-18 13:52:08 - yfinance - DEBUG - data.py:395 - params={'period1': 946702800, 'period2': 1766065928, 'interval': '1d', 'includePrePost': False, 'events': 'div,splits,capitalGains'}
+2025-12-18 13:52:08 - yfinance - DEBUG - utils.py:89 -      Entering _get_cookie_and_crumb()
+2025-12-18 13:52:08 - yfinance - DEBUG - data.py:350 - cookie_mode = 'basic'
+2025-12-18 13:52:08 - yfinance - DEBUG - utils.py:89 -       Entering _get_cookie_and_crumb_basic()
+2025-12-18 13:52:08 - yfinance - DEBUG - utils.py:89 -        Entering _get_cookie_basic()
+2025-12-18 13:52:08 - yfinance - DEBUG - data.py:188 - reusing cookie
+2025-12-18 13:52:08 - yfinance - DEBUG - utils.py:94 -        Exiting _get_cookie_basic()
+2025-12-18 13:52:08 - yfinance - DEBUG - utils.py:89 -        Entering _get_crumb_basic()
+2025-12-18 13:52:08 - yfinance - DEBUG - data.py:210 - reusing crumb
+2025-12-18 13:52:08 - yfinance - DEBUG - utils.py:94 -        Exiting _get_crumb_basic()
+2025-12-18 13:52:08 - yfinance - DEBUG - utils.py:94 -       Exiting _get_cookie_and_crumb_basic()
+2025-12-18 13:52:08 - yfinance - DEBUG - utils.py:94 -      Exiting _get_cookie_and_crumb()
+2025-12-18 13:52:08 - yfinance - DEBUG - data.py:418 - response code=200
+2025-12-18 13:52:08 - yfinance - DEBUG - utils.py:94 -     Exiting _make_request()
+2025-12-18 13:52:08 - yfinance - DEBUG - utils.py:94 -    Exiting get()
+2025-12-18 13:52:08 - yfinance - DEBUG - history.py:312 - DX-Y.NYB: yfinance received OHLC data: 2000-01-03 05:00:00 -> 2025-12-18 13:42:06
+2025-12-18 13:52:08 - yfinance - DEBUG - history.py:349 - DX-Y.NYB: OHLC after cleaning: 2000-01-03 00:00:00-05:00 -> 2025-12-18 08:42:06-05:00
+2025-12-18 13:52:08 - yfinance - DEBUG - history.py:437 - DX-Y.NYB: OHLC after combining events: 2000-01-03 00:00:00-05:00 -> 2025-12-18 00:00:00-05:00
+2025-12-18 13:52:08 - yfinance - DEBUG - history.py:517 - DX-Y.NYB: yfinance returning OHLC: 2000-01-03 00:00:00-05:00 -> 2025-12-18 00:00:00-05:00
+2025-12-18 13:52:08 - yfinance - DEBUG - utils.py:94 -   Exiting history()
+2025-12-18 13:52:08 - yfinance - DEBUG - utils.py:94 -  Exiting history()
+2025-12-18 13:52:08 - yfinance - DEBUG - utils.py:89 -  Entering history()
+2025-12-18 13:52:08 - peewee - DEBUG - peewee.py:3319 - ('SELECT "t1"."key", "t1"."value" FROM "_tz_kv" AS "t1" WHERE ("t1"."key" = ?) LIMIT ? OFFSET ?', ['SI=F', 1, 0])
+2025-12-18 13:52:08 - yfinance - DEBUG - utils.py:89 -   Entering history()
+2025-12-18 13:52:08 - yfinance - DEBUG - history.py:196 - SI=F: Yahoo GET parameters: {'period1': '2000-01-01 00:00:00-05:00', 'period2': '2025-12-18 08:52:08-05:00', 'interval': '1d', 'includePrePost': False, 'events': 'div,splits,capitalGains'}
+2025-12-18 13:52:08 - yfinance - DEBUG - utils.py:89 -    Entering get()
+2025-12-18 13:52:08 - yfinance - DEBUG - utils.py:89 -     Entering _make_request()
+2025-12-18 13:52:08 - yfinance - DEBUG - data.py:394 - url=https://query2.finance.yahoo.com/v8/finance/chart/SI=F
+2025-12-18 13:52:08 - yfinance - DEBUG - data.py:395 - params={'period1': 946702800, 'period2': 1766065928, 'interval': '1d', 'includePrePost': False, 'events': 'div,splits,capitalGains'}
+2025-12-18 13:52:08 - yfinance - DEBUG - utils.py:89 -      Entering _get_cookie_and_crumb()
+2025-12-18 13:52:08 - yfinance - DEBUG - data.py:350 - cookie_mode = 'basic'
+2025-12-18 13:52:08 - yfinance - DEBUG - utils.py:89 -       Entering _get_cookie_and_crumb_basic()
+2025-12-18 13:52:08 - yfinance - DEBUG - utils.py:89 -        Entering _get_cookie_basic()
+2025-12-18 13:52:08 - yfinance - DEBUG - data.py:188 - reusing cookie
+2025-12-18 13:52:08 - yfinance - DEBUG - utils.py:94 -        Exiting _get_cookie_basic()
+2025-12-18 13:52:08 - yfinance - DEBUG - utils.py:89 -        Entering _get_crumb_basic()
+2025-12-18 13:52:08 - yfinance - DEBUG - data.py:210 - reusing crumb
+2025-12-18 13:52:08 - yfinance - DEBUG - utils.py:94 -        Exiting _get_crumb_basic()
+2025-12-18 13:52:08 - yfinance - DEBUG - utils.py:94 -       Exiting _get_cookie_and_crumb_basic()
+2025-12-18 13:52:08 - yfinance - DEBUG - utils.py:94 -      Exiting _get_cookie_and_crumb()
+2025-12-18 13:52:08 - yfinance - DEBUG - data.py:418 - response code=200
+2025-12-18 13:52:08 - yfinance - DEBUG - utils.py:94 -     Exiting _make_request()
+2025-12-18 13:52:08 - yfinance - DEBUG - utils.py:94 -    Exiting get()
+2025-12-18 13:52:09 - yfinance - DEBUG - history.py:312 - SI=F: yfinance received OHLC data: 2000-08-30 04:00:00 -> 2025-12-18 13:42:07
+2025-12-18 13:52:09 - yfinance - DEBUG - history.py:349 - SI=F: OHLC after cleaning: 2000-08-30 00:00:00-04:00 -> 2025-12-18 08:42:07-05:00
+2025-12-18 13:52:09 - yfinance - DEBUG - history.py:437 - SI=F: OHLC after combining events: 2000-08-30 00:00:00-04:00 -> 2025-12-18 00:00:00-05:00
+2025-12-18 13:52:09 - yfinance - DEBUG - history.py:517 - SI=F: yfinance returning OHLC: 2000-08-30 00:00:00-04:00 -> 2025-12-18 00:00:00-05:00
+2025-12-18 13:52:09 - yfinance - DEBUG - utils.py:94 -   Exiting history()
+2025-12-18 13:52:09 - yfinance - DEBUG - utils.py:94 -  Exiting history()
+2025-12-18 13:52:09 - yfinance - DEBUG - utils.py:89 -  Entering history()
+2025-12-18 13:52:09 - peewee - DEBUG - peewee.py:3319 - ('SELECT "t1"."key", "t1"."value" FROM "_tz_kv" AS "t1" WHERE ("t1"."key" = ?) LIMIT ? OFFSET ?', ['GC=F', 1, 0])
+2025-12-18 13:52:09 - yfinance - DEBUG - utils.py:89 -   Entering history()
+2025-12-18 13:52:09 - yfinance - DEBUG - history.py:196 - GC=F: Yahoo GET parameters: {'period1': '2000-01-01 00:00:00-05:00', 'period2': '2025-12-18 08:52:09-05:00', 'interval': '1d', 'includePrePost': False, 'events': 'div,splits,capitalGains'}
+2025-12-18 13:52:09 - yfinance - DEBUG - utils.py:89 -    Entering get()
+2025-12-18 13:52:09 - yfinance - DEBUG - utils.py:89 -     Entering _make_request()
+2025-12-18 13:52:09 - yfinance - DEBUG - data.py:394 - url=https://query2.finance.yahoo.com/v8/finance/chart/GC=F
+2025-12-18 13:52:09 - yfinance - DEBUG - data.py:395 - params={'period1': 946702800, 'period2': 1766065929, 'interval': '1d', 'includePrePost': False, 'events': 'div,splits,capitalGains'}
+2025-12-18 13:52:09 - yfinance - DEBUG - utils.py:89 -      Entering _get_cookie_and_crumb()
+2025-12-18 13:52:09 - yfinance - DEBUG - data.py:350 - cookie_mode = 'basic'
+2025-12-18 13:52:09 - yfinance - DEBUG - utils.py:89 -       Entering _get_cookie_and_crumb_basic()
+2025-12-18 13:52:09 - yfinance - DEBUG - utils.py:89 -        Entering _get_cookie_basic()
+2025-12-18 13:52:09 - yfinance - DEBUG - data.py:188 - reusing cookie
+2025-12-18 13:52:09 - yfinance - DEBUG - utils.py:94 -        Exiting _get_cookie_basic()
+2025-12-18 13:52:09 - yfinance - DEBUG - utils.py:89 -        Entering _get_crumb_basic()
+2025-12-18 13:52:09 - yfinance - DEBUG - data.py:210 - reusing crumb
+2025-12-18 13:52:09 - yfinance - DEBUG - utils.py:94 -        Exiting _get_crumb_basic()
+2025-12-18 13:52:09 - yfinance - DEBUG - utils.py:94 -       Exiting _get_cookie_and_crumb_basic()
+2025-12-18 13:52:09 - yfinance - DEBUG - utils.py:94 -      Exiting _get_cookie_and_crumb()
+2025-12-18 13:52:09 - yfinance - DEBUG - data.py:418 - response code=200
+2025-12-18 13:52:09 - yfinance - DEBUG - utils.py:94 -     Exiting _make_request()
+2025-12-18 13:52:09 - yfinance - DEBUG - utils.py:94 -    Exiting get()
+2025-12-18 13:52:09 - yfinance - DEBUG - history.py:312 - GC=F: yfinance received OHLC data: 2000-08-30 04:00:00 -> 2025-12-18 13:42:07
+2025-12-18 13:52:09 - yfinance - DEBUG - history.py:349 - GC=F: OHLC after cleaning: 2000-08-30 00:00:00-04:00 -> 2025-12-18 08:42:07-05:00
+2025-12-18 13:52:09 - yfinance - DEBUG - history.py:437 - GC=F: OHLC after combining events: 2000-08-30 00:00:00-04:00 -> 2025-12-18 00:00:00-05:00
+2025-12-18 13:52:09 - yfinance - DEBUG - history.py:517 - GC=F: yfinance returning OHLC: 2000-08-30 00:00:00-04:00 -> 2025-12-18 00:00:00-05:00
+2025-12-18 13:52:09 - yfinance - DEBUG - utils.py:94 -   Exiting history()
+2025-12-18 13:52:09 - yfinance - DEBUG - utils.py:94 -  Exiting history()
+2025-12-18 13:52:09 - yfinance - DEBUG - utils.py:94 - Exiting download()
+2025-12-18 13:52:09 - src.data_loader.market_loader - INFO - market_loader.py:49 - [Market] Đã lưu: Gold -> data/raw/Gold_daily.csv
+2025-12-18 13:52:09 - src.data_loader.market_loader - INFO - market_loader.py:49 - [Market] Đã lưu: DXY -> data/raw/DXY_daily.csv
+2025-12-18 13:52:09 - src.data_loader.market_loader - INFO - market_loader.py:49 - [Market] Đã lưu: SP500 -> data/raw/SP500_daily.csv
+2025-12-18 13:52:09 - src.data_loader.market_loader - INFO - market_loader.py:49 - [Market] Đã lưu: Oil -> data/raw/Oil_daily.csv
+2025-12-18 13:52:09 - src.data_loader.market_loader - INFO - market_loader.py:49 - [Market] Đã lưu: Silver -> data/raw/Silver_daily.csv
+2025-12-18 13:52:09 - src.data_loader.macro_loader - INFO - macro_loader.py:39 - Đang tải dữ liệu Vĩ mô từ FRED...
+2025-12-18 13:52:10 - src.data_loader.macro_loader - INFO - macro_loader.py:57 - [Macro] Đã lưu: CPI
+2025-12-18 13:52:10 - src.data_loader.macro_loader - INFO - macro_loader.py:57 - [Macro] Đã lưu: Fed_Rate
+2025-12-18 13:52:11 - src.data_loader.macro_loader - INFO - macro_loader.py:57 - [Macro] Đã lưu: US10Y
+2025-12-18 13:52:12 - src.data_loader.macro_loader - INFO - macro_loader.py:57 - [Macro] Đã lưu: M2
+2025-12-18 13:52:12 - src.data_loader.macro_loader - INFO - macro_loader.py:57 - [Macro] Đã lưu: Real_Rate
+2025-12-18 13:52:12 - MainController - INFO - main.py:34 - ✅ Tải dữ liệu hoàn tất.
+2025-12-18 13:52:12 - MainController - INFO - main.py:42 - ⚙️ [2/6] BẮT ĐẦU XỬ LÝ DỮ LIỆU...
+2025-12-18 13:52:12 - src.processing.processor - INFO - processor.py:21 - ⚙️ --- BẮT ĐẦU QUY TRÌNH XỬ LÝ DỮ LIỆU ---
+2025-12-18 13:52:12 - src.processing.data_merger - INFO - data_merger.py:23 - [Step 1] Đang ghép dữ liệu Market & Macro...
+2025-12-18 13:52:12 - src.processing.data_merger - INFO - data_merger.py:68 - Đã ghép xong. Dữ liệu: 6348 dòng (Loại bỏ 2 dòng NaN).
+2025-12-18 13:52:12 - src.processing.feature_builder - INFO - feature_builder.py:12 - [Step 2] Đang tính toán chỉ báo kỹ thuật...
+2025-12-18 13:52:12 - src.processing.feature_builder - INFO - feature_builder.py:42 - [Step 3] Đang tạo nhãn dự báo (30 ngày tới)...
+2025-12-18 13:52:12 - src.processing.processor - INFO - processor.py:35 - Đã lưu dữ liệu sạch tại: data/processed/gold_processed_features.csv
+2025-12-18 13:52:12 - src.processing.processor - INFO - processor.py:36 - Kích thước cuối cùng: (6299, 13)
+2025-12-18 13:52:12 - MainController - INFO - main.py:46 - ✅ Xử lý hoàn tất. File: data/processed/gold_processed_features.csv
+2025-12-18 13:52:12 - MainController - INFO - main.py:54 - 🏋️ [3/6] BẮT ĐẦU HUẤN LUYỆN...
+2025-12-18 13:52:12 - src.training.trainer - INFO - trainer.py:34 - BẮT ĐẦU QUÁ TRÌNH HUẤN LUYỆN...
+2025-12-18 13:52:12 - src.training.data_provider - INFO - data_provider.py:33 - Đang đọc dữ liệu từ: data/processed/gold_processed_features.csv
+2025-12-18 13:52:12 - src.training.data_provider - INFO - data_provider.py:80 - Đã split dữ liệu. Train size: 4968, Test size: 1242
+2025-12-18 13:52:12 - src.training.data_provider - INFO - data_provider.py:90 - Đã lưu Scalers vào: artifacts/models/
+2025-12-18 13:52:12 - src.training.trainer - INFO - trainer.py:44 - 📊 Input Features: Price=5, Macro=4
+2025-12-18 13:52:12 - src.training.trainer - INFO - trainer.py:47 - 🏗️ Selected Model: ATTENTION MECHANISM
+2025-12-18 13:52:12 - src.models.attention_model - INFO - attention_model.py:54 - Đang xây dựng model Attention: LSTM+Attention ((60, 5)) + Dense ((4,))
+2025-12-18 13:52:13 - src.models.attention_model - INFO - attention_model.py:105 - Build model Attention kiến trúc thành công.
+2025-12-18 13:52:22 - h5py._conv - DEBUG - attrs.py:204 - Creating converter from 5 to 3
+2025-12-18 13:53:29 - src.training.trainer - INFO - trainer.py:90 - HUẤN LUYỆN HOÀN TẤT!
+2025-12-18 13:53:29 - src.training.trainer - INFO - trainer.py:120 - Đã lưu biểu đồ training tại: artifacts/figures/training_history.png
+2025-12-18 13:53:29 - MainController - INFO - main.py:58 - ✅ Huấn luyện hoàn tất. Model: artifacts/models/Hybrid_Gold_Forecast_V1_attention_best.keras
+2025-12-18 13:53:29 - MainController - INFO - main.py:145 - 📊 [Evaluate] ĐÁNH GIÁ MÔ HÌNH...
+2025-12-18 13:53:29 - src.evaluation.evaluator - INFO - evaluator.py:21 - Calculating performance metrics...
+2025-12-18 13:53:29 - src.training.data_provider - INFO - data_provider.py:33 - Đang đọc dữ liệu từ: data/processed/gold_processed_features.csv
+2025-12-18 13:53:29 - src.training.data_provider - INFO - data_provider.py:80 - Đã split dữ liệu. Train size: 4968, Test size: 1242
+2025-12-18 13:53:31 - MainController - INFO - main.py:149 - ✅ Đánh giá hoàn tất.
+2025-12-18 13:53:31 - MainController - INFO - main.py:66 - 🔮 [4/6] BẮT ĐẦU DỰ ĐOÁN...
+2025-12-18 13:53:31 - src.prediction.predictor - INFO - predictor.py:25 - Đang tải Model và Scalers...
+2025-12-18 13:53:31 - src.prediction.predictor - INFO - predictor.py:78 - 🚀 Đang thực hiện dự đoán Tương lai (Future Forecast)...
+2025-12-18 13:53:31 - src.prediction.predictor - INFO - predictor.py:89 - Ngày dữ liệu cuối cùng: 2025-12-18
+2025-12-18 13:53:31 - src.prediction.predictor - INFO - predictor.py:90 - Bắt đầu dự báo cho: 2025-12-19 trở đi.
+2025-12-18 13:53:34 - src.prediction.predictor - INFO - predictor.py:139 - ✅ Đã lưu dự báo: data/final/30days_forecast.csv
+2025-12-18 13:53:34 - MainController - INFO - main.py:70 - ✅ Dự đoán hoàn tất.
+2025-12-18 13:53:34 - MainController - INFO - main.py:78 - 💸 [5/6] BẮT ĐẦU BACKTEST...
+2025-12-18 13:53:34 - src.backtesting.backtester - INFO - backtester.py:23 - ⏳ Đang tải dữ liệu kiểm thử...
+2025-12-18 13:53:34 - src.training.data_provider - INFO - data_provider.py:33 - Đang đọc dữ liệu từ: data/processed/gold_processed_features.csv
+2025-12-18 13:53:34 - src.training.data_provider - INFO - data_provider.py:80 - Đã split dữ liệu. Train size: 4991, Test size: 1248
+2025-12-18 13:53:34 - src.backtesting.backtester - INFO - backtester.py:35 - 🧠 AI đang phân tích vùng giá...
+2025-12-18 13:53:35 - src.backtesting.backtester - INFO - backtester.py:53 - 💸 Đang chạy Backtest với chiến thuật Sniper (SL/TP)...
+2025-12-18 13:53:36 - src.backtesting.backtester - INFO - backtester.py:161 - 📉 Đã lưu kết quả Sniper tại: artifacts/figures/sniper_backtest.png
+2025-12-18 13:53:36 - MainController - INFO - main.py:82 - ✅ Backtest hoàn tất.
+2025-12-18 13:53:36 - MainController - INFO - main.py:90 - 🎨 [6/6] BẮT ĐẦU VẼ BIỂU ĐỒ...
+2025-12-18 13:53:36 - src.visualization.visualizer - INFO - visualizer.py:74 - 📊 Đang vẽ biểu đồ kiểm định YTD (Year-To-Date)...
+2025-12-18 13:53:36 - src.training.data_provider - INFO - data_provider.py:33 - Đang đọc dữ liệu từ: data/processed/gold_processed_features.csv
+2025-12-18 13:53:36 - src.training.data_provider - INFO - data_provider.py:80 - Đã split dữ liệu. Train size: 4968, Test size: 1242
+2025-12-18 13:53:37 - src.visualization.visualizer - INFO - visualizer.py:160 - ✅ Đã lưu biểu đồ YTD (USD) tại: artifacts/figures/test_evaluation_chart.png
+2025-12-18 13:53:37 - MainController - INFO - main.py:96 - ✅ Vẽ biểu đồ hoàn tất.
+2025-12-18 13:53:37 - MainController - INFO - main.py:135 - 
+==================================================
+2025-12-18 13:53:37 - MainController - INFO - main.py:136 - 🏆 HOÀN THÀNH TẤT CẢ TÁC VỤ! Tổng thời gian: 90.64 giây
+2025-12-18 13:53:37 - MainController - INFO - main.py:137 - ==================================================
+2025-12-18 13:57:05 - root - INFO - config_utils.py:32 - Logging đã được thiết lập từ file yaml.
+2025-12-18 13:57:05 - MainController - INFO - main.py:170 - 🤖 Hệ thống khởi động. Mode: EVALUATE
+2025-12-18 13:57:05 - MainController - INFO - main.py:145 - 📊 [Evaluate] ĐÁNH GIÁ MÔ HÌNH...
+2025-12-18 13:57:05 - src.evaluation.evaluator - INFO - evaluator.py:21 - Calculating performance metrics...
+2025-12-18 13:57:05 - src.training.data_provider - INFO - data_provider.py:33 - Đang đọc dữ liệu từ: data/processed/gold_processed_features.csv
+2025-12-18 13:57:05 - src.training.data_provider - INFO - data_provider.py:80 - Đã split dữ liệu. Train size: 4968, Test size: 1242
+2025-12-18 13:57:06 - MainController - INFO - main.py:149 - ✅ Đánh giá hoàn tất.
+2025-12-18 14:00:30 - root - INFO - config_utils.py:32 - Logging đã được thiết lập từ file yaml.
+2025-12-18 14:00:30 - MainController - INFO - main.py:170 - 🤖 Hệ thống khởi động. Mode: TRAIN
+2025-12-18 14:00:30 - MainController - INFO - main.py:54 - 🏋️ [3/6] BẮT ĐẦU HUẤN LUYỆN...
+2025-12-18 14:00:30 - src.training.trainer - INFO - trainer.py:42 - BẮT ĐẦU QUÁ TRÌNH HUẤN LUYỆN...
+2025-12-18 14:00:30 - src.training.data_provider - INFO - data_provider.py:33 - Đang đọc dữ liệu từ: data/processed/gold_processed_features.csv
+2025-12-18 14:00:30 - src.training.data_provider - INFO - data_provider.py:80 - Đã split dữ liệu. Train size: 4968, Test size: 1242
+2025-12-18 14:00:30 - src.training.data_provider - INFO - data_provider.py:90 - Đã lưu Scalers vào: artifacts/models/
+2025-12-18 14:00:30 - src.training.trainer - INFO - trainer.py:52 - 📊 Input Features: Price=5, Macro=4
+2025-12-18 14:00:30 - src.training.trainer - INFO - trainer.py:55 - 🏗️ Selected Model: ATTENTION MECHANISM
+2025-12-18 14:00:30 - src.models.attention_model - INFO - attention_model.py:54 - Đang xây dựng model Attention: LSTM+Attention ((60, 5)) + Dense ((4,))
+2025-12-18 14:00:31 - src.models.attention_model - INFO - attention_model.py:105 - Build model Attention kiến trúc thành công.
+2025-12-18 14:00:31 - git.cmd - DEBUG - cmd.py:1270 - Popen(['git', 'version'], cwd=/home/phuquocchamp/dev/vku/analysist/Gold-Forecast, stdin=None, shell=False, universal_newlines=False)
+2025-12-18 14:00:31 - git.cmd - DEBUG - cmd.py:1270 - Popen(['git', 'version'], cwd=/home/phuquocchamp/dev/vku/analysist/Gold-Forecast, stdin=None, shell=False, universal_newlines=False)
+2025-12-18 14:00:31 - git.util - DEBUG - util.py:494 - sys.platform='linux', git_executable='git'
+2025-12-18 14:00:31 - git.cmd - DEBUG - cmd.py:1270 - Popen(['git', 'check-ignore', '/home/phuquocchamp/dev/vku/analysist/Gold-Forecast'], cwd=/home/phuquocchamp/dev/vku/analysist/Gold-Forecast, stdin=None, shell=False, universal_newlines=False)
+2025-12-18 14:00:31 - git.cmd - DEBUG - cmd.py:1270 - Popen(['git', 'cat-file', '--batch-check'], cwd=/home/phuquocchamp/dev/vku/analysist/Gold-Forecast, stdin=<valid stream>, shell=False, universal_newlines=False)
+2025-12-18 14:00:40 - h5py._conv - DEBUG - attrs.py:204 - Creating converter from 5 to 3
+2025-12-18 14:01:37 - src.training.trainer - INFO - trainer.py:116 - HUẤN LUYỆN HOÀN TẤT!
+2025-12-18 14:01:37 - src.training.trainer - INFO - trainer.py:150 - Đã lưu biểu đồ training tại: artifacts/figures/training_history.png
+2025-12-18 14:01:37 - MainController - INFO - main.py:58 - ✅ Huấn luyện hoàn tất. Model: artifacts/models/Hybrid_Gold_Forecast_V1_attention_best.keras
+2025-12-18 14:05:14 - root - INFO - config_utils.py:32 - Logging đã được thiết lập từ file yaml.
+2025-12-18 14:05:14 - MainController - INFO - main.py:170 - 🤖 Hệ thống khởi động. Mode: TRAIN
+2025-12-18 14:05:14 - MainController - INFO - main.py:54 - 🏋️ [3/6] BẮT ĐẦU HUẤN LUYỆN...
+2025-12-18 14:05:14 - src.training.trainer - INFO - trainer.py:42 - BẮT ĐẦU QUÁ TRÌNH HUẤN LUYỆN...
+2025-12-18 14:05:14 - src.training.data_provider - INFO - data_provider.py:33 - Đang đọc dữ liệu từ: data/processed/gold_processed_features.csv
+2025-12-18 14:05:14 - src.training.data_provider - INFO - data_provider.py:80 - Đã split dữ liệu. Train size: 4968, Test size: 1242
+2025-12-18 14:05:14 - src.training.data_provider - INFO - data_provider.py:90 - Đã lưu Scalers vào: artifacts/models/
+2025-12-18 14:05:14 - src.training.trainer - INFO - trainer.py:52 - 📊 Input Features: Price=5, Macro=4
+2025-12-18 14:05:14 - src.training.trainer - INFO - trainer.py:58 - 🏗️ Selected Model: STANDARD HYBRID
+2025-12-18 14:05:14 - src.models.hybrid_model - INFO - hybrid_model.py:27 - Đang xây dựng model Hybrid: LSTM ((60, 5)) + Dense ((4,))
+2025-12-18 14:05:14 - src.models.hybrid_model - INFO - hybrid_model.py:63 - Build model kiến trúc thành công.
+2025-12-18 14:05:14 - git.cmd - DEBUG - cmd.py:1270 - Popen(['git', 'version'], cwd=/home/phuquocchamp/dev/vku/analysist/Gold-Forecast, stdin=None, shell=False, universal_newlines=False)
+2025-12-18 14:05:14 - git.cmd - DEBUG - cmd.py:1270 - Popen(['git', 'version'], cwd=/home/phuquocchamp/dev/vku/analysist/Gold-Forecast, stdin=None, shell=False, universal_newlines=False)
+2025-12-18 14:05:14 - git.util - DEBUG - util.py:494 - sys.platform='linux', git_executable='git'
+2025-12-18 14:05:14 - git.cmd - DEBUG - cmd.py:1270 - Popen(['git', 'check-ignore', '/home/phuquocchamp/dev/vku/analysist/Gold-Forecast'], cwd=/home/phuquocchamp/dev/vku/analysist/Gold-Forecast, stdin=None, shell=False, universal_newlines=False)
+2025-12-18 14:05:14 - git.cmd - DEBUG - cmd.py:1270 - Popen(['git', 'cat-file', '--batch-check'], cwd=/home/phuquocchamp/dev/vku/analysist/Gold-Forecast, stdin=<valid stream>, shell=False, universal_newlines=False)
+2025-12-18 14:05:26 - h5py._conv - DEBUG - attrs.py:204 - Creating converter from 5 to 3
+2025-12-18 14:07:01 - src.training.trainer - INFO - trainer.py:116 - HUẤN LUYỆN HOÀN TẤT!
+2025-12-18 14:07:02 - src.training.trainer - INFO - trainer.py:150 - Đã lưu biểu đồ training tại: artifacts/figures/training_history.png
+2025-12-18 14:07:02 - MainController - INFO - main.py:58 - ✅ Huấn luyện hoàn tất. Model: artifacts/models/Hybrid_Gold_Forecast_V1_hybrid_best.keras
+2025-12-18 14:08:07 - root - INFO - config_utils.py:32 - Logging đã được thiết lập từ file yaml.
+2025-12-18 14:08:07 - MainController - INFO - main.py:170 - 🤖 Hệ thống khởi động. Mode: EVALUATE
+2025-12-18 14:08:07 - MainController - INFO - main.py:145 - 📊 [Evaluate] ĐÁNH GIÁ MÔ HÌNH...
+2025-12-18 14:08:07 - src.evaluation.evaluator - INFO - evaluator.py:32 - Calculating performance metrics...
+2025-12-18 14:08:07 - src.training.data_provider - INFO - data_provider.py:33 - Đang đọc dữ liệu từ: data/processed/gold_processed_features.csv
+2025-12-18 14:08:07 - src.training.data_provider - INFO - data_provider.py:80 - Đã split dữ liệu. Train size: 4968, Test size: 1242
+2025-12-18 14:08:09 - git.cmd - DEBUG - cmd.py:1270 - Popen(['git', 'version'], cwd=/home/phuquocchamp/dev/vku/analysist/Gold-Forecast, stdin=None, shell=False, universal_newlines=False)
+2025-12-18 14:08:09 - git.cmd - DEBUG - cmd.py:1270 - Popen(['git', 'version'], cwd=/home/phuquocchamp/dev/vku/analysist/Gold-Forecast, stdin=None, shell=False, universal_newlines=False)
+2025-12-18 14:08:09 - git.util - DEBUG - util.py:494 - sys.platform='linux', git_executable='git'
+2025-12-18 14:08:09 - git.cmd - DEBUG - cmd.py:1270 - Popen(['git', 'check-ignore', '/home/phuquocchamp/dev/vku/analysist/Gold-Forecast'], cwd=/home/phuquocchamp/dev/vku/analysist/Gold-Forecast, stdin=None, shell=False, universal_newlines=False)
+2025-12-18 14:08:09 - git.cmd - DEBUG - cmd.py:1270 - Popen(['git', 'cat-file', '--batch-check'], cwd=/home/phuquocchamp/dev/vku/analysist/Gold-Forecast, stdin=<valid stream>, shell=False, universal_newlines=False)
+2025-12-18 14:08:09 - MainController - INFO - main.py:149 - ✅ Đánh giá hoàn tất.
+2025-12-18 14:09:33 - root - INFO - config_utils.py:32 - Logging đã được thiết lập từ file yaml.
+2025-12-18 14:09:33 - MainController - INFO - main.py:170 - 🤖 Hệ thống khởi động. Mode: EVALUATE
+2025-12-18 14:09:33 - MainController - INFO - main.py:145 - 📊 [Evaluate] ĐÁNH GIÁ MÔ HÌNH...
+2025-12-18 14:09:33 - src.evaluation.evaluator - INFO - evaluator.py:32 - Calculating performance metrics...
+2025-12-18 14:09:33 - src.training.data_provider - INFO - data_provider.py:33 - Đang đọc dữ liệu từ: data/processed/gold_processed_features.csv
+2025-12-18 14:09:33 - src.training.data_provider - INFO - data_provider.py:80 - Đã split dữ liệu. Train size: 4968, Test size: 1242
+2025-12-18 14:09:34 - git.cmd - DEBUG - cmd.py:1270 - Popen(['git', 'version'], cwd=/home/phuquocchamp/dev/vku/analysist/Gold-Forecast, stdin=None, shell=False, universal_newlines=False)
+2025-12-18 14:09:34 - git.cmd - DEBUG - cmd.py:1270 - Popen(['git', 'version'], cwd=/home/phuquocchamp/dev/vku/analysist/Gold-Forecast, stdin=None, shell=False, universal_newlines=False)
+2025-12-18 14:09:34 - git.util - DEBUG - util.py:494 - sys.platform='linux', git_executable='git'
+2025-12-18 14:09:34 - git.cmd - DEBUG - cmd.py:1270 - Popen(['git', 'check-ignore', '/home/phuquocchamp/dev/vku/analysist/Gold-Forecast'], cwd=/home/phuquocchamp/dev/vku/analysist/Gold-Forecast, stdin=None, shell=False, universal_newlines=False)
+2025-12-18 14:09:34 - git.cmd - DEBUG - cmd.py:1270 - Popen(['git', 'cat-file', '--batch-check'], cwd=/home/phuquocchamp/dev/vku/analysist/Gold-Forecast, stdin=<valid stream>, shell=False, universal_newlines=False)
+2025-12-18 14:09:34 - MainController - INFO - main.py:149 - ✅ Đánh giá hoàn tất.

@@ -5,6 +5,7 @@ import logging
 import os
 from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
 from typing import Dict
+import mlflow
 from src.training.data_provider import DataProvider
 
 
@@ -15,7 +16,17 @@ class ModelEvaluator:
         self.provider = DataProvider(settings)
 
         model_name = settings['model']['name']
-        self.model_path = os.path.join(settings['paths']['model_save'], f"{model_name}_best.keras")
+        model_type = settings['model'].get('type', 'hybrid')
+        self.model_path = os.path.join(settings['paths']['model_save'], f"{model_name}_{model_type}_best.keras")
+        self.model_type = model_type
+
+        # MLflow Setup
+        mlflow_conf = settings.get('mlflow', {})
+        self.experiment_name = mlflow_conf.get('experiment_name', 'Default_Experiment')
+        self.tracking_uri = mlflow_conf.get('tracking_uri', 'mlruns')
+        
+        mlflow.set_tracking_uri(self.tracking_uri)
+        mlflow.set_experiment(self.experiment_name)
 
     def run(self):
         self.logger.info("Calculating performance metrics...")
@@ -109,3 +120,14 @@ class ModelEvaluator:
         print(f" - Max Drawdown: {max_drawdown:.2f}%")
         print(f" - Sharpe Ratio: {sharpe:.2f}")
         print("=" * 50 + "\n")
+
+        # Log to MLflow
+        with mlflow.start_run(run_name=f"Eval_{self.model_type.upper()}", nested=True):
+            mlflow.log_metric("eval_mae", mae)
+            mlflow.log_metric("eval_rmse", rmse)
+            mlflow.log_metric("eval_mape", mape)
+            mlflow.log_metric("eval_r2", r2)
+            mlflow.log_metric("eval_accuracy", direction_acc)
+            mlflow.log_metric("eval_win_rate", win_rate)
+            mlflow.log_metric("eval_max_drawdown", max_drawdown)
+            mlflow.log_metric("eval_sharpe", sharpe)

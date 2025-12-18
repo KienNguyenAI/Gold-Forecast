@@ -1,0 +1,14 @@
+artifact_uri: /home/phuquocchamp/dev/vku/analysist/Gold-Forecast/mlruns/843917467714655631/e067090a87be47ec818eb2f94c2a239b/artifacts
+end_time: 1766066822184
+entry_point_name: ''
+experiment_id: '843917467714655631'
+lifecycle_stage: active
+run_id: e067090a87be47ec818eb2f94c2a239b
+run_name: Train_HYBRID
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1766066714506
+status: 3
+tags: []
+user_id: phuquocchamp

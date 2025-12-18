@@ -1,0 +1,22 @@
+artifact_path: /home/phuquocchamp/dev/vku/analysist/Gold-Forecast/mlruns/843917467714655631/models/m-31abf737f2aa48709190b064d3a32594/artifacts
+flavors:
+  python_function:
+    data: data
+    env:
+      conda: conda.yaml
+      virtualenv: python_env.yaml
+    loader_module: mlflow.tensorflow
+    python_version: 3.12.3
+  tensorflow:
+    code: null
+    data: data
+    keras_version: 2.20.0
+    model_type: keras
+    save_format: tf
+mlflow_version: 3.7.0
+model_id: m-31abf737f2aa48709190b064d3a32594
+model_size_bytes: 486655
+model_uuid: m-31abf737f2aa48709190b064d3a32594
+prompts: null
+run_id: e067090a87be47ec818eb2f94c2a239b
+utc_time_created: '2025-12-18 14:06:55.411766'
