@@ -25,8 +25,7 @@ class DataProcessor:
 
             df = self.builder.add_technical_indicators(df)
 
-            pred_window = 30
-            df = self.builder.create_targets(df, prediction_window=pred_window)
+            df = self.builder.create_targets(df, horizons=[5, 15, 30, 126])
 
             os.makedirs(self.processed_path, exist_ok=True)
             save_file = os.path.join(self.processed_path, "gold_processed_features.csv")

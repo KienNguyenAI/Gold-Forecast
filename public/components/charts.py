@@ -48,12 +48,14 @@ def draw_main_chart(df):
 
 def draw_forecast_chart(history_df, forecast_df):
     """
-    Vẽ biểu đồ Dự báo: Đã BỎ VÙNG RỦI RO (Chỉ còn đường dự báo chính)
+    Vẽ biểu đồ Dự báo:
+    - history_df: Đã được cắt đúng khung thời gian từ app.py
     """
     fig = go.Figure()
 
-    # 1. Lấy dữ liệu lịch sử gần nhất (90 ngày)
-    recent_history = history_df.tail(90)
+    # 1. Lấy dữ liệu lịch sử (KHÔNG CẮT .tail(90) NỮA)
+    # Dữ liệu truyền vào đã được xử lý độ dài ở app.py
+    recent_history = history_df
 
     # --- XỬ LÝ NỐI DỮ LIỆU (FIX GAP) ---
     plot_forecast_df = forecast_df.copy()
@@ -72,19 +74,25 @@ def draw_forecast_chart(history_df, forecast_df):
         plot_forecast_df = pd.concat([bridge_row, plot_forecast_df], ignore_index=True)
     # -----------------------------------
 
-    # 2. TÍNH TOÁN MIN/MAX (Vẫn tính Min/Max toàn cục để trục Y hiển thị đẹp)
-    min_vals = [recent_history['Gold_Close'].min()]
-    max_vals = [recent_history['Gold_Close'].max()]
+    # 2. TÍNH TOÁN MIN/MAX ĐỂ SCALE TRỤC
+    min_vals = []
+    max_vals = []
+
+    if not recent_history.empty:
+        min_vals.append(recent_history['Gold_Close'].min())
+        max_vals.append(recent_history['Gold_Close'].max())
 
     if not plot_forecast_df.empty:
-        # Vẫn dùng dữ liệu Min/Max để scale trục, dù không vẽ nó ra
         min_vals.append(plot_forecast_df['Forecast_Min'].min())
         max_vals.append(plot_forecast_df['Forecast_Max'].max())
 
-    global_min = min(min_vals)
-    global_max = max(max_vals)
-    padding = (global_max - global_min) * 0.05
-    y_range_limit = [global_min - padding, global_max + padding]
+    if min_vals and max_vals:
+        global_min = min(min_vals)
+        global_max = max(max_vals)
+        padding = (global_max - global_min) * 0.05
+        y_range_limit = [global_min - padding, global_max + padding]
+    else:
+        y_range_limit = None  # Auto range
 
     # 3. Vẽ Lịch sử
     fig.add_trace(go.Scatter(
@@ -97,10 +105,8 @@ def draw_forecast_chart(history_df, forecast_df):
         fillcolor=FILL_COLOR
     ))
 
-    # 4. Vẽ Dự báo (ĐÃ BỎ CÁC ĐOẠN VẼ VÙNG RỦI RO)
+    # 4. Vẽ Dự báo
     if not plot_forecast_df.empty:
-        # --- [ĐÃ XÓA] Đoạn code vẽ Forecast_Max và Forecast_Min ở đây ---
-
         # Chỉ vẽ Đường Dự báo chính
         fig.add_trace(go.Scatter(
             x=plot_forecast_df['Date'],
@@ -108,7 +114,7 @@ def draw_forecast_chart(history_df, forecast_df):
             mode='lines',
             name='Dự báo AI',
             line=dict(color=MAIN_COLOR, width=2, dash='dash'),
-            fill='tozeroy',  # Vẫn giữ tô màu bên dưới đường chính cho đẹp
+            fill='tozeroy',
             fillcolor=FILL_COLOR
         ))
 

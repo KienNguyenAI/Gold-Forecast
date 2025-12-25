@@ -48,6 +48,39 @@ model:
   output_dim: 1
   dropout: 0.2
 
+models_config:
+  short_term:
+    name: "Gold_Short_5D"
+    forecast_horizon: 5
+    window_size: 30
+    hidden_dim: 64
+    dropout: 0.1
+    learning_rate: 0.001
+
+  medium_term:
+    name: "Gold_Medium_15D"
+    forecast_horizon: 15
+    window_size: 60
+    hidden_dim: 96
+    dropout: 0.2
+    learning_rate: 0.0008
+
+  long_term:
+    name: "Gold_Long_30D"
+    forecast_horizon: 30
+    window_size: 90
+    hidden_dim: 128
+    dropout: 0.3
+    learning_rate: 0.0005
+
+  semi_annual:
+    name: "Gold_6Month"
+    forecast_horizon: 126
+    window_size: 180
+    hidden_dim: 128
+    dropout: 0.3
+    learning_rate: 0.0005
+
 
 training:
   batch_size: 32

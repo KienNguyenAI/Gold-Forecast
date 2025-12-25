@@ -9,9 +9,6 @@ from typing import Dict, Tuple
 
 class DataProvider:
     def __init__(self, settings: Dict):
-        """
-        :param settings: Config dictionary (settings.yaml)
-        """
         self.logger = logging.getLogger(__name__)
         self.settings = settings
 
@@ -19,47 +16,38 @@ class DataProvider:
         self.data_path = os.path.join(processed_dir, "gold_processed_features.csv")
         self.model_save_path = settings['paths']['model_save']
 
-        self.window_size = settings['processing']['window_size']
-        self.test_ratio = settings['processing']['test_size']
+        # Lấy tham số từ settings (lưu ý settings này sẽ được trainer cập nhật động)
+        self.window_size = settings['processing'].get('window_size', 60)
+        self.test_ratio = settings['processing'].get('test_size', 0.2)
 
         self.tech_cols = ['Gold_Close', 'Log_Return', 'RSI', 'Volatility_20d', 'Trend_Signal']
         self.macro_cols = ['DXY', 'US10Y', 'CPI', 'Real_Rate']
-        self.target_cols = ['Target_Min_Change', 'Target_Max_Change']
+
+        horizon = settings.get('model', {}).get('forecast_horizon', 30)
+        self.target_cols = [f'Target_Min_Change_{horizon}', f'Target_Max_Change_{horizon}']
 
         self.scaler_tech = MinMaxScaler()
         self.scaler_macro = MinMaxScaler()
 
     def load_and_split(self, for_training=True) -> Tuple[Dict, Dict, Dict, Dict]:
+        # ... (Phần code load dữ liệu giữ nguyên như cũ) ...
         self.logger.info(f"Đang đọc dữ liệu từ: {self.data_path}")
-
         if not os.path.exists(self.data_path):
             raise FileNotFoundError(f"Không tìm thấy file dữ liệu tại: {self.data_path}")
-
         df = pd.read_csv(self.data_path, index_col=0, parse_dates=True)
 
-        missing_tech = [c for c in self.tech_cols if c not in df.columns]
-        missing_macro = [c for c in self.macro_cols if c not in df.columns]
-
         if for_training:
-            original_len = len(df)
             df = df.dropna(subset=self.target_cols)
-
-        if missing_tech or missing_macro:
-            self.logger.warning(f"Thiếu cột dữ liệu! Tech: {missing_tech}, Macro: {missing_macro}")
 
         data_tech_scaled = self.scaler_tech.fit_transform(df[self.tech_cols])
         data_macro_scaled = self.scaler_macro.fit_transform(df[self.macro_cols])
         targets = df[self.target_cols].values
 
-        # Sliding Window
         X_tech, X_macro, y = [], [], []
-
-        # Logic tạo window
         for i in range(self.window_size, len(df)):
             tech_window = data_tech_scaled[i - self.window_size:i]
             macro_current = data_macro_scaled[i - 1]
             target_current = targets[i]
-
             X_tech.append(tech_window)
             X_macro.append(macro_current)
             y.append(target_current)
@@ -68,23 +56,22 @@ class DataProvider:
         X_macro = np.array(X_macro)
         y = np.array(y)
 
-        # Split Train/Test
         split_idx = int(len(X_tech) * (1 - self.test_ratio))
-
         X_train = {'input_price': X_tech[:split_idx], 'input_macro': X_macro[:split_idx]}
         y_train = {'output_min': y[:split_idx, 0], 'output_max': y[:split_idx, 1]}
-
         X_test = {'input_price': X_tech[split_idx:], 'input_macro': X_macro[split_idx:]}
         y_test = {'output_min': y[split_idx:, 0], 'output_max': y[split_idx:, 1]}
 
-        self.logger.info(
-            f"Đã split dữ liệu. Train size: {len(X_tech[:split_idx])}, Test size: {len(X_tech[split_idx:])}")
-
         return X_train, y_train, X_test, y_test
 
-    def save_scalers(self):
-        """Lưu scaler vào artifacts/models/"""
+    # --- SỬA HÀM NÀY: Thêm tham số suffix ---
+    def save_scalers(self, suffix=""):
+        """Lưu scaler với tên riêng biệt (VD: scaler_tech_short_term.pkl)"""
         os.makedirs(self.model_save_path, exist_ok=True)
-        joblib.dump(self.scaler_tech, os.path.join(self.model_save_path, "scaler_tech.pkl"))
-        joblib.dump(self.scaler_macro, os.path.join(self.model_save_path, "scaler_macro.pkl"))
-        self.logger.info(f"Đã lưu Scalers vào: {self.model_save_path}")
+
+        name_tech = f"scaler_tech{suffix}.pkl"
+        name_macro = f"scaler_macro{suffix}.pkl"
+
+        joblib.dump(self.scaler_tech, os.path.join(self.model_save_path, name_tech))
+        joblib.dump(self.scaler_macro, os.path.join(self.model_save_path, name_macro))
+        self.logger.info(f"💾 Đã lưu Scalers: {name_tech}, {name_macro}")

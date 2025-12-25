@@ -90,9 +90,9 @@ def run_visualize(settings):
     logger.info("🎨 [6/6] BẮT ĐẦU VẼ BIỂU ĐỒ...")
     try:
         viz = Visualizer(settings)
-        # viz.plot_forecast()
+        viz.plot_forecast()
         viz.plot_test_results()
-        # viz.plot_test_simulation()
+        viz.plot_test_prediction_comparison()
         logger.info("✅ Vẽ biểu đồ hoàn tất.")
     except Exception as e:
         logger.error(f"❌ Lỗi Visualize: {e}")

@@ -37,22 +37,18 @@ class FeatureBuilder:
 
         return df.dropna()
 
-    def create_targets(self, df: pd.DataFrame, prediction_window=30) -> pd.DataFrame:
-        """Tạo nhãn dự báo (Target) cho tương lai"""
-        self.logger.info(f"[Step 3] Đang tạo nhãn dự báo ({prediction_window} ngày tới)...")
+    def create_targets(self, df: pd.DataFrame, horizons=[5, 15, 30, 126]) -> pd.DataFrame:
+        self.logger.info(f"[Step 3] Đang tạo nhãn dự báo cho các mốc: {horizons}...")
 
-        # Forward Window
-        indexer = pd.api.indexers.FixedForwardWindowIndexer(window_size=prediction_window)
+        for h in horizons:
+            # Forward Window riêng cho từng horizon
+            indexer = pd.api.indexers.FixedForwardWindowIndexer(window_size=h)
 
-        # Tính Min/Max trong 30 ngày tới
-        future_min = df['Gold_Close'].rolling(window=indexer).min()
-        future_max = df['Gold_Close'].rolling(window=indexer).max()
+            future_min = df['Gold_Close'].rolling(window=indexer).min()
+            future_max = df['Gold_Close'].rolling(window=indexer).max()
 
-        # Tính % thay đổi so với giá hiện tại
-        df['Target_Min_Change'] = (future_min - df['Gold_Close']) / df['Gold_Close']
-        df['Target_Max_Change'] = (future_max - df['Gold_Close']) / df['Gold_Close']
-
-        # Thêm nhãn xu hướng (Classification): 1 nếu tăng > 2%, 0 nếu không
-        # df['Target_Direction'] = (df['Target_Max_Change'] > 0.02).astype(int)
+            # Đặt tên cột kèm theo số ngày (VD: Target_Min_Change_126)
+            df[f'Target_Min_Change_{h}'] = (future_min - df['Gold_Close']) / df['Gold_Close']
+            df[f'Target_Max_Change_{h}'] = (future_max - df['Gold_Close']) / df['Gold_Close']
 
         return df

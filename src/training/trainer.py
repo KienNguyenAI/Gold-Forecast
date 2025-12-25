@@ -4,10 +4,6 @@ import os
 import logging
 import matplotlib.pyplot as plt
 from typing import Dict
-
-import mlflow
-import mlflow.tensorflow
-
 from .data_provider import DataProvider
 from src.models.hybrid_model import GoldPriceModel
 
@@ -16,98 +12,85 @@ class ModelTrainer:
     def __init__(self, settings: Dict):
         self.logger = logging.getLogger(__name__)
         self.settings = settings
-
-        self.train_conf = settings['training']
-        self.epochs = self.train_conf['epochs']
-        self.batch_size = self.train_conf['batch_size']
-
-        save_dir = settings['paths']['model_save']
-        os.makedirs(save_dir, exist_ok=True)
-        model_name = settings['model'].get('name', 'model')
-        self.model_save_path = os.path.join(save_dir, f"{model_name}_best.keras")
+        self.models_cfg = settings.get('models_config')
+        self.save_dir = settings['paths']['model_save']
         self.figures_dir = settings['paths']['figures_save']
 
-    def train(self):
-        self.logger.info("BẮT ĐẦU QUÁ TRÌNH HUẤN LUYỆN...")
+        # Lấy thông tin training chung
+        self.train_conf = settings['training']
 
+    def train(self):
+        self.logger.info("🚀 BẮT ĐẦU HUẤN LUYỆN 2 MODEL (SHORT & LONG)...")
+
+        # Vòng lặp train từng model
+        for key, config in self.models_cfg.items():
+            self._train_single_model(key, config)
+
+    def _train_single_model(self, key, config):
+        self.logger.info(f"\n>>> 🏋️ TRAINING: {key.upper()} ({config['name']})")
+
+        # 1. Cập nhật settings tạm thời để DataProvider biết dùng window_size nào
+        self.settings['processing']['window_size'] = config['window_size']
+        self.settings['model'] = config  # Override config model chung
+
+        # 2. Load Data & Scaler
         provider = DataProvider(self.settings)
         X_train, y_train, X_test, y_test = provider.load_and_split()
 
-        provider.save_scalers()
+        # Lưu scaler với suffix (VD: _short_term)
+        provider.save_scalers(suffix=f"_{key}")
 
+        # 3. Build Model
         n_features_price = X_train['input_price'].shape[2]
         n_features_macro = X_train['input_macro'].shape[1]
 
-        self.logger.info(f"📊 Input Features: Price={n_features_price}, Macro={n_features_macro}")
-
         builder = GoldPriceModel(self.settings)
-
         model = builder.build_model(
-            input_shape_price=(X_train['input_price'].shape[1], n_features_price),
+            input_shape_price=(config['window_size'], n_features_price),
             input_shape_macro=(n_features_macro,)
         )
 
-        learning_rate = self.train_conf.get('learning_rate', 0.001)
         model.compile(
-            optimizer=tf.keras.optimizers.Adam(learning_rate=learning_rate),
+            optimizer=tf.keras.optimizers.Adam(learning_rate=config['learning_rate']),
             loss={'output_min': 'mse', 'output_max': 'mse'},
             metrics={'output_min': 'mae', 'output_max': 'mae'}
         )
+
+        save_path = os.path.join(self.save_dir, f"{config['name']}.keras")
+
         callbacks = [
-            ModelCheckpoint(
-                self.model_save_path,
-                monitor='val_loss',
-                save_best_only=True,
-                mode='min',
-                verbose=1
-            ),
-            EarlyStopping(
-                monitor='val_loss',
-                patience=self.train_conf.get('patience', 10),
-                restore_best_weights=True,
-                verbose=1
-            )
+            ModelCheckpoint(save_path, monitor='val_loss', save_best_only=True, verbose=1),
+            EarlyStopping(monitor='val_loss', patience=self.train_conf['patience'], restore_best_weights=True)
         ]
 
         history = model.fit(
-            x=X_train,
-            y=y_train,
-            validation_data=(X_test, y_test),
-            epochs=self.epochs,
-            batch_size=self.batch_size,
-            callbacks=callbacks,
-            verbose=1
+            X_train, y_train, validation_data=(X_test, y_test),
+            epochs=self.train_conf['epochs'],
+            batch_size=self.train_conf['batch_size'],
+            callbacks=callbacks, verbose=1
         )
 
-        self.logger.info("HUẤN LUYỆN HOÀN TẤT!")
-        self.plot_history(history)
+        self.plot_history(history, config['name'])
+        return save_path
 
-        return self.model_save_path
-
-    def plot_history(self, history):
-        """Vẽ biểu đồ và lưu vào file ảnh thay vì chỉ show"""
+    def plot_history(self, history, model_name):
         os.makedirs(self.figures_dir, exist_ok=True)
-
         plt.figure(figsize=(12, 5))
 
         plt.subplot(1, 2, 1)
         plt.plot(history.history['loss'], label='Train Loss')
         plt.plot(history.history['val_loss'], label='Val Loss')
-        plt.title('Total Loss')
+        plt.title(f'Loss: {model_name}')
         plt.legend()
 
         plt.subplot(1, 2, 2)
         if 'val_output_min_mae' in history.history:
             plt.plot(history.history['val_output_min_mae'], label='Min MAE')
             plt.plot(history.history['val_output_max_mae'], label='Max MAE')
-        else:
-            pass
 
-        plt.title('Validation MAE')
+        plt.title(f'MAE: {model_name}')
         plt.legend()
         plt.tight_layout()
 
-        save_path = os.path.join(self.figures_dir, "training_history.png")
-        plt.savefig(save_path)
-        self.logger.info(f"Đã lưu biểu đồ training tại: {save_path}")
+        plt.savefig(os.path.join(self.figures_dir, f"history_{model_name}.png"))
         plt.close()

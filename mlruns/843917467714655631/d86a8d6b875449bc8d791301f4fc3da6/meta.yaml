@@ -1,0 +1,14 @@
+artifact_uri: /home/phuquocchamp/dev/vku/analysist/Gold-Forecast/mlruns/843917467714655631/d86a8d6b875449bc8d791301f4fc3da6/artifacts
+end_time: 1766077806372
+entry_point_name: ''
+experiment_id: '843917467714655631'
+lifecycle_stage: active
+run_id: d86a8d6b875449bc8d791301f4fc3da6
+run_name: Eval_ATTENTION
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1766077806295
+status: 3
+tags: []
+user_id: ADMIN

@@ -48,4 +48,4 @@ def render_forecast_header(history_df, forecast_df):
     pct = (change / current_price) * 100
     target_date = last_row['Date'].strftime('%b %d, %Y')
 
-    render_html_header("Gold Forecast", "AI Prediction (30 Days)", target_price, change, pct, f"Target Date: {target_date} • Based on Current Price: ${current_price:,.2f}")
+    render_html_header("Gold Forecast", "AI Prediction", target_price, change, pct, f"Target Date: {target_date} • Based on Current Price: ${current_price:,.2f}")
